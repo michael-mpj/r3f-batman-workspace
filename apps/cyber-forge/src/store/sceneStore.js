@@ -11,15 +11,15 @@
 import { create } from "zustand";
 
 export const useSceneStore = create(set => ({
-  rotationSpeed: 0.01,
-  neonColor: "#00ffff",
-  lightIntensity: 1,
-  isLoading: true,
-  showControls: true,
+    rotationSpeed: 0.01,
+    neonColor: "#00ffff",
+    lightIntensity: 1,
+    isLoading: true,
+    showControls: true,
 
-  setRotationSpeed: speed => set({ rotationSpeed: speed }),
-  setNeonColor: color => set({ neonColor: color }),
-  setLightIntensity: intensity => set({ lightIntensity: intensity }),
-  setLoading: loading => set({ isLoading: loading }),
-  toggleControls: () => set(state => ({ showControls: !state.showControls })),
+    setRotationSpeed: speed => set({ rotationSpeed: speed }),
+    setNeonColor: color => set({ neonColor: color }),
+    setLightIntensity: intensity => set({ lightIntensity: intensity }),
+    setLoading: loading => set({ isLoading: loading }),
+    toggleControls: () => set(state => ({ showControls: !state.showControls })),
 }));

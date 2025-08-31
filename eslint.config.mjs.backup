@@ -13,9 +13,12 @@
 import { fixupPluginRules } from "@eslint/compat";
 import { FlatCompat } from "@eslint/eslintrc";
 import js from "@eslint/js";
+import babelParser from "@babel/eslint-parser";
 import _import from "eslint-plugin-import";
 import jest from "eslint-plugin-jest";
 import prettier from "eslint-plugin-prettier";
+import react from "eslint-plugin-react";
+import reactHooks from "eslint-plugin-react-hooks";
 import globals from "globals";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
@@ -30,19 +33,22 @@ const compat = new FlatCompat({
 
 export default [
     {
-        ignores: ["**/coverage", "**/dist", "**/linter", "**/node_modules", "**/*.md", "docs/.vitepress/cache/**", "docs/.vitepress/dist/**"],
+        ignores: ["**/coverage", "**/dist", "**/linter", "**/node_modules", "**/*.md", "docs/.vitepress/cache/**", "docs/.vitepress/dist/**", "**/.vitepress/cache/**", "**/cache/**"],
     },
-    ...compat.extends("eslint:recommended", "plugin:jest/recommended", "plugin:prettier/recommended"),
+    ...compat.extends("eslint:recommended", "plugin:react/recommended", "plugin:react/jsx-runtime", "plugin:react-hooks/recommended", "plugin:jest/recommended", "plugin:prettier/recommended"),
     {
         plugins: {
             import: fixupPluginRules(_import),
             jest,
             prettier,
+            react,
+            "react-hooks": fixupPluginRules(reactHooks),
         },
 
         languageOptions: {
             globals: {
                 ...globals.node,
+                ...globals.browser,
                 ...globals.jest,
                 Atomics: "readonly",
                 SharedArrayBuffer: "readonly",
@@ -50,6 +56,22 @@ export default [
 
             ecmaVersion: 2023,
             sourceType: "module",
+            parser: babelParser,
+            parserOptions: {
+                requireConfigFile: false,
+                babelOptions: {
+                    presets: ["@babel/preset-react"]
+                },
+                ecmaFeatures: {
+                    jsx: true,
+                },
+            },
+        },
+
+        settings: {
+            react: {
+                version: "detect",
+            },
         },
 
         rules: {
@@ -62,6 +84,9 @@ export default [
             "no-shadow": "off",
             "no-unused-vars": "off",
             "prettier/prettier": "error",
+            "no-case-declarations": "off",
+            "react/react-in-jsx-scope": "off",
+            "react/prop-types": "off",
         },
     },
 ];

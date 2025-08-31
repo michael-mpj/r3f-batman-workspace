@@ -12,25 +12,25 @@ import { defineConfig } from "vite";
 import path from "path";
 
 export default defineConfig({
-  build: {
-    lib: {
-      entry: path.resolve(__dirname, "src/index.js"),
-      name: "R3fWorkspaceUtils",
-      fileName: format => `r3f-workspace-utils.${format}.js`,
-      formats: ["es", "cjs"],
-    },
-    rollupOptions: {
-      external: ["three"],
-      output: {
-        globals: {
-          three: "THREE",
+    build: {
+        lib: {
+            entry: path.resolve(__dirname, "src/index.js"),
+            name: "R3fWorkspaceUtils",
+            fileName: format => `r3f-workspace-utils.${format}.js`,
+            formats: ["es", "cjs"],
         },
-      },
+        rollupOptions: {
+            external: ["three"],
+            output: {
+                globals: {
+                    three: "THREE",
+                },
+            },
+        },
+        sourcemap: true,
+        minify: false,
     },
-    sourcemap: true,
-    minify: false,
-  },
-  test: {
-    environment: "jsdom",
-  },
+    test: {
+        environment: "jsdom",
+    },
 });

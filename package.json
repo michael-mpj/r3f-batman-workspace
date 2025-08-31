@@ -13,8 +13,8 @@
     "dev": "npm run dev --workspace=projects/R3f-StarterKit",
     "build": "npm run build --workspaces --if-present",
     "test": "npm run test --workspaces --if-present",
-    "lint": "eslint . --ext .js,.jsx,.mjs",
-    "lint:fix": "eslint . --ext .js,.jsx,.mjs --fix",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
     "format": "prettier --write .",
     "check-compatibility": "node scripts/check-compatibility.mjs",
     "batman": "node scripts/batman.mjs",
@@ -46,6 +46,7 @@
   },
   "devDependencies": {
     "@babel/core": "^7.28.3",
+    "@babel/eslint-parser": "^7.28.0",
     "@babel/preset-env": "^7.28.3",
     "@babel/preset-react": "^7.27.1",
     "@changesets/changelog-github": "^0.5.1",

@@ -26,21 +26,21 @@ const workspaceRoot = path.join(__dirname, "..");
 // BATMAN ULTIMATE CONFIG
 // ---------------------------
 const BATMAN_CONFIG = {
-  ports: {
-    docs: 5173,
-    starterKit: 3002,
-    cyberForge: 3003,
-    workspace: 3001,
-    testRunner: 3004,
-    debugServer: 3005,
-  },
-  terminals: new Map(),
-  processes: new Map(),
-  debugMode: process.argv.includes("--debug"),
-  autoClose: process.argv.includes("--auto-close"),
-  watchMode: process.argv.includes("--watch"),
-  testMode: process.argv.includes("--test"),
-  allMode: process.argv.includes("--all") || !process.argv.slice(2).some(arg => arg.startsWith("--")),
+    ports: {
+        docs: 5173,
+        starterKit: 3002,
+        cyberForge: 3003,
+        workspace: 3001,
+        testRunner: 3004,
+        debugServer: 3005,
+    },
+    terminals: new Map(),
+    processes: new Map(),
+    debugMode: process.argv.includes("--debug"),
+    autoClose: process.argv.includes("--auto-close"),
+    watchMode: process.argv.includes("--watch"),
+    testMode: process.argv.includes("--test"),
+    allMode: process.argv.includes("--all") || !process.argv.slice(2).some(arg => arg.startsWith("--")),
 };
 
 // ---------------------------
@@ -64,167 +64,167 @@ const batmanUltimateArt = `
 const sleep = ms => new Promise(resolve => setTimeout(resolve, ms));
 
 const checkPortAvailable = port => {
-  return new Promise(resolve => {
-    const server = net.createServer();
-    server.listen(port, () => {
-      server.once("close", () => resolve(true));
-      server.close();
+    return new Promise(resolve => {
+        const server = net.createServer();
+        server.listen(port, () => {
+            server.once("close", () => resolve(true));
+            server.close();
+        });
+        server.on("error", () => resolve(false));
     });
-    server.on("error", () => resolve(false));
-  });
 };
 
 const findAvailablePort = async startPort => {
-  let port = startPort;
-  while (!(await checkPortAvailable(port))) {
-    port++;
-  }
-  return port;
+    let port = startPort;
+    while (!(await checkPortAvailable(port))) {
+        port++;
+    }
+    return port;
 };
 
 const displayProgress = (message, emoji = "🦇", duration = 1000) => {
-  console.log(`\n${emoji} ${message}`);
-  console.log("─".repeat(80));
-  return sleep(duration);
+    console.log(`\n${emoji} ${message}`);
+    console.log("─".repeat(80));
+    return sleep(duration);
 };
 
 const openBrowser = async (url, delay = 2000) => {
-  await sleep(delay);
-  const command = process.platform === "darwin" ? "open" : process.platform === "win32" ? "start" : "xdg-open";
+    await sleep(delay);
+    const command = process.platform === "darwin" ? "open" : process.platform === "win32" ? "start" : "xdg-open";
 
-  exec(`${command} "${url}"`, error => {
-    if (error && BATMAN_CONFIG.debugMode) {
-      console.log(`🦇 [DEBUG] Could not auto-open ${url}: ${error.message}`);
-    } else {
-      console.log(`🌐 Opened: ${url}`);
-    }
-  });
+    exec(`${command} "${url}"`, error => {
+        if (error && BATMAN_CONFIG.debugMode) {
+            console.log(`🦇 [DEBUG] Could not auto-open ${url}: ${error.message}`);
+        } else {
+            console.log(`🌐 Opened: ${url}`);
+        }
+    });
 };
 
 const createTerminal = (name, command, options = {}) => {
-  const terminal = {
-    name,
-    command,
-    process: null,
-    port: options.port,
-    isBackground: options.background || false,
-    autoClose: options.autoClose || BATMAN_CONFIG.autoClose,
-    startTime: Date.now(),
-  };
+    const terminal = {
+        name,
+        command,
+        process: null,
+        port: options.port,
+        isBackground: options.background || false,
+        autoClose: options.autoClose || BATMAN_CONFIG.autoClose,
+        startTime: Date.now(),
+    };
 
-  if (BATMAN_CONFIG.debugMode) {
-    console.log(`🦇 [DEBUG] Creating terminal: ${name}`);
-    console.log(`   Command: ${command}`);
-    console.log(`   Background: ${terminal.isBackground}`);
-    console.log(`   Port: ${terminal.port || "N/A"}`);
-  }
-
-  const spawnOptions = {
-    shell: true,
-    cwd: options.cwd || workspaceRoot,
-    detached: terminal.isBackground,
-    stdio: terminal.isBackground ? ["pipe", "pipe", "pipe"] : "inherit",
-    ...options.spawnOptions,
-  };
-
-  terminal.process = spawn(command, [], spawnOptions);
-
-  if (terminal.isBackground) {
-    terminal.process.unref();
-
-    // Capture output for debug mode
-    if (BATMAN_CONFIG.debugMode && terminal.process.stdout) {
-      terminal.process.stdout.on("data", data => {
-        console.log(`🦇 [${name}] ${data.toString().trim()}`);
-      });
-    }
-
-    console.log(`🦇 Background process started: ${name} (PID: ${terminal.process.pid})`);
-  }
-
-  terminal.process.on("close", code => {
-    const runtime = (Date.now() - terminal.startTime) / 1000;
     if (BATMAN_CONFIG.debugMode) {
-      console.log(`🦇 [DEBUG] Terminal ${name} closed (code: ${code}, runtime: ${runtime.toFixed(1)}s)`);
+        console.log(`🦇 [DEBUG] Creating terminal: ${name}`);
+        console.log(`   Command: ${command}`);
+        console.log(`   Background: ${terminal.isBackground}`);
+        console.log(`   Port: ${terminal.port || "N/A"}`);
     }
-    BATMAN_CONFIG.terminals.delete(name);
-  });
 
-  terminal.process.on("error", error => {
-    console.error(`🦇 [ERROR] Terminal ${name}: ${error.message}`);
-    BATMAN_CONFIG.terminals.delete(name);
-  });
+    const spawnOptions = {
+        shell: true,
+        cwd: options.cwd || workspaceRoot,
+        detached: terminal.isBackground,
+        stdio: terminal.isBackground ? ["pipe", "pipe", "pipe"] : "inherit",
+        ...options.spawnOptions,
+    };
 
-  BATMAN_CONFIG.terminals.set(name, terminal);
-  return terminal;
+    terminal.process = spawn(command, [], spawnOptions);
+
+    if (terminal.isBackground) {
+        terminal.process.unref();
+
+        // Capture output for debug mode
+        if (BATMAN_CONFIG.debugMode && terminal.process.stdout) {
+            terminal.process.stdout.on("data", data => {
+                console.log(`🦇 [${name}] ${data.toString().trim()}`);
+            });
+        }
+
+        console.log(`🦇 Background process started: ${name} (PID: ${terminal.process.pid})`);
+    }
+
+    terminal.process.on("close", code => {
+        const runtime = (Date.now() - terminal.startTime) / 1000;
+        if (BATMAN_CONFIG.debugMode) {
+            console.log(`🦇 [DEBUG] Terminal ${name} closed (code: ${code}, runtime: ${runtime.toFixed(1)}s)`);
+        }
+        BATMAN_CONFIG.terminals.delete(name);
+    });
+
+    terminal.process.on("error", error => {
+        console.error(`🦇 [ERROR] Terminal ${name}: ${error.message}`);
+        BATMAN_CONFIG.terminals.delete(name);
+    });
+
+    BATMAN_CONFIG.terminals.set(name, terminal);
+    return terminal;
 };
 
 const cleanupTerminals = async () => {
-  console.log(`\n🦇 Batman terminal cleanup protocol...`);
+    console.log(`\n🦇 Batman terminal cleanup protocol...`);
 
-  for (const [name, terminal] of BATMAN_CONFIG.terminals) {
-    if (terminal.process && !terminal.process.killed) {
-      const runtime = (Date.now() - terminal.startTime) / 1000;
-      console.log(`🦇 Terminating ${name} (ran for ${runtime.toFixed(1)}s)`);
+    for (const [name, terminal] of BATMAN_CONFIG.terminals) {
+        if (terminal.process && !terminal.process.killed) {
+            const runtime = (Date.now() - terminal.startTime) / 1000;
+            console.log(`🦇 Terminating ${name} (ran for ${runtime.toFixed(1)}s)`);
 
-      try {
-        if (terminal.isBackground) {
-          process.kill(terminal.process.pid, "SIGTERM");
-        } else {
-          terminal.process.kill("SIGTERM");
+            try {
+                if (terminal.isBackground) {
+                    process.kill(terminal.process.pid, "SIGTERM");
+                } else {
+                    terminal.process.kill("SIGTERM");
+                }
+            } catch (error) {
+                if (BATMAN_CONFIG.debugMode) {
+                    console.log(`🦇 [DEBUG] Error killing ${name}: ${error.message}`);
+                }
+            }
         }
-      } catch (error) {
-        if (BATMAN_CONFIG.debugMode) {
-          console.log(`🦇 [DEBUG] Error killing ${name}: ${error.message}`);
-        }
-      }
     }
-  }
 
-  // Run cleanup script
-  await new Promise(resolve => {
-    const cleanup = spawn("node", ["scripts/cleanup-terminals.mjs"], {
-      cwd: workspaceRoot,
-      stdio: "pipe",
+    // Run cleanup script
+    await new Promise(resolve => {
+        const cleanup = spawn("node", ["scripts/cleanup-terminals.mjs"], {
+            cwd: workspaceRoot,
+            stdio: "pipe",
+        });
+        cleanup.on("close", resolve);
     });
-    cleanup.on("close", resolve);
-  });
 };
 
 const runSequentialTask = async (name, command, options = {}) => {
-  await displayProgress(`Running ${name}...`, "🦇", 500);
+    await displayProgress(`Running ${name}...`, "🦇", 500);
 
-  return new Promise(resolve => {
-    const process = spawn(command, [], {
-      shell: true,
-      stdio: BATMAN_CONFIG.debugMode ? "inherit" : "pipe",
-      cwd: options.cwd || workspaceRoot,
-    });
+    return new Promise(resolve => {
+        const process = spawn(command, [], {
+            shell: true,
+            stdio: BATMAN_CONFIG.debugMode ? "inherit" : "pipe",
+            cwd: options.cwd || workspaceRoot,
+        });
 
-    process.on("close", code => {
-      if (code === 0) {
-        console.log(`✅ ${name} completed successfully`);
-      } else {
-        console.log(`⚠️  ${name} completed with code ${code}`);
-      }
-      resolve(code);
-    });
+        process.on("close", code => {
+            if (code === 0) {
+                console.log(`✅ ${name} completed successfully`);
+            } else {
+                console.log(`⚠️  ${name} completed with code ${code}`);
+            }
+            resolve(code);
+        });
 
-    process.on("error", error => {
-      console.error(`❌ ${name} error: ${error.message}`);
-      resolve(1);
+        process.on("error", error => {
+            console.error(`❌ ${name} error: ${error.message}`);
+            resolve(1);
+        });
     });
-  });
 };
 
 // ---------------------------
 // MAIN BATMAN FUNCTION
 // ---------------------------
 const batmanUltimate = async () => {
-  console.clear();
-  console.log(batmanUltimateArt);
+    console.clear();
+    console.log(batmanUltimateArt);
 
-  console.log(`
+    console.log(`
 🌃 Welcome to Gotham's Ultimate Development Environment!
 
 🦇 BATMAN ULTIMATE FEATURES:
@@ -242,97 +242,97 @@ const batmanUltimate = async () => {
    ${BATMAN_CONFIG.autoClose ? "⏰ AUTO-CLOSE" : "💎 PERSISTENT"}
     `);
 
-  await sleep(3000);
+    await sleep(3000);
 
-  // Dynamic port discovery
-  console.log(`\n🦇 DYNAMIC PORT ASSIGNMENT:`);
-  const ports = {};
-  for (const [service, defaultPort] of Object.entries(BATMAN_CONFIG.ports)) {
-    ports[service] = await findAvailablePort(defaultPort);
-    if (ports[service] !== defaultPort) {
-      console.log(`   📡 ${service}: ${defaultPort} → ${ports[service]} (auto-assigned)`);
-    } else {
-      console.log(`   ✅ ${service}: ${ports[service]} (default)`);
+    // Dynamic port discovery
+    console.log(`\n🦇 DYNAMIC PORT ASSIGNMENT:`);
+    const ports = {};
+    for (const [service, defaultPort] of Object.entries(BATMAN_CONFIG.ports)) {
+        ports[service] = await findAvailablePort(defaultPort);
+        if (ports[service] !== defaultPort) {
+            console.log(`   📡 ${service}: ${defaultPort} → ${ports[service]} (auto-assigned)`);
+        } else {
+            console.log(`   ✅ ${service}: ${ports[service]} (default)`);
+        }
     }
-  }
 
-  // Sequential setup tasks
-  await displayProgress("Step 1: Terminal Cleanup & Preparation", "🧹");
-  await cleanupTerminals();
+    // Sequential setup tasks
+    await displayProgress("Step 1: Terminal Cleanup & Preparation", "🧹");
+    await cleanupTerminals();
 
-  await displayProgress("Step 2: Batman Headers", "📋");
-  await runSequentialTask("Header Update", "node scripts/add-headers.mjs");
+    await displayProgress("Step 2: Batman Headers", "📋");
+    await runSequentialTask("Header Update", "node scripts/add-headers.mjs");
 
-  await displayProgress("Step 3: Compatibility Check", "🔍");
-  await runSequentialTask("Compatibility Analysis", "npm run check-compatibility");
+    await displayProgress("Step 3: Compatibility Check", "🔍");
+    await runSequentialTask("Compatibility Analysis", "npm run check-compatibility");
 
-  await displayProgress("Step 4: Building Arsenal", "🏗️");
-  await runSequentialTask("Build System", "npm run build");
+    await displayProgress("Step 4: Building Arsenal", "🏗️");
+    await runSequentialTask("Build System", "npm run build");
 
-  if (BATMAN_CONFIG.testMode || BATMAN_CONFIG.allMode) {
-    await displayProgress("Step 5: Testing Gadgets", "🧪");
-    await runSequentialTask("Test Suite", "npm run test");
+    if (BATMAN_CONFIG.testMode || BATMAN_CONFIG.allMode) {
+        await displayProgress("Step 5: Testing Gadgets", "🧪");
+        await runSequentialTask("Test Suite", "npm run test");
 
-    // Test watcher in background
-    if (BATMAN_CONFIG.watchMode) {
-      createTerminal("test-watch", "npm run test -- --watchAll", {
+        // Test watcher in background
+        if (BATMAN_CONFIG.watchMode) {
+            createTerminal("test-watch", "npm run test -- --watchAll", {
+                background: true,
+                port: ports.testRunner,
+            });
+        }
+    }
+
+    await displayProgress("Step 6: Multi-Terminal Server Deployment", "🚀");
+
+    // VitePress Documentation
+    createTerminal("docs", `npx vitepress dev docs --port ${ports.docs}`, {
         background: true,
-        port: ports.testRunner,
-      });
+        port: ports.docs,
+        cwd: workspaceRoot,
+    });
+
+    // R3F StarterKit
+    createTerminal("starterkit", `npm run dev -- --port ${ports.starterKit}`, {
+        background: true,
+        port: ports.starterKit,
+        cwd: path.join(workspaceRoot, "projects", "R3f-StarterKit"),
+    });
+
+    // Cyber Forge App
+    createTerminal("cyber-forge", `npm run dev -- --port ${ports.cyberForge}`, {
+        background: true,
+        port: ports.cyberForge,
+        cwd: path.join(workspaceRoot, "apps", "cyber-forge"),
+    });
+
+    // Watch mode services
+    if (BATMAN_CONFIG.watchMode) {
+        createTerminal("build-watcher", "npm run build -- --watch", {
+            background: true,
+        });
+
+        createTerminal("lint-watcher", "npm run lint -- --fix", {
+            background: true,
+        });
     }
-  }
 
-  await displayProgress("Step 6: Multi-Terminal Server Deployment", "🚀");
+    // Debug mode services
+    if (BATMAN_CONFIG.debugMode) {
+        createTerminal("debug-inspector", `node --inspect=0.0.0.0:${ports.debugServer} scripts/workspace-info.mjs`, {
+            background: true,
+            port: ports.debugServer,
+        });
+    }
 
-  // VitePress Documentation
-  createTerminal("docs", `npx vitepress dev docs --port ${ports.docs}`, {
-    background: true,
-    port: ports.docs,
-    cwd: workspaceRoot,
-  });
+    await displayProgress("Step 7: Bat Computer Browser Protocol", "🌐");
 
-  // R3F StarterKit
-  createTerminal("starterkit", `npm run dev -- --port ${ports.starterKit}`, {
-    background: true,
-    port: ports.starterKit,
-    cwd: path.join(workspaceRoot, "projects", "R3f-StarterKit"),
-  });
+    // Staggered browser opening
+    await openBrowser(`http://localhost:${ports.docs}`, 1000);
+    await openBrowser(`http://localhost:${ports.starterKit}`, 2000);
+    await openBrowser(`http://localhost:${ports.cyberForge}`, 3000);
 
-  // Cyber Forge App
-  createTerminal("cyber-forge", `npm run dev -- --port ${ports.cyberForge}`, {
-    background: true,
-    port: ports.cyberForge,
-    cwd: path.join(workspaceRoot, "apps", "cyber-forge"),
-  });
-
-  // Watch mode services
-  if (BATMAN_CONFIG.watchMode) {
-    createTerminal("build-watcher", "npm run build -- --watch", {
-      background: true,
-    });
-
-    createTerminal("lint-watcher", "npm run lint -- --fix", {
-      background: true,
-    });
-  }
-
-  // Debug mode services
-  if (BATMAN_CONFIG.debugMode) {
-    createTerminal("debug-inspector", `node --inspect=0.0.0.0:${ports.debugServer} scripts/workspace-info.mjs`, {
-      background: true,
-      port: ports.debugServer,
-    });
-  }
-
-  await displayProgress("Step 7: Bat Computer Browser Protocol", "🌐");
-
-  // Staggered browser opening
-  await openBrowser(`http://localhost:${ports.docs}`, 1000);
-  await openBrowser(`http://localhost:${ports.starterKit}`, 2000);
-  await openBrowser(`http://localhost:${ports.cyberForge}`, 3000);
-
-  // Final Status Report
-  console.log(`
+    // Final Status Report
+    console.log(`
 🦇🦇🦇🦇🦇🦇🦇🦇🦇🦇🦇🦇🦇🦇🦇🦇🦇🦇🦇🦇🦇🦇🦇🦇🦇🦇🦇🦇🦇🦇🦇🦇🦇🦇🦇🦇🦇🦇🦇🦇
 
                         🦇 BATMAN ULTIMATE PROTOCOL COMPLETE! 🦇
@@ -372,57 +372,57 @@ const batmanUltimate = async () => {
 🦇🦇🦇🦇🦇🦇🦇🦇🦇🦇🦇🦇🦇🦇🦇🦇🦇🦇🦇🦇🦇🦇🦇🦇🦇🦇🦇🦇🦇🦇🦇🦇🦇🦇🦇🦇🦇🦇🦇🦇
     `);
 
-  // Keep the main process alive to manage terminals
-  if (!BATMAN_CONFIG.autoClose) {
-    console.log(`\n🦇 Batman is monitoring all terminals...`);
-    console.log(`   Press Ctrl+C to stop all services and cleanup.`);
+    // Keep the main process alive to manage terminals
+    if (!BATMAN_CONFIG.autoClose) {
+        console.log(`\n🦇 Batman is monitoring all terminals...`);
+        console.log(`   Press Ctrl+C to stop all services and cleanup.`);
 
-    process.on("SIGINT", async () => {
-      console.log(`\n🦇 Batman cleanup initiated...`);
-      await cleanupTerminals();
-      console.log(`🦇 All terminals cleaned. Gotham is secure. Batman out! 🌃`);
-      process.exit(0);
-    });
+        process.on("SIGINT", async () => {
+            console.log(`\n🦇 Batman cleanup initiated...`);
+            await cleanupTerminals();
+            console.log(`🦇 All terminals cleaned. Gotham is secure. Batman out! 🌃`);
+            process.exit(0);
+        });
 
-    // Keep alive with periodic status updates
-    const monitorInterval = setInterval(() => {
-      if (BATMAN_CONFIG.debugMode) {
-        const activeTerminals = Array.from(BATMAN_CONFIG.terminals.keys()).join(", ");
-        console.log(
-          `🦇 [DEBUG] ${new Date().toLocaleTimeString()} - Batman monitoring... (${BATMAN_CONFIG.terminals.size} terminals: ${activeTerminals})`
-        );
-      }
-    }, 30000);
+        // Keep alive with periodic status updates
+        const monitorInterval = setInterval(() => {
+            if (BATMAN_CONFIG.debugMode) {
+                const activeTerminals = Array.from(BATMAN_CONFIG.terminals.keys()).join(", ");
+                console.log(
+                    `🦇 [DEBUG] ${new Date().toLocaleTimeString()} - Batman monitoring... (${BATMAN_CONFIG.terminals.size} terminals: ${activeTerminals})`
+                );
+            }
+        }, 30000);
 
-    // Cleanup interval on exit
-    process.on("exit", () => {
-      clearInterval(monitorInterval);
-    });
-  } else {
+        // Cleanup interval on exit
+        process.on("exit", () => {
+            clearInterval(monitorInterval);
+        });
+    } else {
     // Auto-close mode
-    setTimeout(async () => {
-      console.log(`\n🦇 Auto-close timer activated...`);
-      await cleanupTerminals();
-      console.log(`🦇 Batman auto-cleanup complete! 🌃`);
-      process.exit(0);
-    }, 60000); // Auto-close after 1 minute
-  }
+        setTimeout(async () => {
+            console.log(`\n🦇 Auto-close timer activated...`);
+            await cleanupTerminals();
+            console.log(`🦇 Batman auto-cleanup complete! 🌃`);
+            process.exit(0);
+        }, 60000); // Auto-close after 1 minute
+    }
 };
 
 // ---------------------------
 // BATMAN EXECUTION
 // ---------------------------
 batmanUltimate()
-  .then(() => {
-    if (BATMAN_CONFIG.autoClose) {
-      console.log(`🦇 Batman Ultimate Protocol Complete! Gotham is secure! 🌃`);
-      process.exit(0);
-    }
-  })
-  .catch(error => {
-    console.error(`🦇 Even Batman has challenging nights: ${error.message}`);
-    console.log(`🦇 "I'll get them next time!" - Batman`);
-    process.exit(1);
-  });
+    .then(() => {
+        if (BATMAN_CONFIG.autoClose) {
+            console.log(`🦇 Batman Ultimate Protocol Complete! Gotham is secure! 🌃`);
+            process.exit(0);
+        }
+    })
+    .catch(error => {
+        console.error(`🦇 Even Batman has challenging nights: ${error.message}`);
+        console.log(`🦇 "I'll get them next time!" - Batman`);
+        process.exit(1);
+    });
 
 export default batmanUltimate;

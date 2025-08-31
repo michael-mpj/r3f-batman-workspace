@@ -12,32 +12,32 @@ import react from "@vitejs/plugin-react";
 import { resolve } from "path";
 
 export default defineConfig({
-  plugins: [react()],
-  build: {
-    lib: {
-      entry: resolve(__dirname, "src/index.js"),
-      name: "R3fComponents",
-      fileName: format => `r3f-components.${format}.js`,
-    },
-    rollupOptions: {
-      external: ["react", "react-dom", "@react-three/fiber", "@react-three/drei", "three"],
-      output: {
-        globals: {
-          "react": "React",
-          "react-dom": "ReactDOM",
-          "@react-three/fiber": "ReactThreeFiber",
-          "@react-three/drei": "ReactThreeDrei",
-          "three": "THREE",
+    plugins: [react()],
+    build: {
+        lib: {
+            entry: resolve(__dirname, "src/index.js"),
+            name: "R3fComponents",
+            fileName: format => `r3f-components.${format}.js`,
         },
-      },
+        rollupOptions: {
+            external: ["react", "react-dom", "@react-three/fiber", "@react-three/drei", "three"],
+            output: {
+                globals: {
+                    "react": "React",
+                    "react-dom": "ReactDOM",
+                    "@react-three/fiber": "ReactThreeFiber",
+                    "@react-three/drei": "ReactThreeDrei",
+                    "three": "THREE",
+                },
+            },
+        },
     },
-  },
-  resolve: {
-    alias: {
-      "@utils": resolve(__dirname, "../utils/src"),
+    resolve: {
+        alias: {
+            "@utils": resolve(__dirname, "../utils/src"),
+        },
     },
-  },
-  server: {
-    port: 3004,
-  },
+    server: {
+        port: 3004,
+    },
 });

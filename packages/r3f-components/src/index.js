@@ -33,24 +33,24 @@ export { HologramMesh };
 
 // Component categories
 export const components = {
-  terrain: {
-    TerrainMesh,
-  },
-  water: {
-    WaterMesh,
-  },
-  particles: {
-    ParticleSystem,
-  },
-  quantum: {
-    QuantumField,
-  },
-  grids: {
-    CyberGrid,
-  },
-  holograms: {
-    HologramMesh,
-  },
+    terrain: {
+        TerrainMesh,
+    },
+    water: {
+        WaterMesh,
+    },
+    particles: {
+        ParticleSystem,
+    },
+    quantum: {
+        QuantumField,
+    },
+    grids: {
+        CyberGrid,
+    },
+    holograms: {
+        HologramMesh,
+    },
 };
 
 // Version info

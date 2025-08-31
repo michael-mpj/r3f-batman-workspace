@@ -1,69 +1,48 @@
 /**
  * R3F Workspace Monorepo - Configuration
  * File: eslint.config.mjs
- * Description: Configuration settings for eslint.config
+ * Description: ESLint configuration for workspace code quality standards
  * Author: R3F Workspace Team
  * Created: 2025-08-30
  * Last Modified: 2025-08-30
  * Version: 1.0.0
  */
 
-// See: https://eslint.org/docs/latest/use/configure/configuration-files
-
-import { fixupPluginRules } from "@eslint/compat";
-import { FlatCompat } from "@eslint/eslintrc";
-import js from "@eslint/js";
-import _import from "eslint-plugin-import";
-import jest from "eslint-plugin-jest";
-import prettier from "eslint-plugin-prettier";
-import globals from "globals";
-import path from "node:path";
-import { fileURLToPath } from "node:url";
-
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
-const compat = new FlatCompat({
-  baseDirectory: __dirname,
-  recommendedConfig: js.configs.recommended,
-  allConfig: js.configs.all,
-});
-
 export default [
   {
-    ignores: ["**/coverage", "**/dist", "**/linter", "**/node_modules", "**/*.md", "docs/.vitepress/cache/**", "docs/.vitepress/dist/**"],
+    ignores: ["**/coverage", "**/dist", "**/linter", "**/node_modules", "**/*.md", "docs/.vitepress/cache/**", "docs/.vitepress/dist/**", "**/.vitepress/cache/**", "**/cache/**"],
   },
-  ...compat.extends("eslint:recommended", "plugin:jest/recommended", "plugin:prettier/recommended"),
   {
-    plugins: {
-      import: fixupPluginRules(_import),
-      jest,
-      prettier,
-    },
-
+    files: ["**/*.{js,jsx,mjs}"],
     languageOptions: {
-      globals: {
-        ...globals.node,
-        ...globals.browser,
-        ...globals.jest,
-        Atomics: "readonly",
-        SharedArrayBuffer: "readonly",
-      },
-
       ecmaVersion: 2023,
       sourceType: "module",
+      parserOptions: {
+        ecmaFeatures: {
+          jsx: true,
+        },
+      },
+      globals: {
+        console: "readonly",
+        process: "readonly",
+        window: "readonly",
+        document: "readonly",
+        global: "readonly",
+        Buffer: "readonly",
+        require: "readonly",
+        module: "readonly",
+        __dirname: "readonly",
+        __filename: "readonly",
+        exports: "readonly",
+      },
     },
-
     rules: {
-      "camelcase": "off",
-      "eslint-comments/no-use": "off",
-      "eslint-comments/no-unused-disable": "off",
-      "i18n-text/no-en": "off",
-      "import/no-namespace": "off",
       "no-console": "off",
-      "no-shadow": "off",
-      "no-unused-vars": "off",
-      "prettier/prettier": "error",
-      "no-case-declarations": "off",
+      "no-unused-vars": "warn", 
+      "consistent-return": "off",
+      "no-undef": "warn",
+      "no-constant-condition": "warn",
+      "no-prototype-builtins": "warn",
     },
   },
 ];

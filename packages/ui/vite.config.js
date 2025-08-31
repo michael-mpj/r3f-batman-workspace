@@ -13,32 +13,32 @@ import react from "@vitejs/plugin-react";
 import { resolve } from "path";
 
 export default defineConfig({
-  plugins: [react()],
-  build: {
-    lib: {
-      entry: resolve(__dirname, "src/index.js"),
-      name: "R3FWorkspaceUI",
-      formats: ["es"],
-      fileName: "index",
-    },
-    rollupOptions: {
-      external: ["react", "react-dom"],
-      output: {
-        globals: {
-          "react": "React",
-          "react-dom": "ReactDOM",
+    plugins: [react()],
+    build: {
+        lib: {
+            entry: resolve(__dirname, "src/index.js"),
+            name: "R3FWorkspaceUI",
+            formats: ["es"],
+            fileName: "index",
         },
-      },
+        rollupOptions: {
+            external: ["react", "react-dom"],
+            output: {
+                globals: {
+                    "react": "React",
+                    "react-dom": "ReactDOM",
+                },
+            },
+        },
     },
-  },
-  test: {
-    environment: "jsdom",
-    setupFiles: ["./src/test/setup.js"],
-    globals: true,
-    coverage: {
-      provider: "v8",
-      reporter: ["text", "json", "html"],
-      exclude: ["node_modules/", "src/test/", "**/*.d.ts", "**/*.config.*", "**/dist/"],
+    test: {
+        environment: "jsdom",
+        setupFiles: ["./src/test/setup.js"],
+        globals: true,
+        coverage: {
+            provider: "v8",
+            reporter: ["text", "json", "html"],
+            exclude: ["node_modules/", "src/test/", "**/*.d.ts", "**/*.config.*", "**/dist/"],
+        },
     },
-  },
 });

@@ -9,4 +9,4 @@
  */
 
 // Export all helpers
-export { default as Grid } from './Grid.jsx'
+export { default as Grid } from './Grid.jsx';
