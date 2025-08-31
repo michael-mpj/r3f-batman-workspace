@@ -31,12 +31,14 @@ If you have GitHub CLI installed:
 3. Configure using the settings below:
 
 **Ruleset Configuration:**
+
 - **Name**: "Main Branch Protection"
 - **Target**: Branch
 - **Branch Pattern**: `main`
 - **Enforcement**: Active
 
 **Rules to Enable:**
+
 - Pull requests
   - Require 1 review
   - Dismiss stale reviews
@@ -54,11 +56,11 @@ If you have GitHub CLI installed:
 
 The branch protection relies on these GitHub Actions:
 
-| Check | Workflow | Description |
-|-------|----------|-------------|
-| `lint` | `.github/workflows/ci.yml` | ESLint code quality checks |
-| `test` | `.github/workflows/ci.yml` | Unit test execution |
-| `build` | `.github/workflows/ci.yml` | Build verification |
+| Check   | Workflow                   | Description                |
+| ------- | -------------------------- | -------------------------- |
+| `lint`  | `.github/workflows/ci.yml` | ESLint code quality checks |
+| `test`  | `.github/workflows/ci.yml` | Unit test execution        |
+| `build` | `.github/workflows/ci.yml` | Build verification         |
 
 ## 🔄 Workflow Integration
 
@@ -80,7 +82,7 @@ If required status checks are failing:
 ```bash
 # Run checks locally first
 npm run lint
-npm run test  
+npm run test
 npm run build
 
 # Fix any issues, then commit

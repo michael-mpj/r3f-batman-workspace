@@ -13,16 +13,16 @@ import js from "@eslint/js";
 import prettierConfig from "eslint-config-prettier";
 
 export default defineConfig([
-    js.configs.recommended,
-    prettierConfig,
-    {
-        rules: {
-            "consistent-return": 2,
-            "indent": [1, 4],
-            "no-else-return": 1,
-            "semi": [1, "always"],
-            "space-unary-ops": 2,
-        },
+  js.configs.recommended,
+  prettierConfig,
+  {
+    rules: {
+      "consistent-return": 2,
+      "indent": [1, 4],
+      "no-else-return": 1,
+      "semi": [1, "always"],
+      "space-unary-ops": 2,
     },
+  },
 ]);
 // https://eslint.org/docs/latest/use/configure/configuration-files#using-eslintconfigjs

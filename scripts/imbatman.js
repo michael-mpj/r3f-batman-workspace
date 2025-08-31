@@ -23,7 +23,7 @@ const workspaceRoot = path.join(__dirname, "..");
 // BATMAN ASCII ARTS
 // ---------------------------
 const batmanArts = {
-    classic: `
+  classic: `
 🦇🦇🦇🦇🦇🦇🦇🦇🦇🦇🦇🦇🦇🦇🦇🦇🦇🦇🦇🦇🦇🦇🦇🦇🦇🦇🦇🦇🦇🦇🦇🦇🦇🦇🦇🦇🦇🦇🦇🦇
                     ██████╗  █████╗ ████████╗███╗   ███╗ █████╗ ███╗   ██╗
                     ██╔══██╗██╔══██╗╚══██╔══╝████╗ ████║██╔══██╗████╗  ██║
@@ -34,7 +34,7 @@ const batmanArts = {
                            🌃 I'M BATMAN - ULTIMATE EDITION 🌃
 🦇🦇🦇🦇🦇🦇🦇🦇🦇🦇🦇🦇🦇🦇🦇🦇🦇🦇🦇🦇🦇🦇🦇🦇🦇🦇🦇🦇🦇🦇🦇🦇🦇🦇🦇🦇🦇🦇🦇🦇`,
 
-    enhanced: `
+  enhanced: `
 🦇🦇🦇🦇🦇🦇🦇🦇🦇🦇🦇🦇🦇🦇🦇🦇🦇🦇🦇🦇🦇🦇🦇🦇🦇🦇🦇🦇🦇🦇🦇🦇🦇🦇🦇🦇🦇🦇🦇🦇
                     ██████╗  █████╗ ████████╗███╗   ███╗ █████╗ ███╗   ██╗
                     ██╔══██╗██╔══██╗╚══██╔══╝████╗ ████║██╔══██╗████╗  ██║
@@ -45,7 +45,7 @@ const batmanArts = {
                            🌃 BATMAN ENHANCED - MULTI-TERMINAL 🌃
 🦇🦇🦇🦇🦇🦇🦇🦇🦇🦇🦇🦇🦇🦇🦇🦇🦇🦇🦇🦇🦇🦇🦇🦇🦇🦇🦇🦇🦇🦇🦇🦇🦇🦇🦇🦇🦇🦇🦇🦇`,
 
-    autoClose: `
+  autoClose: `
 🦇🦇🦇🦇🦇🦇🦇🦇🦇🦇🦇🦇🦇🦇🦇🦇🦇🦇🦇🦇🦇🦇🦇🦇🦇🦇🦇🦇🦇🦇🦇🦇🦇🦇🦇🦇🦇🦇🦇🦇
               ██████╗  █████╗ ████████╗███╗   ███╗ █████╗ ███╗   ██╗
               ██╔══██╗██╔══██╗╚══██╔══╝████╗ ████║██╔══██╗████╗  ██║
@@ -56,7 +56,7 @@ const batmanArts = {
                     🌃 BATMAN AUTO-CLOSE - CLEAN WORKFLOW 🌃
 🦇🦇🦇🦇🦇🦇🦇🦇🦇🦇🦇🦇🦇🦇🦇🦇🦇🦇🦇🦇🦇🦇🦇🦇🦇🦇🦇🦇🦇🦇🦇🦇🦇🦇🦇🦇🦇🦇🦇🦇`,
 
-    vscode: `
+  vscode: `
 🦇🦇🦇🦇🦇 VS CODE BATMAN 🦇🦇🦇🦇🦇
    ██╗   ██╗███████╗     ██████╗ ██████╗ ██████╗ ███████╗
    ██║   ██║██╔════╝    ██╔════╝██╔═══██╗██╔══██╗██╔════╝
@@ -85,31 +85,31 @@ const batSignal = `
 // BATMAN QUOTES CONFIG
 // ---------------------------
 const quotesPool = {
-    testRun: [
-        `"It's not who I am underneath, but what I do that defines me." – Batman`,
-        `"The training is nothing. The will is everything." – Batman`,
-        `"I wear a mask. And that mask, it's not to hide who I am, but to create who I am." – Batman`,
-    ],
-    development: [
-        `"Sometimes the truth isn't good enough… sometimes people deserve more." – Batman`,
-        `"It's not about what I want, it's about what's fair." – Batman`,
-        `"Endure, Master Wayne. Take it. They'll hate you for it, but that's the point of Batman." – Alfred`,
-    ],
-    deploy: [
-        `"I'm whatever Gotham needs me to be." – Batman`,
-        `"The night is darkest just before the dawn." – Batman`,
-        `"Justice is balance. Deployment is precision." – Batman Dev Edition`,
-    ],
-    success: [
-        `"Everything's going to be alright. Gotham is safe." – Batman`,
-        `"No matter how bad it gets, you can always do what's right." – Batman`,
-        `"Sometimes the only way to solve our problems is to fight our way through them." – Batman`,
-    ],
-    error: [
-        `"Criminals are a superstitious cowardly lot." – Batman`,
-        `"I've faced worse. I'll face it again." – Batman`,
-        `"A hero can be anyone. Even a man doing something as simple as coding." – Batman`,
-    ],
+  testRun: [
+    `"It's not who I am underneath, but what I do that defines me." – Batman`,
+    `"The training is nothing. The will is everything." – Batman`,
+    `"I wear a mask. And that mask, it's not to hide who I am, but to create who I am." – Batman`,
+  ],
+  development: [
+    `"Sometimes the truth isn't good enough… sometimes people deserve more." – Batman`,
+    `"It's not about what I want, it's about what's fair." – Batman`,
+    `"Endure, Master Wayne. Take it. They'll hate you for it, but that's the point of Batman." – Alfred`,
+  ],
+  deploy: [
+    `"I'm whatever Gotham needs me to be." – Batman`,
+    `"The night is darkest just before the dawn." – Batman`,
+    `"Justice is balance. Deployment is precision." – Batman Dev Edition`,
+  ],
+  success: [
+    `"Everything's going to be alright. Gotham is safe." – Batman`,
+    `"No matter how bad it gets, you can always do what's right." – Batman`,
+    `"Sometimes the only way to solve our problems is to fight our way through them." – Batman`,
+  ],
+  error: [
+    `"Criminals are a superstitious cowardly lot." – Batman`,
+    `"I've faced worse. I'll face it again." – Batman`,
+    `"A hero can be anyone. Even a man doing something as simple as coding." – Batman`,
+  ],
 };
 
 // ---------------------------
@@ -118,104 +118,104 @@ const quotesPool = {
 const sleep = ms => new Promise(resolve => setTimeout(resolve, ms));
 
 const getRandomQuote = status => {
-    const pool = quotesPool[status];
-    if (!pool) return `"Gotham awaits… prepare yourself!" – Batman`;
-    const index = Math.floor(Math.random() * pool.length);
-    return pool[index];
+  const pool = quotesPool[status];
+  if (!pool) return `"Gotham awaits… prepare yourself!" – Batman`;
+  const index = Math.floor(Math.random() * pool.length);
+  return pool[index];
 };
 
 const runCommand = (command, options = {}) => {
-    return new Promise(resolve => {
-        console.log(`🦇 Executing: ${command}`);
-        const child = spawn(command, [], {
-            shell: true,
-            stdio: "inherit",
-            cwd: options.cwd || workspaceRoot,
-            ...options,
-        });
-
-        child.on("close", code => {
-            if (code === 0) resolve(code);
-            else {
-                console.log(`⚠️  Command had exit code ${code}, but Batman never gives up!`);
-                console.log(getRandomQuote("error"));
-                resolve(code);
-            }
-        });
-
-        child.on("error", error => {
-            console.error(`❌ Error executing command: ${error.message}`);
-            console.log(getRandomQuote("error"));
-            resolve(1);
-        });
+  return new Promise(resolve => {
+    console.log(`🦇 Executing: ${command}`);
+    const child = spawn(command, [], {
+      shell: true,
+      stdio: "inherit",
+      cwd: options.cwd || workspaceRoot,
+      ...options,
     });
+
+    child.on("close", code => {
+      if (code === 0) resolve(code);
+      else {
+        console.log(`⚠️  Command had exit code ${code}, but Batman never gives up!`);
+        console.log(getRandomQuote("error"));
+        resolve(code);
+      }
+    });
+
+    child.on("error", error => {
+      console.error(`❌ Error executing command: ${error.message}`);
+      console.log(getRandomQuote("error"));
+      resolve(1);
+    });
+  });
 };
 
 const displayProgress = (message, emoji = "🦇") => {
-    console.log(`\n${emoji} ${message}`);
-    console.log(getRandomQuote("development"));
-    console.log("─".repeat(60));
+  console.log(`\n${emoji} ${message}`);
+  console.log(getRandomQuote("development"));
+  console.log("─".repeat(60));
 };
 
 // ---------------------------
 // BATMAN TASK MANAGER CLASS
 // ---------------------------
 class UnifiedBatmanManager {
-    constructor() {
-        this.terminals = new Map();
-        this.results = [];
-        this.workspaceRoot = workspaceRoot;
-    }
+  constructor() {
+    this.terminals = new Map();
+    this.results = [];
+    this.workspaceRoot = workspaceRoot;
+  }
 
-    // Create internal process terminal
-    async createTaskTerminal(taskName, command, options = {}) {
-        console.log(`🦇 Opening Internal Terminal for: ${taskName}`);
+  // Create internal process terminal
+  async createTaskTerminal(taskName, command, options = {}) {
+    console.log(`🦇 Opening Internal Terminal for: ${taskName}`);
 
-        const terminalOptions = {
-            cwd: options.cwd || this.workspaceRoot,
-            stdio: ["inherit", "pipe", "pipe"],
-            detached: true,
-            ...options,
-        };
+    const terminalOptions = {
+      cwd: options.cwd || this.workspaceRoot,
+      stdio: ["inherit", "pipe", "pipe"],
+      detached: true,
+      ...options,
+    };
 
-        const process = spawn("sh", ["-c", command], terminalOptions);
+    const process = spawn("sh", ["-c", command], terminalOptions);
 
-        this.terminals.set(taskName, {
-            process,
-            command,
-            startTime: Date.now(),
-            status: "running",
-        });
+    this.terminals.set(taskName, {
+      process,
+      command,
+      startTime: Date.now(),
+      status: "running",
+    });
 
-        // Handle process output
-        process.stdout?.on("data", data => {
-            console.log(`[${taskName}] ${data.toString()}`);
-        });
+    // Handle process output
+    process.stdout?.on("data", data => {
+      console.log(`[${taskName}] ${data.toString()}`);
+    });
 
-        process.stderr?.on("data", data => {
-            console.log(`[${taskName}] ⚠️ ${data.toString()}`);
-        });
+    process.stderr?.on("data", data => {
+      console.log(`[${taskName}] ⚠️ ${data.toString()}`);
+    });
 
-        process.on("close", code => {
-            const terminal = this.terminals.get(taskName);
-            if (terminal) {
-                terminal.status = code === 0 ? "completed" : "failed";
-                terminal.endTime = Date.now();
-                terminal.exitCode = code;
-            }
-            console.log(`🦇 [${taskName}] Terminal closed with code: ${code}`);
-        });
+    process.on("close", code => {
+      const terminal = this.terminals.get(taskName);
+      if (terminal) {
+        terminal.status = code === 0 ? "completed" : "failed";
+        terminal.endTime = Date.now();
+        terminal.exitCode = code;
+      }
+      console.log(`🦇 [${taskName}] Terminal closed with code: ${code}`);
+    });
 
-        return process;
-    }
+    return process;
+  }
 
-    // Open macOS Terminal with auto-close
-    async openAutoCloseTerminal(taskName, command, options = {}) {
-        console.log(`🦇 Opening Auto-Close Terminal for: ${taskName}`);
+  // Open macOS Terminal with auto-close
+  async openAutoCloseTerminal(taskName, command, options = {}) {
+    console.log(`🦇 Opening Auto-Close Terminal for: ${taskName}`);
 
-        try {
-            if (process.platform === "darwin") {
-                const autoCloseScript = `
+    try {
+      if (process.platform === "darwin") {
+        const autoCloseScript = `
           tell application "Terminal"
             activate
             set newTab to do script "cd '${options.cwd || this.workspaceRoot}' && echo '🦇 Batman ${taskName}' && echo '▶️ Starting task...' && ${command} && echo '' && echo '✅ ${taskName} completed successfully!' && echo '🦇 Auto-closing in 3 seconds...' && sleep 3 && exit"
@@ -223,31 +223,31 @@ class UnifiedBatmanManager {
           end tell
         `;
 
-                exec(`osascript -e "${autoCloseScript.replace(/"/g, '\\"')}"`);
-                console.log(`✅ Launched ${taskName} in auto-closing terminal`);
+        exec(`osascript -e "${autoCloseScript.replace(/"/g, '\\"')}"`);
+        console.log(`✅ Launched ${taskName} in auto-closing terminal`);
 
-                this.results.push({
-                    task: taskName,
-                    status: "launched",
-                    type: "auto-close",
-                });
-            } else {
-                console.log(`⚠️ Auto-close terminals not available on this platform, using internal process`);
-                await this.createTaskTerminal(taskName, command, options);
-            }
-        } catch (error) {
-            console.log(`⚠️ Failed to open system terminal, using internal process for ${taskName}`);
-            await this.createTaskTerminal(taskName, command, options);
-        }
+        this.results.push({
+          task: taskName,
+          status: "launched",
+          type: "auto-close",
+        });
+      } else {
+        console.log(`⚠️ Auto-close terminals not available on this platform, using internal process`);
+        await this.createTaskTerminal(taskName, command, options);
+      }
+    } catch (error) {
+      console.log(`⚠️ Failed to open system terminal, using internal process for ${taskName}`);
+      await this.createTaskTerminal(taskName, command, options);
     }
+  }
 
-    // Open persistent terminal (for dev server)
-    async openPersistentTerminal(taskName, command, options = {}) {
-        console.log(`🦇 Opening Persistent Terminal for: ${taskName}`);
+  // Open persistent terminal (for dev server)
+  async openPersistentTerminal(taskName, command, options = {}) {
+    console.log(`🦇 Opening Persistent Terminal for: ${taskName}`);
 
-        try {
-            if (process.platform === "darwin") {
-                const persistentScript = `
+    try {
+      if (process.platform === "darwin") {
+        const persistentScript = `
           tell application "Terminal"
             activate
             set newTab to do script "cd '${options.cwd || this.workspaceRoot}' && echo '🦇 Batman ${taskName} (Persistent)' && echo '🚀 Starting development server...' && echo 'ℹ️  This terminal will remain open for development' && ${command}"
@@ -255,53 +255,53 @@ class UnifiedBatmanManager {
           end tell
         `;
 
-                exec(`osascript -e "${persistentScript.replace(/"/g, '\\"')}"`);
-                console.log(`✅ Launched ${taskName} in persistent terminal`);
+        exec(`osascript -e "${persistentScript.replace(/"/g, '\\"')}"`);
+        console.log(`✅ Launched ${taskName} in persistent terminal`);
 
-                this.results.push({
-                    task: taskName,
-                    status: "launched",
-                    type: "persistent",
-                });
-            } else {
-                console.log(`⚠️ Persistent terminals not available on this platform, using internal process`);
-                await this.createTaskTerminal(taskName, command, options);
-            }
-        } catch (error) {
-            console.log(`⚠️ Failed to open system terminal, using internal process for ${taskName}`);
-            await this.createTaskTerminal(taskName, command, options);
-        }
-    }
-
-    // Get status summary
-    getStatus() {
-        const status = {};
-        this.terminals.forEach((terminal, taskName) => {
-            status[taskName] = {
-                status: terminal.status,
-                command: terminal.command,
-                duration: terminal.endTime ? terminal.endTime - terminal.startTime : Date.now() - terminal.startTime,
-                exitCode: terminal.exitCode,
-            };
+        this.results.push({
+          task: taskName,
+          status: "launched",
+          type: "persistent",
         });
-        return status;
+      } else {
+        console.log(`⚠️ Persistent terminals not available on this platform, using internal process`);
+        await this.createTaskTerminal(taskName, command, options);
+      }
+    } catch (error) {
+      console.log(`⚠️ Failed to open system terminal, using internal process for ${taskName}`);
+      await this.createTaskTerminal(taskName, command, options);
     }
+  }
 
-    // Get results summary
-    getSummary() {
-        return this.results;
-    }
+  // Get status summary
+  getStatus() {
+    const status = {};
+    this.terminals.forEach((terminal, taskName) => {
+      status[taskName] = {
+        status: terminal.status,
+        command: terminal.command,
+        duration: terminal.endTime ? terminal.endTime - terminal.startTime : Date.now() - terminal.startTime,
+        exitCode: terminal.exitCode,
+      };
+    });
+    return status;
+  }
 
-    // Cleanup all processes
-    cleanup() {
-        console.log("🦇 Batman is cleaning up the Batcave...");
-        this.terminals.forEach((terminal, taskName) => {
-            if (terminal.process && !terminal.process.killed) {
-                terminal.process.kill();
-                console.log(`🦇 Closed terminal for ${taskName}`);
-            }
-        });
-    }
+  // Get results summary
+  getSummary() {
+    return this.results;
+  }
+
+  // Cleanup all processes
+  cleanup() {
+    console.log("🦇 Batman is cleaning up the Batcave...");
+    this.terminals.forEach((terminal, taskName) => {
+      if (terminal.process && !terminal.process.killed) {
+        terminal.process.kill();
+        console.log(`🦇 Closed terminal for ${taskName}`);
+      }
+    });
+  }
 }
 
 // ---------------------------
@@ -310,10 +310,10 @@ class UnifiedBatmanManager {
 
 // Classic Batman Mode (Sequential)
 async function runClassicBatman() {
-    console.clear();
-    console.log(batmanArts.classic);
+  console.clear();
+  console.log(batmanArts.classic);
 
-    console.log(`
+  console.log(`
 🌃 Welcome to Gotham's Classic Batman!
 
 "This workspace is for those who code like heroes. You take responsibility, 
@@ -325,30 +325,30 @@ your projects with precision and dedication—because in that case… You Are Al
 📡 Preparing to deploy the Bat Signal...
   `);
 
-    await sleep(2000);
+  await sleep(2000);
 
-    // Sequential task execution
-    displayProgress("Adding Batman headers to all files in the Batcave", "📋");
-    await runCommand("node scripts/add-headers.mjs");
+  // Sequential task execution
+  displayProgress("Adding Batman headers to all files in the Batcave", "📋");
+  await runCommand("node scripts/add-headers.mjs");
 
-    displayProgress("Running Oracle compatibility scan", "🔍");
-    await runCommand("npm run check-compatibility");
+  displayProgress("Running Oracle compatibility scan", "🔍");
+  await runCommand("npm run check-compatibility");
 
-    displayProgress("Building the Batmobile (all packages)", "🏗️");
-    await runCommand("npm run build");
+  displayProgress("Building the Batmobile (all packages)", "🏗️");
+  await runCommand("npm run build");
 
-    displayProgress("Testing Batman's gadgets", "🧪");
-    await runCommand("npm test");
+  displayProgress("Testing Batman's gadgets", "🧪");
+  await runCommand("npm test");
 
-    displayProgress("Powering up the Bat Signal servers", "🚀");
-    const starterKitPath = path.join(workspaceRoot, "projects", "R3f-StarterKit");
-    spawn("npm", ["run", "dev"], { cwd: starterKitPath, detached: true, stdio: "ignore" }).unref();
+  displayProgress("Powering up the Bat Signal servers", "🚀");
+  const starterKitPath = path.join(workspaceRoot, "projects", "R3f-StarterKit");
+  spawn("npm", ["run", "dev"], { cwd: starterKitPath, detached: true, stdio: "ignore" }).unref();
 
-    await sleep(3000);
+  await sleep(3000);
 
-    // Final report
-    console.log(batSignal);
-    console.log(`
+  // Final report
+  console.log(batSignal);
+  console.log(`
 🦇 CLASSIC BATMAN PROTOCOL COMPLETE!
 
 📊 GOTHAM CITY STATUS REPORT:
@@ -369,9 +369,9 @@ your projects with precision and dedication—because in that case… You Are Al
 
 // Enhanced Batman Mode (Multi-Terminal)
 async function runEnhancedBatman() {
-    console.log(batmanArts.enhanced);
+  console.log(batmanArts.enhanced);
 
-    console.log(`
+  console.log(`
 🌃 Welcome to the Enhanced Batcave!
 
 "This enhanced Batman script opens separate terminals for each task,
@@ -383,50 +383,50 @@ Each terminal is a specialized tool in Batman's arsenal!"
 📡 Opening the Bat-Computer interfaces...
   `);
 
-    const manager = new UnifiedBatmanManager();
+  const manager = new UnifiedBatmanManager();
 
-    // Handle cleanup on exit
-    process.on("SIGINT", () => {
-        manager.cleanup();
-        process.exit(0);
-    });
+  // Handle cleanup on exit
+  process.on("SIGINT", () => {
+    manager.cleanup();
+    process.exit(0);
+  });
 
-    // Multi-terminal task execution
-    const tasks = [
-        { name: "Headers", command: 'node scripts/add-headers.mjs && echo "🦇 Header task complete!"', delay: 2000 },
-        { name: "Compatibility", command: 'npm run check-compatibility && echo "🦇 Compatibility check complete!"', delay: 2000 },
-        { name: "Build", command: 'npm run build && echo "🦇 Build complete!"', delay: 2000 },
-        { name: "Tests", command: 'npm run test && echo "🦇 Tests complete!"', delay: 2000 },
-    ];
+  // Multi-terminal task execution
+  const tasks = [
+    { name: "Headers", command: 'node scripts/add-headers.mjs && echo "🦇 Header task complete!"', delay: 2000 },
+    { name: "Compatibility", command: 'npm run check-compatibility && echo "🦇 Compatibility check complete!"', delay: 2000 },
+    { name: "Build", command: 'npm run build && echo "🦇 Build complete!"', delay: 2000 },
+    { name: "Tests", command: 'npm run test && echo "🦇 Tests complete!"', delay: 2000 },
+  ];
 
-    for (const task of tasks) {
-        console.log(`\n🦇 Phase: Opening ${task.name} Terminal`);
-        console.log(`"${getRandomQuote("development")}"`);
-        console.log("────────────────────────────────────────────────────────────");
-
-        await manager.openAutoCloseTerminal(task.name, task.command);
-        await sleep(task.delay);
-    }
-
-    // Dev server (persistent)
-    console.log(`\n🚀 Phase: Opening Development Server Terminal`);
-    console.log(`"The Batcave is now online" – Batman`);
+  for (const task of tasks) {
+    console.log(`\n🦇 Phase: Opening ${task.name} Terminal`);
+    console.log(`"${getRandomQuote("development")}"`);
     console.log("────────────────────────────────────────────────────────────");
 
-    const starterKitPath = path.join(workspaceRoot, "projects", "R3f-StarterKit");
-    await manager.openPersistentTerminal("Dev-Server", "npm run dev", { cwd: starterKitPath });
+    await manager.openAutoCloseTerminal(task.name, task.command);
+    await sleep(task.delay);
+  }
 
-    await sleep(2000);
+  // Dev server (persistent)
+  console.log(`\n🚀 Phase: Opening Development Server Terminal`);
+  console.log(`"The Batcave is now online" – Batman`);
+  console.log("────────────────────────────────────────────────────────────");
 
-    // Package monitor
-    console.log(`\n📦 Phase: Opening Package Monitor Terminal`);
-    console.log(`"Stay vigilant for package updates" – Batman`);
-    console.log("────────────────────────────────────────────────────────────");
+  const starterKitPath = path.join(workspaceRoot, "projects", "R3f-StarterKit");
+  await manager.openPersistentTerminal("Dev-Server", "npm run dev", { cwd: starterKitPath });
 
-    await manager.openAutoCloseTerminal("Package-Monitor", 'npm outdated && echo "🦇 Package monitoring complete!"');
+  await sleep(2000);
 
-    // Final status
-    console.log(`
+  // Package monitor
+  console.log(`\n📦 Phase: Opening Package Monitor Terminal`);
+  console.log(`"Stay vigilant for package updates" – Batman`);
+  console.log("────────────────────────────────────────────────────────────");
+
+  await manager.openAutoCloseTerminal("Package-Monitor", 'npm outdated && echo "🦇 Package monitoring complete!"');
+
+  // Final status
+  console.log(`
 🦇 ENHANCED BATMAN PROTOCOL DEPLOYED!
 
 📊 MULTI-TERMINAL BATCAVE STATUS:
@@ -456,9 +456,9 @@ Each terminal is a specialized tool in Batman's arsenal!"
 
 // Auto-Close Batman Mode (Ultra Clean)
 async function runAutoCloseBatman() {
-    console.log(batmanArts.autoClose);
+  console.log(batmanArts.autoClose);
 
-    console.log(`
+  console.log(`
 🌃 Welcome to Batman Auto-Close Edition!
 
 "This version launches each task in its own terminal that automatically
@@ -469,45 +469,45 @@ closes when the task completes, keeping your workspace clean and organized."
 📡 Opening self-closing Bat-Terminals...
   `);
 
-    const manager = new UnifiedBatmanManager();
+  const manager = new UnifiedBatmanManager();
 
-    const tasks = [
-        { name: "Headers", command: "node scripts/add-headers.mjs", phase: "Header Management" },
-        { name: "Compatibility", command: "npm run check-compatibility", phase: "Compatibility Analysis" },
-        { name: "Build", command: "npm run build", phase: "Build System" },
-        { name: "Tests", command: "npm run test", phase: "Testing Suite" },
-    ];
+  const tasks = [
+    { name: "Headers", command: "node scripts/add-headers.mjs", phase: "Header Management" },
+    { name: "Compatibility", command: "npm run check-compatibility", phase: "Compatibility Analysis" },
+    { name: "Build", command: "npm run build", phase: "Build System" },
+    { name: "Tests", command: "npm run test", phase: "Testing Suite" },
+  ];
 
-    // Execute auto-close tasks
-    for (const task of tasks) {
-        console.log(`\n📋 Phase: ${task.phase}`);
-        console.log(`"${getRandomQuote("development")}"`);
+  // Execute auto-close tasks
+  for (const task of tasks) {
+    console.log(`\n📋 Phase: ${task.phase}`);
+    console.log(`"${getRandomQuote("development")}"`);
 
-        await manager.openAutoCloseTerminal(task.name, task.command);
-        await sleep(3000);
-    }
+    await manager.openAutoCloseTerminal(task.name, task.command);
+    await sleep(3000);
+  }
 
-    // Dev server (persistent)
-    console.log(`\n🚀 Phase: Development Server`);
-    console.log(`"The Batcave is now online" – Batman`);
+  // Dev server (persistent)
+  console.log(`\n🚀 Phase: Development Server`);
+  console.log(`"The Batcave is now online" – Batman`);
 
-    const starterKitPath = path.join(workspaceRoot, "projects", "R3f-StarterKit");
-    await manager.openPersistentTerminal("Dev-Server", "npm run dev", { cwd: starterKitPath });
+  const starterKitPath = path.join(workspaceRoot, "projects", "R3f-StarterKit");
+  await manager.openPersistentTerminal("Dev-Server", "npm run dev", { cwd: starterKitPath });
 
-    await sleep(2000);
+  await sleep(2000);
 
-    // Package monitor
-    console.log(`\n📦 Phase: Package Monitor`);
-    console.log(`"Stay vigilant for package updates" – Batman`);
+  // Package monitor
+  console.log(`\n📦 Phase: Package Monitor`);
+  console.log(`"Stay vigilant for package updates" – Batman`);
 
-    await manager.openAutoCloseTerminal("Package-Monitor", 'npm outdated && echo "🦇 Package monitoring complete!"');
+  await manager.openAutoCloseTerminal("Package-Monitor", 'npm outdated && echo "🦇 Package monitoring complete!"');
 
-    // Final summary
-    const summary = manager.getSummary();
-    const autoCloseTasks = summary.filter(r => r.type === "auto-close").length;
-    const persistentTasks = summary.filter(r => r.type === "persistent").length;
+  // Final summary
+  const summary = manager.getSummary();
+  const autoCloseTasks = summary.filter(r => r.type === "auto-close").length;
+  const persistentTasks = summary.filter(r => r.type === "persistent").length;
 
-    console.log(`
+  console.log(`
 🦇 AUTO-CLOSE BATMAN PROTOCOL COMPLETE!
 
 📊 DEPLOYMENT SUMMARY:
@@ -541,9 +541,9 @@ ${summary.map(r => `   ${r.status === "launched" ? "✅" : "❌"} ${r.task}: ${r
 
 // VS Code Instructions Mode
 async function showVSCodeInstructions() {
-    console.log(batmanArts.vscode);
+  console.log(batmanArts.vscode);
 
-    console.log(`
+  console.log(`
 🌃 Welcome to VS Code Batman!
 
 "This version is specifically designed for VS Code's integrated
@@ -554,7 +554,7 @@ for maximum developer productivity."
 📡 Generating VS Code task configurations...
   `);
 
-    console.log(`
+  console.log(`
 🦇 VS CODE BATMAN DEPLOYMENT INSTRUCTIONS:
 
 📋 STEP 1: VS Code Command Palette
@@ -595,10 +595,10 @@ for maximum developer productivity."
 // MODE SELECTION LOGIC
 // ---------------------------
 function showHelp() {
-    console.clear();
-    console.log(batmanArts.classic);
+  console.clear();
+  console.log(batmanArts.classic);
 
-    console.log(`
+  console.log(`
 🦇 ULTIMATE BATMAN - ALL MODES AVAILABLE
 
 🌃 Choose your Batman deployment mode:
@@ -632,10 +632,10 @@ Select a mode or run without arguments for interactive selection.
 
 // Interactive mode selection
 async function selectBatmanMode() {
-    console.clear();
-    console.log(batmanArts.classic);
+  console.clear();
+  console.log(batmanArts.classic);
 
-    console.log(`
+  console.log(`
 🦇 ULTIMATE BATMAN - MODE SELECTION
 
 🌃 Welcome to the Ultimate Batman Script!
@@ -654,9 +654,9 @@ in protecting Gotham's codebase with maximum efficiency."
 🦇 Select your Batman mode (1-4, or 'help'):
   `);
 
-    // In a real implementation, you'd handle stdin input here
-    // For now, we'll default to enhanced mode
-    console.log(`
+  // In a real implementation, you'd handle stdin input here
+  // For now, we'll default to enhanced mode
+  console.log(`
 🦇 Auto-selecting Enhanced Batman mode for demonstration...
    Use command line arguments for direct mode selection:
    
@@ -666,69 +666,69 @@ in protecting Gotham's codebase with maximum efficiency."
    node imbatman.js vscode    # VS Code mode
   `);
 
-    await sleep(2000);
-    return "enhanced";
+  await sleep(2000);
+  return "enhanced";
 }
 
 // ---------------------------
 // MAIN EXECUTION
 // ---------------------------
 async function main() {
-    const args = process.argv.slice(2);
-    const mode = args[0]?.toLowerCase();
+  const args = process.argv.slice(2);
+  const mode = args[0]?.toLowerCase();
 
-    switch (mode) {
+  switch (mode) {
     case "classic":
     case "c":
-        await runClassicBatman();
-        break;
+      await runClassicBatman();
+      break;
 
     case "enhanced":
     case "e":
-        await runEnhancedBatman();
-        break;
+      await runEnhancedBatman();
+      break;
 
     case "auto":
     case "a":
-        await runAutoCloseBatman();
-        break;
+      await runAutoCloseBatman();
+      break;
 
     case "vscode":
     case "vs":
     case "v":
-        await showVSCodeInstructions();
-        break;
+      await showVSCodeInstructions();
+      break;
 
     case "help":
     case "h":
     case "--help":
     case "-h":
-        showHelp();
-        break;
+      showHelp();
+      break;
 
     default:
-        const selectedMode = await selectBatmanMode();
-        switch (selectedMode) {
+      const selectedMode = await selectBatmanMode();
+      switch (selectedMode) {
         case "classic":
-            await runClassicBatman();
-            break;
+          await runClassicBatman();
+          break;
         case "enhanced":
-            await runEnhancedBatman();
-            break;
+          await runEnhancedBatman();
+          break;
         case "auto":
-            await runAutoCloseBatman();
-            break;
+          await runAutoCloseBatman();
+          break;
         case "vscode":
-            await showVSCodeInstructions();
-            break;
-        }
-        break;
-    }
+          await showVSCodeInstructions();
+          break;
+      }
+      break;
+  }
 }
 
 // Run Ultimate Batman
 main().catch(error => {
-    console.error("🦇 Even the Ultimate Batman encounters challenges:", error);
-    console.log(getRandomQuote("error"));
-    process.exit(1);
+  console.error("🦇 Even the Ultimate Batman encounters challenges:", error);
+  console.log(getRandomQuote("error"));
+  process.exit(1);
 });

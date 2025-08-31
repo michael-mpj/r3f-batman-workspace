@@ -22,7 +22,13 @@
     "batman:vscode": "node scripts/batman-vscode.mjs",
     "batman:auto": "node scripts/batman-auto-close.mjs",
     "batman:ultimate": "node scripts/batman-ultimate.mjs",
-    "prepare": "husky"
+    "prepare": "husky",
+    "security:audit": "npm audit --audit-level=moderate",
+    "security:audit-fix": "npm audit fix",
+    "security:check": "npm audit --audit-level=high",
+    "security:outdated": "npm outdated",
+    "security:licenses": "npx license-checker --summary",
+    "security:full-check": "node scripts/security-check.mjs"
   },
   "dependencies": {
     "@react-three/drei": "^9.122.0",

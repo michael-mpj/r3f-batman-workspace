@@ -5,9 +5,7 @@
   "conditions": {
     "ref_name": {
       "exclude": [],
-      "include": [
-        "refs/heads/main"
-      ]
+      "include": ["refs/heads/main"]
     }
   },
   "rules": [
@@ -31,7 +29,7 @@
             "integration_id": 15368
           },
           {
-            "context": "test", 
+            "context": "test",
             "integration_id": 15368
           },
           {

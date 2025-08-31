@@ -30,7 +30,7 @@ const compat = new FlatCompat({
 
 export default [
   {
-    ignores: ["**/coverage", "**/dist", "**/linter", "**/node_modules", "**/*.md"],
+    ignores: ["**/coverage", "**/dist", "**/linter", "**/node_modules", "**/*.md", "docs/.vitepress/cache/**", "docs/.vitepress/dist/**"],
   },
   ...compat.extends("eslint:recommended", "plugin:jest/recommended", "plugin:prettier/recommended"),
   {

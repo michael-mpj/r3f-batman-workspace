@@ -21,28 +21,28 @@ console.log(`🔍 Debug mode active. Monitoring workspace...`);
 
 // Periodic debug output
 const debugInterval = setInterval(() => {
-    const now = new Date().toLocaleTimeString();
-    console.log(`🦇 [${now}] Debug heartbeat - System operational`);
+  const now = new Date().toLocaleTimeString();
+  console.log(`🦇 [${now}] Debug heartbeat - System operational`);
 
-    // Memory usage
-    const memUsage = process.memoryUsage();
-    console.log(`   📊 Memory: ${Math.round(memUsage.heapUsed / 1024 / 1024)}MB heap, ${Math.round(memUsage.rss / 1024 / 1024)}MB resident`);
+  // Memory usage
+  const memUsage = process.memoryUsage();
+  console.log(`   📊 Memory: ${Math.round(memUsage.heapUsed / 1024 / 1024)}MB heap, ${Math.round(memUsage.rss / 1024 / 1024)}MB resident`);
 
-    // Environment info
-    console.log(`   🔧 Node: ${process.version}, Platform: ${process.platform}`);
+  // Environment info
+  console.log(`   🔧 Node: ${process.version}, Platform: ${process.platform}`);
 }, 10000);
 
 // Graceful shutdown
-process.on('SIGTERM', () => {
-    console.log(`🦇 Debug inspector shutting down...`);
-    clearInterval(debugInterval);
-    process.exit(0);
+process.on("SIGTERM", () => {
+  console.log(`🦇 Debug inspector shutting down...`);
+  clearInterval(debugInterval);
+  process.exit(0);
 });
 
-process.on('SIGINT', () => {
-    console.log(`🦇 Debug inspector interrupted...`);
-    clearInterval(debugInterval);
-    process.exit(0);
+process.on("SIGINT", () => {
+  console.log(`🦇 Debug inspector interrupted...`);
+  clearInterval(debugInterval);
+  process.exit(0);
 });
 
 console.log(`🦇 Debug inspector ready! Ctrl+C to stop.`);

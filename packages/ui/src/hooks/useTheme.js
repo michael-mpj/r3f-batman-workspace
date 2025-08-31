@@ -8,18 +8,18 @@
  * Version: 1.0.0
  */
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect } from "react";
 
-export function useTheme(defaultTheme = 'light') {
-    const [theme, setTheme] = useState(defaultTheme);
+export function useTheme(defaultTheme = "light") {
+  const [theme, setTheme] = useState(defaultTheme);
 
-    useEffect(() => {
-        document.documentElement.setAttribute('data-theme', theme);
-    }, [theme]);
+  useEffect(() => {
+    document.documentElement.setAttribute("data-theme", theme);
+  }, [theme]);
 
-    const toggleTheme = () => {
-        setTheme(current => current === 'light' ? 'dark' : 'light');
-    };
+  const toggleTheme = () => {
+    setTheme(current => (current === "light" ? "dark" : "light"));
+  };
 
-    return { theme, setTheme, toggleTheme };
+  return { theme, setTheme, toggleTheme };
 }

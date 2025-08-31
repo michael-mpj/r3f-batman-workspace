@@ -8,5 +8,5 @@
  * Version: 1.0.0
  */
 
-export { useTheme } from './useTheme.js';
-export { useToggle } from './useToggle.js';
+export { useTheme } from "./useTheme.js";
+export { useToggle } from "./useToggle.js";

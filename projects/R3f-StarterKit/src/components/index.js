@@ -9,8 +9,8 @@
  */
 
 // Export all components
-export { default as Navigation } from './Navigation.jsx';
-export { default as LoadingScreen } from './LoadingScreen.jsx';
-export { default as RotatingCube } from './RotatingCube.jsx';
-export { default as AdvancedScene } from './AdvancedScene.jsx';
-export { default as QuantumScene } from './QuantumScene.jsx';
+export { default as Navigation } from './Navigation.jsx'
+export { default as LoadingScreen } from './LoadingScreen.jsx'
+export { default as RotatingCube } from './RotatingCube.jsx'
+export { default as AdvancedScene } from './AdvancedScene.jsx'
+export { default as QuantumScene } from './QuantumScene.jsx'

@@ -12,38 +12,42 @@ import { useRef, useEffect } from 'react'
 import { useThree, useFrame } from '@react-three/fiber'
 import { OrbitControls } from '@react-three/drei'
 
-export function CameraController({ enablePan = true, enableZoom = true, enableRotate = true }) {
-    const controlsRef = useRef()
-    const { camera } = useThree()
+export function CameraController({
+  enablePan = true,
+  enableZoom = true,
+  enableRotate = true,
+}) {
+  const controlsRef = useRef()
+  const { camera } = useThree()
 
-    useEffect(() => {
-        if (controlsRef.current) {
-            controlsRef.current.enablePan = enablePan
-            controlsRef.current.enableZoom = enableZoom
-            controlsRef.current.enableRotate = enableRotate
-        }
-    }, [enablePan, enableZoom, enableRotate])
+  useEffect(() => {
+    if (controlsRef.current) {
+      controlsRef.current.enablePan = enablePan
+      controlsRef.current.enableZoom = enableZoom
+      controlsRef.current.enableRotate = enableRotate
+    }
+  }, [enablePan, enableZoom, enableRotate])
 
-    return (
-        <OrbitControls
-            ref={controlsRef}
-            camera={camera}
-            makeDefault
-            minPolarAngle={0}
-            maxPolarAngle={Math.PI}
-        />
-    )
+  return (
+    <OrbitControls
+      ref={controlsRef}
+      camera={camera}
+      makeDefault
+      minPolarAngle={0}
+      maxPolarAngle={Math.PI}
+    />
+  )
 }
 
 export function AutoRotateCamera({ speed = 0.5, radius = 10 }) {
-    const { camera } = useThree()
+  const { camera } = useThree()
 
-    useFrame((state) => {
-        const t = state.clock.getElapsedTime() * speed
-        camera.position.x = Math.sin(t) * radius
-        camera.position.z = Math.cos(t) * radius
-        camera.lookAt(0, 0, 0)
-    })
+  useFrame((state) => {
+    const t = state.clock.getElapsedTime() * speed
+    camera.position.x = Math.sin(t) * radius
+    camera.position.z = Math.cos(t) * radius
+    camera.lookAt(0, 0, 0)
+  })
 
-    return null
+  return null
 }

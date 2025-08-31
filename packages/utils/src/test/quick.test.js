@@ -9,17 +9,17 @@
  */
 
 describe("Quick Utility Tests", () => {
-    it("should run basic test", () => {
-        expect(true).toBe(true);
-    });
+  it("should run basic test", () => {
+    expect(true).toBe(true);
+  });
 
-    it("should verify basic math operations", () => {
-        expect(2 + 2).toBe(4);
-        expect(5 * 3).toBe(15);
-    });
+  it("should verify basic math operations", () => {
+    expect(2 + 2).toBe(4);
+    expect(5 * 3).toBe(15);
+  });
 
-    it("should handle string operations", () => {
-        expect("hello".toUpperCase()).toBe("HELLO");
-        expect("world".length).toBe(5);
-    });
+  it("should handle string operations", () => {
+    expect("hello".toUpperCase()).toBe("HELLO");
+    expect("world".length).toBe(5);
+  });
 });

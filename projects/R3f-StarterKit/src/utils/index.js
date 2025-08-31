@@ -9,7 +9,7 @@
  */
 
 // Export all utility functions
-export * from './math';
-export * from './performance';
-export * from './assets';
-export * from './web';
+export * from './math'
+export * from './performance'
+export * from './assets'
+export * from './web'

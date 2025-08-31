@@ -1,0 +1,143 @@
+name: 🔒 Security Vulnerability Report
+description: Report a security vulnerability (use this for non-critical issues only)
+title: "[SECURITY] "
+labels: [security, needs-triage]
+assignees:
+  - michael-mpj
+body:
+  - type: markdown
+    attributes:
+      value: |
+        ⚠️ **IMPORTANT SECURITY NOTICE** ⚠️
+
+        If this is a CRITICAL security vulnerability, please DO NOT use this template.
+        Instead, please report it privately via:
+        - Email: security@your-domain.com
+        - GitHub Security Advisory (preferred): https://github.com/michael-mpj/r3f-batman-workspace/security/advisories
+
+  - type: input
+    id: summary
+    attributes:
+      label: Summary
+      description: Provide a brief summary of the vulnerability
+    validations:
+      required: true
+
+  - type: dropdown
+    id: vulnerability-type
+    attributes:
+      label: Vulnerability Type
+      description: What type of vulnerability is this?
+      options:
+        - Cross-Site Scripting (XSS)
+        - SQL Injection
+        - Code Injection
+        - Path Traversal
+        - Insecure Dependencies
+        - Information Disclosure
+        - Authentication/Authorization
+        - Other
+    validations:
+      required: true
+
+  - type: dropdown
+    id: severity
+    attributes:
+      label: Severity
+      description: How severe is this vulnerability?
+      options:
+        - Low
+        - Medium
+        - High
+    validations:
+      required: true
+
+  - type: input
+    id: component
+    attributes:
+      label: Affected Component
+      description: Which part of the codebase is affected?
+      placeholder: e.g., src/utils/validation.js, package.json dependencies
+    validations:
+      required: true
+
+  - type: input
+    id: version
+    attributes:
+      label: Affected Version
+      description: Which version(s) are affected?
+      placeholder: e.g., 1.0.0, all versions
+    validations:
+      required: true
+
+  - type: textarea
+    id: reproduce-steps
+    attributes:
+      label: Steps to Reproduce
+      description: Detailed steps to reproduce the vulnerability
+      placeholder: |
+        1. Navigate to...
+        2. Enter the following input...
+        3. Observe that...
+    validations:
+      required: true
+
+  - type: textarea
+    id: expected-behavior
+    attributes:
+      label: Expected Behavior
+      description: What should happen?
+    validations:
+      required: true
+
+  - type: textarea
+    id: actual-behavior
+    attributes:
+      label: Actual Behavior
+      description: What actually happens?
+    validations:
+      required: true
+
+  - type: textarea
+    id: impact
+    attributes:
+      label: Impact
+      description: What is the potential impact of this vulnerability?
+    validations:
+      required: true
+
+  - type: textarea
+    id: suggested-fix
+    attributes:
+      label: Suggested Fix
+      description: If you have suggestions for how to fix this, please include them
+
+  - type: input
+    id: node-version
+    attributes:
+      label: Node.js Version
+      placeholder: e.g., 18.17.0
+
+  - type: input
+    id: os
+    attributes:
+      label: Operating System
+      placeholder: e.g., Windows 10, macOS Big Sur, Ubuntu 20.04
+
+  - type: textarea
+    id: additional-context
+    attributes:
+      label: Additional Context
+      description: Any other context, logs, or screenshots
+
+  - type: checkboxes
+    id: checklist
+    attributes:
+      label: Checklist
+      options:
+        - label: I have checked that this issue has not already been reported
+          required: true
+        - label: I have confirmed this is not a critical vulnerability requiring private disclosure
+          required: true
+        - label: I have provided sufficient information to reproduce the issue
+          required: true

@@ -8,5 +8,5 @@
  * Version: 1.0.0
  */
 
-export { useAppStore } from './appStore.js';
-export { useSceneStore } from './sceneStore.js';
+export { useAppStore } from "./appStore.js";
+export { useSceneStore } from "./sceneStore.js";

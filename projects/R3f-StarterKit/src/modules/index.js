@@ -9,4 +9,4 @@
  */
 
 // Export all modules
-export { default as SceneLighting } from './SceneLighting.jsx';
+export { default as SceneLighting } from './SceneLighting.jsx'
