@@ -9,6 +9,7 @@
  */
 
 import { render, screen } from "@testing-library/react";
+import { vi } from "vitest";
 import { Button } from "../Button.jsx";
 
 describe("Button Component", () => {
@@ -18,7 +19,7 @@ describe("Button Component", () => {
   });
 
   it("calls onClick handler when clicked", () => {
-    const handleClick = jest.fn();
+    const handleClick = vi.fn();
     render(<Button onClick={handleClick}>Click me</Button>);
 
     screen.getByText("Click me").click();
