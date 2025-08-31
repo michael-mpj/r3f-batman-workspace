@@ -13,8 +13,8 @@
     "dev": "npm run dev --workspace=projects/R3f-StarterKit",
     "build": "npm run build --workspaces --if-present",
     "test": "npm run test --workspaces --if-present",
-    "lint": "eslint . --ext .js,.jsx,.ts,.tsx",
-    "lint:fix": "eslint . --ext .js,.jsx,.ts,.tsx --fix",
+    "lint": "eslint . --ext .js,.jsx,.mjs",
+    "lint:fix": "eslint . --ext .js,.jsx,.mjs --fix",
     "format": "prettier --write .",
     "check-compatibility": "node scripts/check-compatibility.mjs",
     "batman": "node scripts/batman.mjs",
@@ -71,12 +71,8 @@
     "vitest": "^3.2.1"
   },
   "lint-staged": {
-    "*.{js,jsx,ts,tsx}": [
-      "eslint --fix",
-      "prettier --write"
-    ],
-    "*.{json,md,yaml,yml}": [
-      "prettier --write"
+    "*.{js,jsx,mjs}": [
+      "eslint --fix"
     ]
   },
   "engines": {
