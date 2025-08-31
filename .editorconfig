@@ -1,0 +1,22 @@
+root = true
+
+[*]
+indent_style = space
+indent_size = 2
+end_of_line = lf
+charset = utf-8
+trim_trailing_whitespace = true
+insert_final_newline = false
+
+[*.{js,jsx,mjs}]
+quote_props = preserve
+trailing_comma = es5
+arrow_parens = avoid
+bracket_spacing = true
+jsx_bracket_same_line = false
+semi = true
+single_quote = true
+tab_width = 4
+use_tabs = false
+import_order = ['^@/', '^[a-zA-Z]', '^[./]']
+insert_final_newline = true

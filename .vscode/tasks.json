@@ -1,0 +1,288 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "npm: install",
+      "type": "shell",
+      "command": "npm ci",
+      "group": "build"
+    },
+    {
+      "label": "npm: dev",
+      "type": "shell",
+      "command": "npm run dev",
+      "isBackground": true,
+      "group": "build"
+    },
+    {
+      "label": "npm: build",
+      "type": "shell",
+      "command": "npm run build",
+      "group": "build"
+    },
+    {
+      "label": "npm: lint",
+      "type": "shell",
+      "command": "npm run lint",
+      "group": "build"
+    },
+    {
+      "label": "prettier: format",
+      "type": "shell",
+      "command": "npx prettier --write .",
+      "group": "build"
+    },
+    {
+      "label": "workspace-validation",
+      "type": "shell",
+      "command": "npm run check-compatibility && npm outdated && echo 'Validation complete'",
+      "group": "build",
+      "presentation": {
+        "echo": true,
+        "reveal": "always",
+        "focus": false,
+        "panel": "shared",
+        "showReuseMessage": true,
+        "clear": false
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "dependency-audit",
+      "type": "shell",
+      "command": "npm audit && npm outdated",
+      "group": "build",
+      "presentation": {
+        "echo": true,
+        "reveal": "always",
+        "panel": "new"
+      }
+    },
+    {
+      "label": "full-workspace-test",
+      "type": "shell",
+      "command": "npm run test --workspaces --if-present && npm run build --workspaces --if-present",
+      "group": "test",
+      "presentation": {
+        "echo": true,
+        "reveal": "always",
+        "panel": "new"
+      }
+    },
+    {
+      "label": "update-documentation",
+      "type": "shell",
+      "command": "echo 'Updating dependency documentation...' && npm outdated > docs/current-outdated.txt && echo 'Documentation updated'",
+      "group": "build"
+    },
+    {
+      "label": "Run Batman Script",
+      "type": "shell",
+      "command": "node scripts/batman.mjs",
+      "group": "build",
+      "detail": "🦇 Batman Original - Classic Batman script with sequential task execution"
+    },
+    {
+      "label": "Batman: Headers",
+      "type": "shell",
+      "command": "node scripts/add-headers.mjs",
+      "group": "build",
+      "presentation": {
+        "echo": true,
+        "reveal": "always",
+        "focus": false,
+        "panel": "new",
+        "showReuseMessage": true,
+        "clear": false,
+        "close": true
+      },
+      "problemMatcher": [],
+      "detail": "🦇 Batman Header Management - Adds/updates headers in source files"
+    },
+    {
+      "label": "Batman: Compatibility",
+      "type": "shell",
+      "command": "npm run check-compatibility",
+      "group": "build",
+      "presentation": {
+        "echo": true,
+        "reveal": "always",
+        "focus": false,
+        "panel": "new",
+        "showReuseMessage": true,
+        "clear": false,
+        "close": true
+      },
+      "problemMatcher": [],
+      "detail": "🦇 Batman Compatibility Check - Analyzes package compatibility"
+    },
+    {
+      "label": "Batman: Build",
+      "type": "shell",
+      "command": "npm run build",
+      "group": "build",
+      "presentation": {
+        "echo": true,
+        "reveal": "always",
+        "focus": false,
+        "panel": "new",
+        "showReuseMessage": true,
+        "clear": false,
+        "close": true
+      },
+      "problemMatcher": [],
+      "detail": "🦇 Batman Build System - Builds all workspace packages"
+    },
+    {
+      "label": "Batman: Tests",
+      "type": "shell",
+      "command": "npm run test",
+      "group": "test",
+      "presentation": {
+        "echo": true,
+        "reveal": "always",
+        "focus": false,
+        "panel": "new",
+        "showReuseMessage": true,
+        "clear": false,
+        "close": true
+      },
+      "problemMatcher": [],
+      "detail": "🦇 Batman Test Suite - Runs all workspace tests"
+    },
+    {
+      "label": "Batman: Dev Server",
+      "type": "shell",
+      "command": "npm run dev",
+      "group": "build",
+      "options": {
+        "cwd": "${workspaceFolder}/projects/R3f-StarterKit"
+      },
+      "isBackground": true,
+      "presentation": {
+        "echo": true,
+        "reveal": "always",
+        "focus": false,
+        "panel": "new",
+        "showReuseMessage": true,
+        "clear": false
+      },
+      "problemMatcher": [],
+      "detail": "🦇 Batman Dev Server - Starts R3f StarterKit development server"
+    },
+    {
+      "label": "Batman: Package Monitor",
+      "type": "shell",
+      "command": "npm outdated && echo '🦇 Package monitoring complete! Use npm run update for package updates.'",
+      "group": "build",
+      "presentation": {
+        "echo": true,
+        "reveal": "always",
+        "focus": false,
+        "panel": "new",
+        "showReuseMessage": true,
+        "clear": false,
+        "close": true
+      },
+      "problemMatcher": [],
+      "detail": "🦇 Batman Package Monitor - Checks for outdated packages"
+    },
+    {
+      "label": "Batman: Enhanced (Multi-Terminal)",
+      "type": "shell",
+      "command": "npm run batman:enhanced",
+      "group": "build",
+      "presentation": {
+        "echo": true,
+        "reveal": "always",
+        "focus": true,
+        "panel": "new",
+        "showReuseMessage": true,
+        "clear": false
+      },
+      "problemMatcher": [],
+      "detail": "🦇 Batman Enhanced - Multi-terminal Batman with system terminal integration"
+    },
+    {
+      "label": "Batman: VS Code Edition",
+      "type": "shell",
+      "command": "npm run batman:vscode",
+      "group": "build",
+      "presentation": {
+        "echo": true,
+        "reveal": "always",
+        "focus": true,
+        "panel": "new",
+        "showReuseMessage": true,
+        "clear": false
+      },
+      "problemMatcher": [],
+      "detail": "🦇 Batman VS Code - Shows instructions for running Batman tasks in VS Code"
+    },
+    {
+      "label": "Batman: Auto-Close Edition",
+      "type": "shell",
+      "command": "npm run batman:auto",
+      "group": "build",
+      "presentation": {
+        "echo": true,
+        "reveal": "always",
+        "focus": true,
+        "panel": "new",
+        "showReuseMessage": true,
+        "clear": false,
+        "close": true
+      },
+      "problemMatcher": [],
+      "detail": "🦇 Batman Auto-Close - Clean workflow with auto-closing terminals"
+    },
+    {
+      "label": "Batman: Ultimate Edition",
+      "type": "shell",
+      "command": "npm run batman:ultimate",
+      "group": "build",
+      "presentation": {
+        "echo": true,
+        "reveal": "always",
+        "focus": true,
+        "panel": "new",
+        "showReuseMessage": true,
+        "clear": false
+      },
+      "problemMatcher": [],
+      "detail": "🦇 Batman Ultimate - All Batman modes unified in one powerful script"
+    },
+    {
+      "label": "Batman: Ultimate ALL (Debug+Watch+Test)",
+      "type": "shell",
+      "command": "node scripts/batman-ultimate.mjs --all --watch --debug --test",
+      "group": "build",
+      "presentation": {
+        "echo": true,
+        "reveal": "always",
+        "focus": true,
+        "panel": "new",
+        "showReuseMessage": true,
+        "clear": false
+      },
+      "problemMatcher": [],
+      "detail": "🦇 Batman Ultimate ALL - Everything enabled: debug, watch, test, multi-terminal"
+    },
+    {
+      "label": "Batman: Kill All & Restart",
+      "type": "shell",
+      "command": "node scripts/cleanup-terminals.mjs && node scripts/batman-ultimate.mjs --all --watch --debug",
+      "group": "build",
+      "presentation": {
+        "echo": true,
+        "reveal": "always",
+        "focus": true,
+        "panel": "new",
+        "showReuseMessage": true,
+        "clear": false
+      },
+      "problemMatcher": [],
+      "detail": "🦇 Batman Kill & Restart - Clean terminal kill and ultimate restart"
+    }
+  ]
+}

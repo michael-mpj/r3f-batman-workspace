@@ -1,0 +1,68 @@
+name: "Build Workspace"
+description: "Build all packages and apps in the workspace"
+inputs:
+  workspace:
+    description: "Specific workspace to build (optional)"
+    required: false
+    default: ""
+  skip-cache:
+    description: "Skip build cache"
+    required: false
+    default: "false"
+  turbo-token:
+    description: "Turbo token for remote caching"
+    required: false
+    default: ""
+  turbo-team:
+    description: "Turbo team for remote caching"
+    required: false
+    default: ""
+
+outputs:
+  build-status:
+    description: "Build status"
+    value: ${{ steps.build.outputs.status }}
+
+runs:
+  using: "composite"
+  steps:
+    - name: Build workspace
+      id: build
+      shell: bash
+      run: |
+        set -e
+        echo "Starting workspace build..."
+
+        # Set up Turbo remote caching if credentials provided
+        if [ -n "${{ inputs.turbo-token }}" ] && [ -n "${{ inputs.turbo-team }}" ]; then
+          echo "Setting up Turbo remote caching..."
+          export TURBO_TOKEN="${{ inputs.turbo-token }}"
+          export TURBO_TEAM="${{ inputs.turbo-team }}"
+        fi
+
+        # Build specific workspace or all workspaces
+        if [ -n "${{ inputs.workspace }}" ]; then
+          echo "Building workspace: ${{ inputs.workspace }}"
+          npm run build --workspace=${{ inputs.workspace }}
+        else
+          echo "Building all workspaces..."
+          if [ "${{ inputs.skip-cache }}" = "true" ]; then
+            npm run build -- --force
+          else
+            npm run build
+          fi
+        fi
+
+        echo "Build completed successfully!"
+        echo "status=success" >> $GITHUB_OUTPUT
+
+    - name: Cache build outputs
+      if: inputs.skip-cache != 'true'
+      uses: actions/cache@v4
+      with:
+        path: |
+          packages/*/dist
+          packages/*/build
+        key: ${{ runner.os }}-build-${{ github.sha }}
+        restore-keys: |
+          ${{ runner.os }}-build-

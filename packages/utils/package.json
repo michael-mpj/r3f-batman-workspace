@@ -1,0 +1,41 @@
+{
+  "name": "@r3f-workspace/utils",
+  "version": "1.0.0",
+  "type": "module",
+  "description": "Shared utilities for R3F applications",
+  "main": "./src/index.js",
+  "exports": {
+    ".": "./src/index.js",
+    "./math": "./src/math.js",
+    "./geometry": "./src/geometry.js",
+    "./performance": "./src/performance.js",
+    "./terrain": "./src/terrain.js"
+  },
+  "files": [
+    "src",
+    "dist"
+  ],
+  "scripts": {
+    "build": "vite build",
+    "dev": "vite build --watch",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
+    "test": "vitest",
+    "test:ci": "vitest run",
+    "clean": "rimraf dist",
+    "format": "prettier --write src/**/*.js"
+  },
+  "dependencies": {
+    "three": "^0.179.1"
+  },
+  "devDependencies": {
+    "vite": "^7.1.3",
+    "vitest": "^3.2.4",
+    "eslint": "^9.34.0",
+    "prettier": "^3.6.2",
+    "rimraf": "^5.0.1"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}

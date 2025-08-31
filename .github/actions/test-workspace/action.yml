@@ -1,0 +1,74 @@
+name: "Test Workspace"
+description: "Run tests for all packages and apps in the workspace"
+inputs:
+  workspace:
+    description: "Specific workspace to test (optional)"
+    required: false
+    default: ""
+  coverage:
+    description: "Generate coverage reports"
+    required: false
+    default: "true"
+  coverage-reporter:
+    description: "Coverage reporter to use"
+    required: false
+    default: "lcov"
+
+outputs:
+  test-status:
+    description: "Test status"
+    value: ${{ steps.test.outputs.status }}
+  coverage-path:
+    description: "Path to coverage reports"
+    value: ${{ steps.test.outputs.coverage-path }}
+
+runs:
+  using: "composite"
+  steps:
+    - name: Run tests
+      id: test
+      shell: bash
+      run: |
+        set -e
+        echo "Starting workspace tests..."
+
+        # Run tests for specific workspace or all workspaces
+        if [ -n "${{ inputs.workspace }}" ]; then
+          echo "Testing workspace: ${{ inputs.workspace }}"
+          if [ "${{ inputs.coverage }}" = "true" ]; then
+            npm run test:ci --workspace=${{ inputs.workspace }} -- --coverage --reporter=${{ inputs.coverage-reporter }}
+          else
+            npm run test --workspace=${{ inputs.workspace }}
+          fi
+        else
+          echo "Testing all workspaces..."
+          if [ "${{ inputs.coverage }}" = "true" ]; then
+            npm run test:ci -- --coverage --reporter=${{ inputs.coverage-reporter }}
+          else
+            npm run test
+          fi
+        fi
+
+        echo "Tests completed successfully!"
+        echo "status=success" >> $GITHUB_OUTPUT
+        echo "coverage-path=coverage" >> $GITHUB_OUTPUT
+
+    - name: Upload coverage reports
+      if: inputs.coverage == 'true'
+      uses: actions/upload-artifact@v4
+      with:
+        name: coverage-reports
+        path: |
+          coverage/
+          packages/*/coverage/
+        retention-days: 7
+
+    - name: Cache test results
+      uses: actions/cache@v4
+      with:
+        path: |
+          packages/*/.vitest
+          packages/*/coverage
+        key: ${{ runner.os }}-test-${{ github.sha }}
+        restore-keys: |
+          ${{ runner.os }}-test-

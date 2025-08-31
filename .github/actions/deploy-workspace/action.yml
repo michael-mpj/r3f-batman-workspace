@@ -1,0 +1,97 @@
+name: "Deploy Workspace"
+description: "Deploy specific workspace to target environment"
+inputs:
+  workspace:
+    description: "Workspace to deploy"
+    required: true
+  environment:
+    description: "Target environment (dev, staging, production)"
+    required: true
+    default: "production"
+  deploy-url:
+    description: "Deployment URL or endpoint"
+    required: false
+  build-output-dir:
+    description: "Build output directory"
+    required: false
+    default: "dist"
+  skip-build:
+    description: "Skip build step (assumes already built)"
+    required: false
+    default: "false"
+
+outputs:
+  deploy-status:
+    description: "Deployment status"
+    value: ${{ steps.deploy.outputs.status }}
+  deploy-url:
+    description: "Deployed URL"
+    value: ${{ steps.deploy.outputs.url }}
+
+runs:
+  using: "composite"
+  steps:
+    - name: Build workspace for deployment
+      if: inputs.skip-build != 'true'
+      shell: bash
+      run: |
+        echo "Building workspace for deployment: ${{ inputs.workspace }}"
+        npm run build --workspace=${{ inputs.workspace }}
+
+    - name: Prepare deployment
+      id: prepare
+      shell: bash
+      run: |
+        echo "Preparing deployment for environment: ${{ inputs.environment }}"
+
+        # Set environment-specific configurations
+        case "${{ inputs.environment }}" in
+          dev|development)
+            echo "NODE_ENV=development" >> $GITHUB_ENV
+            ;;
+          staging)
+            echo "NODE_ENV=staging" >> $GITHUB_ENV
+            ;;
+          production)
+            echo "NODE_ENV=production" >> $GITHUB_ENV
+            ;;
+        esac
+
+        echo "Environment prepared for ${{ inputs.environment }}"
+
+    - name: Deploy workspace
+      id: deploy
+      shell: bash
+      run: |
+        echo "Deploying workspace: ${{ inputs.workspace }} to ${{ inputs.environment }}"
+
+        # Get workspace path
+        WORKSPACE_PATH=$(npm list --workspace=${{ inputs.workspace }} --depth=0 --parseable | head -1)
+        BUILD_PATH="${WORKSPACE_PATH}/${{ inputs.build-output-dir }}"
+
+        echo "Workspace path: $WORKSPACE_PATH"
+        echo "Build path: $BUILD_PATH"
+
+        # Verify build output exists
+        if [ ! -d "$BUILD_PATH" ]; then
+          echo "Error: Build output directory not found at $BUILD_PATH"
+          exit 1
+        fi
+
+        echo "Deployment files prepared successfully!"
+        echo "status=success" >> $GITHUB_OUTPUT
+
+        # Set deployment URL if provided
+        if [ -n "${{ inputs.deploy-url }}" ]; then
+          echo "url=${{ inputs.deploy-url }}" >> $GITHUB_OUTPUT
+        else
+          echo "url=https://deploy-preview-${{ inputs.workspace }}.netlify.app" >> $GITHUB_OUTPUT
+        fi
+
+    - name: Upload deployment artifacts
+      uses: actions/upload-artifact@v4
+      with:
+        name: deployment-${{ inputs.workspace }}-${{ inputs.environment }}
+        path: |
+          packages/${{ inputs.workspace }}/dist/
+        retention-days: 30

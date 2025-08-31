@@ -1,0 +1,10 @@
+# mapping of labels to paths
+frontend:
+  - "packages/ui/**"
+  - "apps/**"
+backend:
+  - "server/**"
+docs:
+  - "docs/**"
+infra:
+  - ".github/**"

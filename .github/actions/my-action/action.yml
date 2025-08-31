@@ -1,0 +1,88 @@
+name: "Workspace Utilities"
+description: "General workspace utility functions and health checks"
+inputs:
+  action:
+    description: "Action to perform (health-check, info, clean)"
+    required: false
+    default: "health-check"
+  workspace:
+    description: "Specific workspace to target (optional)"
+    required: false
+    default: ""
+
+outputs:
+  status:
+    description: "Action status"
+    value: ${{ steps.main.outputs.status }}
+  info:
+    description: "Workspace information"
+    value: ${{ steps.main.outputs.info }}
+
+runs:
+  using: "composite"
+  steps:
+    - name: Execute workspace utility
+      id: main
+      shell: bash
+      run: |
+        echo "Running workspace utility: ${{ inputs.action }}"
+
+        case "${{ inputs.action }}" in
+          health-check)
+            echo "Performing workspace health check..."
+            
+            # Check Node.js version
+            node --version
+            npm --version
+            
+            # Check workspace structure
+            echo "Workspace packages:"
+            npm ls --depth=0 --workspaces 2>/dev/null || echo "No workspaces found"
+            
+            # Check for common issues
+            echo "Checking for common issues..."
+            if [ ! -f "package.json" ]; then
+              echo "❌ No package.json found in root"
+              exit 1
+            fi
+            
+            if [ ! -d "node_modules" ]; then
+              echo "⚠️  No node_modules directory found - run npm install"
+            fi
+            
+            echo "✅ Workspace health check completed"
+            echo "status=healthy" >> $GITHUB_OUTPUT
+            ;;
+            
+          info)
+            echo "Gathering workspace information..."
+            
+            INFO="Node: $(node --version), NPM: $(npm --version)"
+            if [ -n "${{ inputs.workspace }}" ]; then
+              INFO="$INFO, Workspace: ${{ inputs.workspace }}"
+            fi
+            
+            echo "info=$INFO" >> $GITHUB_OUTPUT
+            echo "status=success" >> $GITHUB_OUTPUT
+            ;;
+            
+          clean)
+            echo "Cleaning workspace..."
+            
+            if [ -n "${{ inputs.workspace }}" ]; then
+              echo "Cleaning specific workspace: ${{ inputs.workspace }}"
+              npm run clean --workspace=${{ inputs.workspace }} 2>/dev/null || echo "Clean script not found"
+            else
+              echo "Cleaning all workspaces..."
+              npm run clean 2>/dev/null || echo "Clean script not found"
+            fi
+            
+            echo "status=cleaned" >> $GITHUB_OUTPUT
+            ;;
+            
+          *)
+            echo "Unknown action: ${{ inputs.action }}"
+            echo "status=error" >> $GITHUB_OUTPUT
+            exit 1
+            ;;
+        esac

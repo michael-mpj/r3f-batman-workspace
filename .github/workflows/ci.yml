@@ -1,0 +1,79 @@
+name: CI
+
+on:
+  push:
+    branches: [main, master]
+  pull_request:
+    branches: [main, master]
+
+jobs:
+  setup:
+    runs-on: ubuntu-latest
+    outputs:
+      setup-status: ${{ steps.setup.outputs.status }}
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Workspace
+        id: setup
+        uses: ./.github/actions/setup-workspace
+        with:
+          node-version: "20"
+
+  lint:
+    needs: [setup]
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Workspace
+        uses: ./.github/actions/setup-workspace
+
+      - name: Lint Workspace
+        uses: ./.github/actions/lint-workspace
+        with:
+          format-check: "true"
+
+  test:
+    needs: [setup]
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Workspace
+        uses: ./.github/actions/setup-workspace
+
+      - name: Test Workspace
+        uses: ./.github/actions/test-workspace
+        with:
+          coverage: "true"
+
+  build:
+    needs: [setup, lint, test]
+    runs-on: ubuntu-latest
+    outputs:
+      build-status: ${{ steps.build.outputs.build-status }}
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Workspace
+        uses: ./.github/actions/setup-workspace
+
+      - name: Build Workspace
+        id: build
+        uses: ./.github/actions/build-workspace
+
+  health-check:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Workspace Health Check
+        uses: ./.github/actions/my-action
+        with:
+          action: "health-check"

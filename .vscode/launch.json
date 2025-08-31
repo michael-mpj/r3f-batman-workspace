@@ -1,0 +1,65 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Launch Dev Server",
+      "type": "node",
+      "request": "launch",
+      "program": "${workspaceFolder}/node_modules/.bin/vite",
+      "args": ["--host"],
+      "cwd": "${workspaceFolder}/apps/easymap",
+      "console": "integratedTerminal"
+    },
+    {
+      "name": "🚀 R3F Workspace - Full Development",
+      "type": "node",
+      "request": "launch",
+      "program": "${workspaceFolder}/scripts/workspace-info.mjs",
+      "console": "integratedTerminal",
+      "internalConsoleOptions": "neverOpen",
+      "preLaunchTask": "workspace-validation"
+    },
+    {
+      "name": "📦 Package Validation Check",
+      "type": "node",
+      "request": "launch",
+      "program": "${workspaceFolder}/scripts/check-compatibility.mjs",
+      "console": "integratedTerminal",
+      "internalConsoleOptions": "neverOpen"
+    },
+    {
+      "name": "🧪 Run All Tests",
+      "type": "node",
+      "request": "launch",
+      "program": "${workspaceFolder}/node_modules/.bin/npm",
+      "args": ["run", "test", "--workspaces"],
+      "console": "integratedTerminal",
+      "cwd": "${workspaceFolder}"
+    },
+    {
+      "name": "🏗️ Build All Packages",
+      "type": "node",
+      "request": "launch",
+      "program": "${workspaceFolder}/node_modules/.bin/npm",
+      "args": ["run", "build", "--workspaces"],
+      "console": "integratedTerminal",
+      "cwd": "${workspaceFolder}"
+    },
+    {
+      "name": "🔍 Dependency Audit",
+      "type": "node",
+      "request": "launch",
+      "program": "${workspaceFolder}/node_modules/.bin/npm",
+      "args": ["outdated"],
+      "console": "integratedTerminal",
+      "cwd": "${workspaceFolder}"
+    }
+  ],
+  "compounds": [
+    {
+      "name": "🔧 Complete Workspace Validation",
+      "configurations": ["📦 Package Validation Check", "🔍 Dependency Audit", "🧪 Run All Tests", "🏗️ Build All Packages"],
+      "stopAll": true
+    }
+  ]
+}

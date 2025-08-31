@@ -1,0 +1,21 @@
+# CODEOWNERS - R3F Workspace
+# Define code ownership for different parts of the repository
+# When PRs are created, specified owners are automatically requested for review
+
+# Global ownership - all files default to @michael-mpj  
+* @michael-mpj
+
+# Workspace Actions - require review for CI/CD changes
+/.github/actions/ @michael-mpj
+/.github/workflows/ @michael-mpj
+
+# Shared Packages - require review for breaking changes  
+/packages/ @michael-mpj
+
+# Sample Project - can be more flexible for demos
+/projects/ @michael-mpj
+
+# Configuration files - require careful review
+package.json @michael-mpj
+turbo.json @michael-mpj
+*.config.js @michael-mpj

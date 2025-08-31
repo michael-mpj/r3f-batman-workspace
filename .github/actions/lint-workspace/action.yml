@@ -1,0 +1,77 @@
+name: "Lint Workspace"
+description: "Run linting and formatting checks for all packages and apps"
+inputs:
+  workspace:
+    description: "Specific workspace to lint (optional)"
+    required: false
+    default: ""
+  fix:
+    description: "Auto-fix linting issues"
+    required: false
+    default: "false"
+  format-check:
+    description: "Check code formatting"
+    required: false
+    default: "true"
+
+outputs:
+  lint-status:
+    description: "Lint status"
+    value: ${{ steps.lint.outputs.status }}
+
+runs:
+  using: "composite"
+  steps:
+    - name: Run ESLint
+      id: lint
+      shell: bash
+      run: |
+        set -e
+        echo "Starting workspace linting..."
+
+        # Run linting for specific workspace or all workspaces
+        if [ -n "${{ inputs.workspace }}" ]; then
+          echo "Linting workspace: ${{ inputs.workspace }}"
+          if [ "${{ inputs.fix }}" = "true" ]; then
+            npm run lint:fix --workspace=${{ inputs.workspace }}
+          else
+            npm run lint --workspace=${{ inputs.workspace }}
+          fi
+        else
+          echo "Linting all workspaces..."
+          if [ "${{ inputs.fix }}" = "true" ]; then
+            npm run lint:fix
+          else
+            npm run lint
+          fi
+        fi
+
+        echo "ESLint completed successfully!"
+        echo "status=success" >> $GITHUB_OUTPUT
+
+    - name: Check formatting
+      if: inputs.format-check == 'true'
+      shell: bash
+      run: |
+        echo "Checking code formatting..."
+        npx prettier --check .
+        echo "Formatting check completed!"
+
+    - name: Format code
+      if: inputs.fix == 'true'
+      shell: bash
+      run: |
+        echo "Formatting code..."
+        npx prettier --write .
+        echo "Code formatting completed!"
+
+    - name: Upload lint results
+      if: always()
+      uses: actions/upload-artifact@v4
+      with:
+        name: lint-results
+        path: |
+          eslint-report.json
+          packages/*/eslint-report.json
+        retention-days: 7
+        if-no-files-found: ignore

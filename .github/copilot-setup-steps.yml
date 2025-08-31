@@ -1,0 +1,14 @@
+# This file contains the setup steps for GitHub Copilot.
+# It is intended to be used as a reference for setting up Copilot in your repository.
+
+steps:
+  - title: "Enable GitHub Copilot for your organization or personal account."
+    description: "Go to your GitHub settings. Navigate to 'Copilot' under 'Code, planning, and automation'. Enable Copilot for your account or organization."
+  - title: "Install the GitHub Copilot extension in your IDE."
+    description: "For VS Code, search for 'GitHub Copilot' in the Extensions marketplace and install it. For other supported IDEs, refer to the official GitHub Copilot documentation for installation instructions."
+  - title: "Authenticate Copilot with your GitHub account in your IDE."
+    description: "After installing the extension, you will be prompted to sign in to GitHub. Follow the prompts to authorize Copilot to access your GitHub account."
+  - title: "Start using Copilot!"
+    description: "Open a code file in your IDE. Copilot will automatically suggest code as you type. You can also trigger suggestions manually by typing comments or function signatures."
+  - title: "Optional: Configure Copilot settings (e.g., enable/disable suggestions, adjust suggestion frequency)."
+    description: "Refer to your IDE's settings or the Copilot extension settings for available configurations."

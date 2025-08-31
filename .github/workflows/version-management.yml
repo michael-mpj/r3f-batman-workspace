@@ -1,0 +1,129 @@
+name: Version Management
+
+on:
+  workflow_dispatch:
+    inputs:
+      workspace:
+        description: "Target workspace (leave empty for all)"
+        required: false
+        default: ""
+      version_type:
+        description: "Version bump type"
+        required: true
+        default: "patch"
+        type: choice
+        options:
+          - "patch"
+          - "minor"
+          - "major"
+      dry_run:
+        description: "Perform dry run (preview changes only)"
+        required: false
+        default: true
+        type: boolean
+      create_release:
+        description: "Create GitHub release after versioning"
+        required: false
+        default: false
+        type: boolean
+
+jobs:
+  version:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pull-requests: write
+    outputs:
+      version-status: ${{ steps.version.outputs.version-status }}
+      new-version: ${{ steps.version.outputs.new-version }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          fetch-depth: 0
+
+      - name: Setup Workspace
+        uses: ./.github/actions/setup-workspace
+
+      - name: Version Workspace
+        id: version
+        uses: ./.github/actions/version-workspace
+        with:
+          workspace: ${{ github.event.inputs.workspace }}
+          bump-type: ${{ github.event.inputs.version_type }}
+          dry-run: ${{ github.event.inputs.dry_run }}
+          create-release: ${{ github.event.inputs.create_release }}
+
+      - name: Create Pull Request
+        if: steps.version.outputs.version-status == 'success' && github.event.inputs.dry_run != 'true'
+        uses: peter-evans/create-pull-request@v5
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          commit-message: "chore: version packages to ${{ steps.version.outputs.new-version }}"
+          title: "chore: version packages to ${{ steps.version.outputs.new-version }}"
+          body: |
+            ## Version Update
+
+            This PR updates package versions using Changesets.
+
+            ### Changes
+            - Version bump: ${{ github.event.inputs.version_type }}
+            - New version: ${{ steps.version.outputs.new-version }}
+            - Target workspace: ${{ github.event.inputs.workspace || 'All workspaces' }}
+
+            ### Changelog
+            ${{ steps.version.outputs.changelog }}
+
+            ---
+            *This PR was automatically created by the Version Management workflow.*
+          branch: version/${{ steps.version.outputs.new-version }}
+          delete-branch: true
+
+  validate:
+    needs: [version]
+    if: needs.version.outputs.version-status == 'success'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Workspace
+        uses: ./.github/actions/setup-workspace
+
+      - name: Validate Build After Versioning
+        uses: ./.github/actions/build-workspace
+
+      - name: Validate Tests After Versioning
+        uses: ./.github/actions/test-workspace
+
+  summary:
+    needs: [version, validate]
+    if: always()
+    runs-on: ubuntu-latest
+    steps:
+      - name: Version Summary
+        run: |
+          echo "## Version Management Summary" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "### Configuration" >> $GITHUB_STEP_SUMMARY
+          echo "- **Workspace**: ${{ github.event.inputs.workspace || 'All workspaces' }}" >> $GITHUB_STEP_SUMMARY
+          echo "- **Version Type**: ${{ github.event.inputs.version_type }}" >> $GITHUB_STEP_SUMMARY
+          echo "- **Dry Run**: ${{ github.event.inputs.dry_run }}" >> $GITHUB_STEP_SUMMARY
+          echo "- **Create Release**: ${{ github.event.inputs.create_release }}" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "### Results" >> $GITHUB_STEP_SUMMARY
+          echo "- **Version Status**: ${{ needs.version.outputs.version-status }}" >> $GITHUB_STEP_SUMMARY
+
+          if [ "${{ needs.version.outputs.new-version }}" != "" ]; then
+            echo "- **New Version**: ${{ needs.version.outputs.new-version }}" >> $GITHUB_STEP_SUMMARY
+          fi
+
+          echo "- **Validation**: ${{ needs.validate.result }}" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+
+          if [ "${{ github.event.inputs.dry_run }}" = "true" ]; then
+            echo "🔍 **Dry Run Completed** - No changes were made to the repository." >> $GITHUB_STEP_SUMMARY
+          else
+            echo "✅ **Version Management Completed** - Check for new pull request with version changes." >> $GITHUB_STEP_SUMMARY
+          fi

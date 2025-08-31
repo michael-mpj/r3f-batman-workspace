@@ -1,0 +1,41 @@
+{
+  "github.copilot.chat.reviewSelection.instructions": [
+    {
+      "text": "Review the code changes carefully before accepting them."
+    }
+  ],
+  "github.copilot.chat.commitMessageGeneration.instructions": [
+    {
+      "text": "Use conventional commit message format."
+    }
+  ],
+  "github.copilot.chat.pullRequestDescriptionGeneration.instructions": [{ "text": "Always include a list of key changes." }],
+  "yaml.schemas": {
+    "https://www.schemastore.org/sourcehut-build-0.65.0.json": "file:///Users/michaeljoseph/Public/R3fWWW/.github/workflows/prettier.yml"
+  },
+  "jest.autoRun": {
+    "watch": true,
+    "onStartup": ["all-tests"]
+  },
+  "chat.mcp.serverSampling": {
+    "R3fWWW/.vscode/mcp.json: ESLint": {
+      "allowedModels": [
+        "copilot/gpt-4.1",
+        "copilot/claude-3.5-sonnet",
+        "copilot/claude-3.7-sonnet",
+        "copilot/claude-3.7-sonnet-thought",
+        "copilot/claude-sonnet-4",
+        "copilot/gemini-2.0-flash-001",
+        "copilot/gemini-2.5-pro",
+        "copilot/gpt-4o",
+        "copilot/gpt-5",
+        "copilot/gpt-5-mini",
+        "copilot/grok-code-fast-1",
+        "copilot/o3-mini",
+        "copilot/o4-mini"
+      ]
+    }
+  },
+  "editor.formatOnSave": true,
+  "files.autoSave": "afterDelay"
+}

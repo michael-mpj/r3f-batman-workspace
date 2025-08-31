@@ -1,0 +1,112 @@
+name: "Version Workspace"
+description: "Handle workspace versioning and changelog generation"
+inputs:
+  workspace:
+    description: "Specific workspace to version (optional)"
+    required: false
+    default: ""
+  bump-type:
+    description: "Version bump type (patch, minor, major)"
+    required: false
+    default: "patch"
+  dry-run:
+    description: "Perform a dry run without making changes"
+    required: false
+    default: "false"
+  create-release:
+    description: "Create GitHub release after versioning"
+    required: false
+    default: "false"
+
+outputs:
+  version-status:
+    description: "Version status"
+    value: ${{ steps.version.outputs.status }}
+  new-version:
+    description: "New version number"
+    value: ${{ steps.version.outputs.version }}
+  changelog:
+    description: "Generated changelog"
+    value: ${{ steps.version.outputs.changelog }}
+
+runs:
+  using: "composite"
+  steps:
+    - name: Check for changesets
+      id: check-changesets
+      shell: bash
+      run: |
+        echo "Checking for pending changesets..."
+        if [ -d ".changeset" ] && [ "$(ls -A .changeset | grep -v README.md | wc -l)" -gt 0 ]; then
+          echo "has-changesets=true" >> $GITHUB_OUTPUT
+          echo "Found pending changesets"
+        else
+          echo "has-changesets=false" >> $GITHUB_OUTPUT
+          echo "No pending changesets found"
+        fi
+
+    - name: Version packages
+      id: version
+      if: steps.check-changesets.outputs.has-changesets == 'true' || inputs.dry-run == 'true'
+      shell: bash
+      run: |
+        echo "Processing workspace versioning..."
+
+        if [ "${{ inputs.dry-run }}" = "true" ]; then
+          echo "Performing dry run..."
+          npx changeset version --snapshot
+          echo "status=dry-run" >> $GITHUB_OUTPUT
+        else
+          echo "Applying version changes..."
+          npx changeset version
+          
+          # Get the new version from package.json
+          NEW_VERSION=$(node -p "require('./package.json').version")
+          echo "version=$NEW_VERSION" >> $GITHUB_OUTPUT
+          echo "status=success" >> $GITHUB_OUTPUT
+          
+          # Generate changelog summary
+          if [ -f "CHANGELOG.md" ]; then
+            CHANGELOG=$(head -n 20 CHANGELOG.md)
+            echo "changelog<<EOF" >> $GITHUB_OUTPUT
+            echo "$CHANGELOG" >> $GITHUB_OUTPUT
+            echo "EOF" >> $GITHUB_OUTPUT
+          fi
+        fi
+
+    - name: Commit version changes
+      if: steps.version.outputs.status == 'success' && inputs.dry-run != 'true'
+      shell: bash
+      run: |
+        echo "Committing version changes..."
+        git config --local user.email "action@github.com"
+        git config --local user.name "GitHub Action"
+
+        git add .
+        git commit -m "chore: version packages" || echo "No changes to commit"
+
+        echo "Version changes committed"
+
+    - name: Create GitHub Release
+      if: inputs.create-release == 'true' && steps.version.outputs.status == 'success'
+      uses: actions/create-release@v1
+      env:
+        GITHUB_TOKEN: ${{ github.token }}
+      with:
+        tag_name: v${{ steps.version.outputs.version }}
+        release_name: Release v${{ steps.version.outputs.version }}
+        body: ${{ steps.version.outputs.changelog }}
+        draft: false
+        prerelease: false
+
+    - name: Upload changeset artifacts
+      if: always()
+      uses: actions/upload-artifact@v4
+      with:
+        name: changeset-results
+        path: |
+          .changeset/
+          CHANGELOG.md
+          package.json
+          packages/*/package.json
+        retention-days: 30

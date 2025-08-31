@@ -1,0 +1,86 @@
+{
+  "name": "@michael-mpj/r3f-batman",
+  "version": "1.0.0",
+  "description": "R3F Batman Workspace - Advanced React Three Fiber development environment",
+  "license": "MIT",
+  "type": "module",
+  "workspaces": [
+    "packages/*",
+    "projects/*",
+    "apps/*"
+  ],
+  "scripts": {
+    "dev": "npm run dev --workspace=projects/R3f-StarterKit",
+    "build": "npm run build --workspaces --if-present",
+    "test": "npm run test --workspaces --if-present",
+    "lint": "eslint . --ext .js,.jsx,.ts,.tsx",
+    "lint:fix": "eslint . --ext .js,.jsx,.ts,.tsx --fix",
+    "format": "prettier --write .",
+    "check-compatibility": "node scripts/check-compatibility.mjs",
+    "batman": "node scripts/batman.mjs",
+    "batman:enhanced": "node scripts/batman-enhanced.mjs",
+    "batman:vscode": "node scripts/batman-vscode.mjs",
+    "batman:auto": "node scripts/batman-auto-close.mjs",
+    "batman:ultimate": "node scripts/batman-ultimate.mjs",
+    "prepare": "husky"
+  },
+  "dependencies": {
+    "@react-three/drei": "^9.122.0",
+    "@react-three/fiber": "^9.3.0",
+    "@react-three/postprocessing": "^3.0.4",
+    "@react-three/xr": "^6.6.25",
+    "json-schema": "^0.4.0",
+    "leva": "^0.10.0",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "three": "^0.179.1",
+    "tsx-to-jsx": "^0.0.4",
+    "zustand": "^4.4.1"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.28.3",
+    "@babel/preset-env": "^7.28.3",
+    "@babel/preset-react": "^7.27.1",
+    "@changesets/changelog-github": "^0.5.1",
+    "@changesets/cli": "^2.26.2",
+    "@commitlint/cli": "^19.8.1",
+    "@commitlint/config-conventional": "^19.8.1",
+    "@react-three/eslint-plugin": "^0.1.2",
+    "@testing-library/dom": "^10.4.1",
+    "@testing-library/jest-dom": "^6.1.3",
+    "@testing-library/react": "^16.3.0",
+    "@testing-library/user-event": "^14.6.1",
+    "@vitejs/plugin-react": "^5.0.2",
+    "babel-jest": "^30.1.1",
+    "concurrently": "^9.2.1",
+    "deep-equal": "^2.2.3",
+    "eslint": "^9.34.0",
+    "eslint-config-prettier": "^10.1.8",
+    "eslint-plugin-import": "^2.28.1",
+    "eslint-plugin-jsx-a11y": "^6.7.1",
+    "eslint-plugin-react": "^7.37.5",
+    "eslint-plugin-react-hooks": "^5.2.0",
+    "husky": "^9.1.7",
+    "jest": "^30.1.1",
+    "jest-environment-jsdom": "^30.1.1",
+    "lint-staged": "^16.1.5",
+    "prettier": "^3.5.1",
+    "turbo": "^3.2.1",
+    "typescript": "^5.7.2",
+    "vite": "^6.0.3",
+    "vitest": "^3.2.1"
+  },
+  "lint-staged": {
+    "*.{js,jsx,ts,tsx}": [
+      "eslint --fix",
+      "prettier --write"
+    ],
+    "*.{json,md,yaml,yml}": [
+      "prettier --write"
+    ]
+  },
+  "engines": {
+    "node": ">=18.0.0",
+    "npm": ">=9.0.0"
+  }
+}

@@ -1,0 +1,26 @@
+# ERESOLVE Resolution Guide
+# For Node.js LTS compatibility and dependency conflict resolution
+
+# Primary .npmrc configuration
+legacy-peer-deps=true
+auto-install-peers=true
+strict-peer-deps=false
+
+# Reduce ERESOLVE conflicts
+force=false
+fund=false
+
+# Registry and caching
+registry=https://registry.npmjs.org/
+cache-min=86400
+
+# Logging
+loglevel=warn
+audit-level=moderate
+
+# Performance
+prefer-offline=true
+progress=false
+
+# Engines
+engine-strict=false

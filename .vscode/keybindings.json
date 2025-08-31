@@ -1,0 +1,24 @@
+[
+  {
+    "key": "ctrl+shift+p",
+    "command": "workbench.action.showCommands"
+  },
+  {
+    "key": "ctrl+shift+`",
+    "command": "workbench.action.terminal.new"
+  },
+  {
+    "key": "ctrl+cmd+k",
+    "command": "workbench.action.terminal.sendSequence",
+    "args": {
+      "text": "npm run batman:ultimate:all\u000D"
+    }
+  },
+  {
+    "key": "ctrl+cmd+shift+k",
+    "command": "workbench.action.terminal.sendSequence",
+    "args": {
+      "text": "npm run cleanup-terminals && npm run batman:ultimate:all\u000D"
+    }
+  }
+]

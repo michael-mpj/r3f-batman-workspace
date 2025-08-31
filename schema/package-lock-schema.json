@@ -1,0 +1,211 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Package Lock Schema",
+  "description": "JSON Schema for npm package-lock.json files in the Batman R3F Workspace",
+  "type": "object",
+  "required": ["name", "version", "lockfileVersion", "requires", "packages"],
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "The name of the package",
+      "const": "@michael-mpj/r3f-batman"
+    },
+    "version": {
+      "type": "string",
+      "description": "The version of the package",
+      "pattern": "^\\d+\\.\\d+\\.\\d+$"
+    },
+    "lockfileVersion": {
+      "type": "integer",
+      "description": "The version of the lockfile format",
+      "enum": [1, 2, 3]
+    },
+    "requires": {
+      "type": "boolean",
+      "description": "Whether the lockfile requires dependency resolution"
+    },
+    "packages": {
+      "type": "object",
+      "description": "Detailed dependency information",
+      "patternProperties": {
+        "^(|node_modules/.*)$": {
+          "type": "object",
+          "properties": {
+            "name": {
+              "type": "string",
+              "description": "Package name"
+            },
+            "version": {
+              "type": "string",
+              "description": "Package version"
+            },
+            "resolved": {
+              "type": "string",
+              "description": "URL to package tarball"
+            },
+            "integrity": {
+              "type": "string",
+              "description": "Package integrity hash"
+            },
+            "dependencies": {
+              "type": "object",
+              "description": "Package dependencies",
+              "patternProperties": {
+                "^.*$": {
+                  "type": "string"
+                }
+              }
+            },
+            "devDependencies": {
+              "type": "object",
+              "description": "Development dependencies",
+              "patternProperties": {
+                "^.*$": {
+                  "type": "string"
+                }
+              }
+            },
+            "peerDependencies": {
+              "type": "object",
+              "description": "Peer dependencies",
+              "patternProperties": {
+                "^.*$": {
+                  "type": "string"
+                }
+              }
+            },
+            "bin": {
+              "type": "object",
+              "description": "Binary executables"
+            },
+            "engines": {
+              "type": "object",
+              "description": "Engine requirements"
+            },
+            "funding": {
+              "type": "object",
+              "description": "Funding information"
+            },
+            "license": {
+              "type": "string",
+              "description": "Package license"
+            },
+            "workspaces": {
+              "type": "array",
+              "description": "Workspace patterns",
+              "items": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      }
+    },
+    "dependencies": {
+      "type": "object",
+      "description": "Legacy dependency information for lockfile v1",
+      "patternProperties": {
+        "^.*$": {
+          "type": "object",
+          "properties": {
+            "version": {
+              "type": "string"
+            },
+            "resolved": {
+              "type": "string"
+            },
+            "integrity": {
+              "type": "string"
+            },
+            "requires": {
+              "type": "object"
+            },
+            "dependencies": {
+              "type": "object"
+            }
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "packageInfo": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "Package name"
+        },
+        "version": {
+          "type": "string",
+          "description": "Semantic version string",
+          "pattern": "^\\d+\\.\\d+\\.\\d+(-.+)?$"
+        },
+        "resolved": {
+          "type": "string",
+          "format": "uri",
+          "description": "URL to the package tarball"
+        },
+        "integrity": {
+          "type": "string",
+          "description": "Subresource integrity hash",
+          "pattern": "^(sha1|sha256|sha384|sha512)-[A-Za-z0-9+/]+=*$"
+        }
+      }
+    },
+    "workspacePackage": {
+      "type": "object",
+      "description": "Workspace package configuration",
+      "properties": {
+        "name": {
+          "type": "string",
+          "enum": ["@r3f-workspace/ui", "@r3f-workspace/utils", "@r3f-workspace/r3f-components", "r3f-starterkit"]
+        },
+        "version": {
+          "type": "string",
+          "const": "1.0.0"
+        },
+        "workspaces": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": ["packages/*", "projects/*"]
+          }
+        }
+      }
+    }
+  },
+  "examples": [
+    {
+      "name": "@michael-mpj/r3f-batman",
+      "version": "1.0.0",
+      "lockfileVersion": 3,
+      "requires": true,
+      "packages": {
+        "": {
+          "name": "@michael-mpj/r3f-batman",
+          "version": "1.0.0",
+          "license": "MIT",
+          "workspaces": ["packages/*", "projects/*"],
+          "dependencies": {
+            "@react-three/drei": "^9.122.0",
+            "@react-three/fiber": "^9.3.0",
+            "@react-three/postprocessing": "^3.0.4",
+            "react": "^19.0.0",
+            "react-dom": "^19.0.0",
+            "three": "^0.179.1"
+          },
+          "devDependencies": {
+            "vite": "^7.1.3",
+            "vitepress": "^1.6.4",
+            "vitest": "^3.2.4"
+          },
+          "engines": {
+            "node": ">=20.0.0",
+            "npm": ">=10.0.0"
+          }
+        }
+      }
+    }
+  ]
+}

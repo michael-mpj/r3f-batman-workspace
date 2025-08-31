@@ -1,0 +1,139 @@
+name: "Workspace Actions Demo"
+
+on:
+  workflow_dispatch:
+    inputs:
+      workspace:
+        description: "Target workspace (optional)"
+        required: false
+        default: ""
+      action_type:
+        description: "Type of demo to run"
+        required: true
+        default: "full-pipeline"
+        type: choice
+        options:
+          - "full-pipeline"
+          - "health-check"
+          - "build-only"
+          - "test-only"
+          - "lint-only"
+
+jobs:
+  health-check:
+    if: github.event.inputs.action_type == 'health-check' || github.event.inputs.action_type == 'full-pipeline'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Workspace Health Check
+        uses: ./.github/actions/my-action
+        with:
+          action: "health-check"
+          workspace: ${{ github.event.inputs.workspace }}
+
+      - name: Workspace Info
+        uses: ./.github/actions/my-action
+        with:
+          action: "info"
+          workspace: ${{ github.event.inputs.workspace }}
+
+  setup:
+    if: github.event.inputs.action_type == 'full-pipeline' || github.event.inputs.action_type == 'build-only' || github.event.inputs.action_type == 'test-only' || github.event.inputs.action_type == 'lint-only'
+    runs-on: ubuntu-latest
+    outputs:
+      setup-status: ${{ steps.setup.outputs.status }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Workspace
+        id: setup
+        uses: ./.github/actions/setup-workspace
+        with:
+          node-version: "20"
+
+  lint:
+    if: github.event.inputs.action_type == 'lint-only' || github.event.inputs.action_type == 'full-pipeline'
+    needs: [setup]
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Workspace
+        uses: ./.github/actions/setup-workspace
+
+      - name: Lint Workspace
+        uses: ./.github/actions/lint-workspace
+        with:
+          workspace: ${{ github.event.inputs.workspace }}
+          fix: "false"
+          format-check: "true"
+
+  test:
+    if: github.event.inputs.action_type == 'test-only' || github.event.inputs.action_type == 'full-pipeline'
+    needs: [setup]
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Workspace
+        uses: ./.github/actions/setup-workspace
+
+      - name: Test Workspace
+        uses: ./.github/actions/test-workspace
+        with:
+          workspace: ${{ github.event.inputs.workspace }}
+          coverage: "true"
+
+  build:
+    if: github.event.inputs.action_type == 'build-only' || github.event.inputs.action_type == 'full-pipeline'
+    needs: [setup]
+    runs-on: ubuntu-latest
+    outputs:
+      build-status: ${{ steps.build.outputs.build-status }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Workspace
+        uses: ./.github/actions/setup-workspace
+
+      - name: Build Workspace
+        id: build
+        uses: ./.github/actions/build-workspace
+        with:
+          workspace: ${{ github.event.inputs.workspace }}
+
+  summary:
+    if: always() && github.event.inputs.action_type == 'full-pipeline'
+    needs: [health-check, lint, test, build]
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Workspace Summary
+        uses: ./.github/actions/my-action
+        with:
+          action: "info"
+          workspace: ${{ github.event.inputs.workspace }}
+
+      - name: Pipeline Summary
+        run: |
+          echo "## Workspace Actions Demo Results" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "### Configuration" >> $GITHUB_STEP_SUMMARY
+          echo "- **Action Type**: ${{ github.event.inputs.action_type }}" >> $GITHUB_STEP_SUMMARY
+          echo "- **Target Workspace**: ${{ github.event.inputs.workspace || 'All workspaces' }}" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "### Results" >> $GITHUB_STEP_SUMMARY
+          echo "- **Health Check**: ${{ needs.health-check.result }}" >> $GITHUB_STEP_SUMMARY
+          echo "- **Lint**: ${{ needs.lint.result }}" >> $GITHUB_STEP_SUMMARY
+          echo "- **Test**: ${{ needs.test.result }}" >> $GITHUB_STEP_SUMMARY
+          echo "- **Build**: ${{ needs.build.result }}" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "✅ Workspace actions demo completed successfully!"

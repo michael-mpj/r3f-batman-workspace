@@ -1,0 +1,84 @@
+/**
+ * Cyber Forge - Global Styles
+ * File: index.css
+ * Description: Cyberpunk-themed global styling
+ * Author: R3F Workspace Team
+ * Created: 2025-08-31
+ * Last Modified: 2025-08-31
+ * Version: 1.0.0
+ */
+
+@import url("https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&display=swap");
+
+:root {
+  --neon-cyan: #00ffff;
+  --neon-magenta: #ff00ff;
+  --neon-yellow: #ffff00;
+  --dark-bg: #0a0a0a;
+  --dark-surface: #1a1a1a;
+  --text-primary: #ffffff;
+  --text-secondary: #cccccc;
+  --glow-intensity: 0 0 10px;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html,
+body {
+  height: 100%;
+  font-family: "Orbitron", monospace;
+  background: linear-gradient(135deg, var(--dark-bg) 0%, var(--dark-surface) 100%);
+  color: var(--text-primary);
+  overflow: hidden;
+}
+
+#root {
+  height: 100vh;
+  width: 100vw;
+}
+
+.cyber-forge-app {
+  height: 100vh;
+  width: 100vw;
+  background: radial-gradient(circle at 50% 50%, rgba(0, 255, 255, 0.1) 0%, transparent 50%);
+  position: relative;
+}
+
+/* Cyberpunk loading screen */
+.loading-screen {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: var(--dark-bg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  transition: opacity 0.5s ease-out;
+}
+
+.loading-text {
+  font-size: 2rem;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  text-shadow: var(--glow-intensity) var(--neon-cyan);
+  animation: pulse 2s ease-in-out infinite alternate;
+}
+
+@keyframes pulse {
+  from {
+    text-shadow: var(--glow-intensity) var(--neon-cyan);
+    color: var(--neon-cyan);
+  }
+  to {
+    text-shadow: var(--glow-intensity) var(--neon-magenta);
+    color: var(--neon-magenta);
+  }
+}
