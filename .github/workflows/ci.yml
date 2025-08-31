@@ -13,7 +13,7 @@ jobs:
       setup-status: ${{ steps.setup.outputs.status }}
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
 
       - name: Setup Workspace
         id: setup
@@ -26,7 +26,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
 
       - name: Setup Workspace
         uses: ./.github/actions/setup-workspace
@@ -41,7 +41,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
 
       - name: Setup Workspace
         uses: ./.github/actions/setup-workspace
@@ -58,7 +58,7 @@ jobs:
       build-status: ${{ steps.build.outputs.build-status }}
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
 
       - name: Setup Workspace
         uses: ./.github/actions/setup-workspace
@@ -71,7 +71,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
 
       - name: Workspace Health Check
         uses: ./.github/actions/my-action
