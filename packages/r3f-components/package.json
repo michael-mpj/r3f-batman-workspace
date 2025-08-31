@@ -30,7 +30,7 @@
     "three": "^0.179.1"
   },
   "dependencies": {
-    "@react-three/drei": "^9.109.5",
+    "@react-three/drei": "^10.7.4",
     "@r3f-workspace/utils": "file:../utils"
   },
   "devDependencies": {
