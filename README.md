@@ -1,3 +1,5 @@
+<<<<<<< HEAD
+
 # 🦇 R3F Batman Workspace
 
 > **"A modern React Three Fiber monorepo with Batman-powered automation and shared packages"**
