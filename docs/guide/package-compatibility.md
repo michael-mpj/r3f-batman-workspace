@@ -1,6 +1,6 @@
 # Package Compatibility Report
 
-Generated on: 8/31/2025, 12:12:27 PM
+Generated on: 8/31/2025, 2:59:01 PM
 
 ## Environment
 
@@ -21,17 +21,17 @@ Generated on: 8/31/2025, 12:12:27 PM
 - **Version**: 1.0.0
 - **Type**: module
 - **Engines**: {
-  "node": ">=20.0.0",
-  "npm": ">=10.0.0"
+  "node": ">=18.0.0",
+  "npm": ">=9.0.0"
   }
 
 **Issues:**
 
-- ℹ️ Node.js requirement: >=20.0.0, current: v22.18.0
-- ℹ️ npm requirement: >=10.0.0, current: 10.9.3
+- ℹ️ Node.js requirement: >=18.0.0, current: v22.18.0
+- ℹ️ npm requirement: >=9.0.0, current: 10.9.3
 - ℹ️ react@^19.0.0: Requires Node.js >= 16
 - ℹ️ three@^0.179.1: Modern Three.js version - good compatibility
-- ℹ️ vite@^7.1.3: Requires Node.js >= 18
+- ℹ️ vite@^6.0.3: Requires Node.js >= 18
 
 ---
 

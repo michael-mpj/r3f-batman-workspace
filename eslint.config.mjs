@@ -43,6 +43,7 @@ export default [
     languageOptions: {
       globals: {
         ...globals.node,
+        ...globals.browser,
         ...globals.jest,
         Atomics: "readonly",
         SharedArrayBuffer: "readonly",
@@ -62,6 +63,7 @@ export default [
       "no-shadow": "off",
       "no-unused-vars": "off",
       "prettier/prettier": "error",
+      "no-case-declarations": "off",
     },
   },
 ];
