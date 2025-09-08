@@ -14,7 +14,7 @@
   "dependencies": {
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
-    "three": "^0.179.1",
+    "three": "^0.180.0",
     "@react-three/fiber": "^9.3.0",
     "@react-three/uikit": "^0.8.21",
     "@react-three/postprocessing": "^3.0.4",
