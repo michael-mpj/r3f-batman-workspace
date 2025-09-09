@@ -12,6 +12,6 @@ jobs:
       - run: |
           yarn
           yarn prettier . --write
-      - uses: autofix-ci/action@v1
+      - uses: autofix-ci/action@v5
         with:
           commit-message: "Apply Prettier format"
