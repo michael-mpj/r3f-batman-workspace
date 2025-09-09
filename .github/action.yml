@@ -1,0 +1,24 @@
+name: 'autofix.ci'
+description: 'Automatically fix formatting/lint issues in pull requests'
+branding:
+  icon: 'check-circle'
+  color: 'green'
+runs:
+  using: 'node22'
+  main: 'index.dist.js'
+inputs:
+  fail-fast:
+    description: 'Cancel all other workflows associated with a commit when fixing it.'
+    required: false
+    default: 'true'
+  commit-message:
+    description: 'The commit message to use when fixing a commit.'
+    required: false
+  comment:
+    description: 'Add a custom comment to the PR when fixing a commit.'
+    required: false
+outputs:
+  autofix_started:
+    description: |
+      Boolean indicating whether changes have been sent to the autofix server
+      and a fix commit is coming up.
