@@ -37,5 +37,6 @@
     }
   },
   "editor.formatOnSave": true,
-  "files.autoSave": "afterDelay"
+  "files.autoSave": "afterDelay",
+  "vitest.disableWorkspaceWarning": true
 }
