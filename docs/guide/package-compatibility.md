@@ -1,6 +1,6 @@
 # Package Compatibility Report
 
-Generated on: 9/10/2025, 6:20:08 AM
+Generated on: 9/10/2025, 6:28:39 AM
 
 ## Environment
 
@@ -31,7 +31,7 @@ Generated on: 9/10/2025, 6:20:08 AM
 - ℹ️ npm requirement: >=9.0.0, current: 10.9.3
 - ℹ️ react@^19.0.0: Requires Node.js >= 16
 - ℹ️ three@^0.180.0: Modern Three.js version - good compatibility
-- ℹ️ vite@^6.3.6: Requires Node.js >= 18
+- ℹ️ vite@^7.1.5: Requires Node.js >= 18
 
 ---
 
@@ -42,7 +42,7 @@ Generated on: 9/10/2025, 6:20:08 AM
 
 **Issues:**
 
-- ℹ️ vite@^6.3.6: Requires Node.js >= 18
+- ℹ️ vite@^7.1.5: Requires Node.js >= 18
 - ℹ️ react@^18.3.1: Requires Node.js >= 16
 - ℹ️ three@^0.179.1: Modern Three.js version - good compatibility
 
@@ -55,7 +55,7 @@ Generated on: 9/10/2025, 6:20:08 AM
 
 **Issues:**
 
-- ℹ️ vite@^6.3.6: Requires Node.js >= 18
+- ℹ️ vite@^7.1.5: Requires Node.js >= 18
 - ℹ️ react@^19.0.0: Requires Node.js >= 16
 
 ---
@@ -68,7 +68,7 @@ Generated on: 9/10/2025, 6:20:08 AM
 **Issues:**
 
 - ℹ️ three@^0.180.0: Modern Three.js version - good compatibility
-- ℹ️ vite@^6.3.6: Requires Node.js >= 18
+- ℹ️ vite@^7.1.5: Requires Node.js >= 18
 
 ---
 
@@ -81,7 +81,7 @@ Generated on: 9/10/2025, 6:20:08 AM
 
 - ℹ️ react@^19.0.0: Requires Node.js >= 16
 - ℹ️ three@^0.180.0: Modern Three.js version - good compatibility
-- ℹ️ vite@^6.3.6: Requires Node.js >= 18
+- ℹ️ vite@^7.1.5: Requires Node.js >= 18
 
 ---
 
