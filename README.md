@@ -97,7 +97,6 @@ Each Batman edition manages these core tasks:
 npm run 🦇           # Original Batman
 npm run 🦇🦇         # Enhanced Batman (recommended)
 npm run bat          # Quick alias
-npm run imbatman     # Ultimate Batman
 
 # Terminal cleanup (auto-included in all commands)
 npm run cleanup      # Manual cleanup if needed

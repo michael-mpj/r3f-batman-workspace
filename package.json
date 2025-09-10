@@ -12,6 +12,16 @@
   "scripts": {
     "dev": "npm run dev --workspace=projects/R3f-StarterKit",
     "build": "npm run build --workspaces --if-present",
+    "build:starterkit": "npm run build --workspace=projects/R3f-StarterKit",
+    "build:cyber-forge": "npm run build --workspace=apps/cyber-forge",
+    "build:production": "npm run build:starterkit && npm run build:cyber-forge",
+    "deploy:starterkit": "cd projects/R3f-StarterKit && vercel --prod",
+    "deploy:cyber-forge": "cd apps/cyber-forge && vercel --prod",
+    "deploy:all": "npm run build:production && npm run deploy:starterkit && npm run deploy:cyber-forge",
+    "deploy:production": "node scripts/deploy-production.mjs",
+    "deploy:local": "node scripts/deploy-local.mjs",
+    "preview:starterkit": "npm run preview --workspace=projects/R3f-StarterKit",
+    "preview:cyber-forge": "npm run preview --workspace=apps/cyber-forge",
     "test": "npm run test --workspaces --if-present",
     "lint": "eslint . --ext .js,.jsx,.mjs",
     "lint:fix": "eslint . --ext .js,.jsx,.mjs --fix",
@@ -58,6 +68,8 @@
     "@testing-library/react": "^16.3.0",
     "@testing-library/user-event": "^14.6.1",
     "@vitejs/plugin-react": "^5.0.2",
+    "@vitest/browser": "^3.2.4",
+    "@vitest/ui": "^3.2.4",
     "babel-jest": "^30.1.2",
     "concurrently": "^9.2.1",
     "deep-equal": "^2.2.3",
@@ -75,7 +87,7 @@
     "turbo": "^2.5.6",
     "typescript": "^5.7.2",
     "vite": "^6.3.6",
-    "vitest": "^3.2.1"
+    "vitest": "^3.2.4"
   },
   "lint-staged": {
     "*.{js,jsx,mjs}": [

@@ -12,7 +12,7 @@ The Batman script ecosystem provides multiple deployment modes for your R3F work
 
 - **Purpose**: Classic sequential task execution
 - **Best for**: Single-terminal workflows, CI/CD, automated deployments
-- **Command**: `npm run batman` or `npm run imBatman`
+- **Command**: `npm run batman`
 - **Features**:
   - Sequential task execution with status reporting
   - ASCII Batman art
@@ -120,7 +120,6 @@ Access via Command Palette (`Cmd+Shift+P`) → "Tasks: Run Task":
 ### Batman Classics:
 ```bash
 npm run batman        # Original Batman
-npm run imBatman      # Alias for original
 npm run bat           # Short alias
 npm run 🦇            # Emoji shortcut
 ````

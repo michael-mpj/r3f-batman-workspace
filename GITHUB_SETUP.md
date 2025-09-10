@@ -43,7 +43,6 @@ git push -u origin main
 - **batman-enhanced.mjs** - Advanced terminal management
 - **batman-auto-close.mjs** - Clean workflow automation
 - **batman-vscode.mjs** - VS Code integration
-- **imbatman.js** - Unified Batman interface
 
 ### 🏗️ Monorepo Structure
 

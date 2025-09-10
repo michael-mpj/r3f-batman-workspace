@@ -8,4 +8,4 @@
  * Version: 1.0.0
  */
 
-export { CameraController, AutoRotateCamera } from './CameraController.jsx'
+export { CameraController, AutoRotateCamera } from './CameraController.jsx';

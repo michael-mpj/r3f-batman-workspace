@@ -1,3 +1,13 @@
+/**
+ * R3F Workspace Monorepo - Configuration
+ * File: commitlint.config.js
+ * Description: Configuration settings for commitlint.config
+ * Author: R3F Workspace Team
+ * Created: 2025-09-09
+ * Last Modified: 2025-09-09
+ * Version: 1.0.0
+ */
+
 export default {
   extends: ["@commitlint/config-conventional"],
   rules: {

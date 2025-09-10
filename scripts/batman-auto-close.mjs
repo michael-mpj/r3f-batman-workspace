@@ -33,20 +33,20 @@ const batmanArt = `
 
 // Auto-Close Task Manager
 class AutoCloseBatmanManager {
-  constructor() {
-    this.results = [];
-    this.workspaceRoot = workspaceRoot;
-  }
+    constructor() {
+        this.results = [];
+        this.workspaceRoot = workspaceRoot;
+    }
 
-  // Execute task with auto-closing terminal
-  async executeAutoCloseTask(taskName, command, options = {}) {
-    console.log(`🦇 Executing ${taskName}...`);
+    // Execute task with auto-closing terminal
+    async executeAutoCloseTask(taskName, command, options = {}) {
+        console.log(`🦇 Executing ${taskName}...`);
 
-    const startTime = Date.now();
+        const startTime = Date.now();
 
-    try {
-      if (process.platform === "darwin") {
-        const autoCloseScript = `
+        try {
+            if (process.platform === "darwin") {
+                const autoCloseScript = `
           tell application "Terminal"
             activate
             set newTab to do script "cd '${options.cwd || this.workspaceRoot}' && echo '🦇 Batman ${taskName}' && echo '▶️ Starting task...' && ${command} && echo '' && echo '✅ ${taskName} completed successfully!' && echo '🦇 Auto-closing in 5 seconds...' && sleep 5 && exit"
@@ -54,39 +54,39 @@ class AutoCloseBatmanManager {
           end tell
         `;
 
-        exec(`osascript -e "${autoCloseScript.replace(/"/g, '\\"')}"`);
+                exec(`osascript -e "${autoCloseScript.replace(/"/g, '\\"')}"`);
 
-        const duration = Date.now() - startTime;
-        this.results.push({
-          task: taskName,
-          status: "launched",
-          duration,
-          type: "auto-close",
-        });
+                const duration = Date.now() - startTime;
+                this.results.push({
+                    task: taskName,
+                    status: "launched",
+                    duration,
+                    type: "auto-close",
+                });
 
-        console.log(`✅ Launched ${taskName} in auto-closing terminal`);
-      } else {
-        console.log(`⚠️ Auto-close terminals not available on this platform for ${taskName}`);
-      }
-    } catch (error) {
-      console.error(`❌ Failed to launch ${taskName}:`, error.message);
-      this.results.push({
-        task: taskName,
-        status: "failed",
-        error: error.message,
-      });
+                console.log(`✅ Launched ${taskName} in auto-closing terminal`);
+            } else {
+                console.log(`⚠️ Auto-close terminals not available on this platform for ${taskName}`);
+            }
+        } catch (error) {
+            console.error(`❌ Failed to launch ${taskName}:`, error.message);
+            this.results.push({
+                task: taskName,
+                status: "failed",
+                error: error.message,
+            });
+        }
     }
-  }
 
-  // Execute persistent task (for dev server)
-  async executePersistentTask(taskName, command, options = {}) {
-    console.log(`🦇 Executing ${taskName} (Persistent)...`);
+    // Execute persistent task (for dev server)
+    async executePersistentTask(taskName, command, options = {}) {
+        console.log(`🦇 Executing ${taskName} (Persistent)...`);
 
-    const startTime = Date.now();
+        const startTime = Date.now();
 
-    try {
-      if (process.platform === "darwin") {
-        const persistentScript = `
+        try {
+            if (process.platform === "darwin") {
+                const persistentScript = `
           tell application "Terminal"
             activate
             set newTab to do script "cd '${options.cwd || this.workspaceRoot}' && echo '🦇 Batman ${taskName} (Persistent)' && echo '🚀 Starting development server...' && echo 'ℹ️  This terminal will remain open for development' && ${command}"
@@ -94,41 +94,41 @@ class AutoCloseBatmanManager {
           end tell
         `;
 
-        exec(`osascript -e "${persistentScript.replace(/"/g, '\\"')}"`);
+                exec(`osascript -e "${persistentScript.replace(/"/g, '\\"')}"`);
 
-        const duration = Date.now() - startTime;
-        this.results.push({
-          task: taskName,
-          status: "launched",
-          duration,
-          type: "persistent",
-        });
+                const duration = Date.now() - startTime;
+                this.results.push({
+                    task: taskName,
+                    status: "launched",
+                    duration,
+                    type: "persistent",
+                });
 
-        console.log(`✅ Launched ${taskName} in persistent terminal`);
-      } else {
-        console.log(`⚠️ Persistent terminals not available on this platform for ${taskName}`);
-      }
-    } catch (error) {
-      console.error(`❌ Failed to launch ${taskName}:`, error.message);
-      this.results.push({
-        task: taskName,
-        status: "failed",
-        error: error.message,
-      });
+                console.log(`✅ Launched ${taskName} in persistent terminal`);
+            } else {
+                console.log(`⚠️ Persistent terminals not available on this platform for ${taskName}`);
+            }
+        } catch (error) {
+            console.error(`❌ Failed to launch ${taskName}:`, error.message);
+            this.results.push({
+                task: taskName,
+                status: "failed",
+                error: error.message,
+            });
+        }
     }
-  }
 
-  // Get execution summary
-  getSummary() {
-    return this.results;
-  }
+    // Get execution summary
+    getSummary() {
+        return this.results;
+    }
 }
 
 // Main Auto-Close Batman Function
 async function runAutoCloseBatman() {
-  console.log(batmanArt);
+    console.log(batmanArt);
 
-  console.log(`
+    console.log(`
 🌃 Welcome to Batman Auto-Close Edition!
 
 "This version launches each task in its own terminal that automatically
@@ -139,70 +139,70 @@ closes when the task completes, keeping your workspace clean and organized."
 📡 Opening self-closing Bat-Terminals...
   `);
 
-  const manager = new AutoCloseBatmanManager();
+    const manager = new AutoCloseBatmanManager();
 
-  // Task 1: Headers (Auto-Close)
-  console.log(`
+    // Task 1: Headers (Auto-Close)
+    console.log(`
 📋 Phase 1: Header Management
 "Every file needs the Batman seal of approval" – Batman`);
 
-  await manager.executeAutoCloseTask("Headers", "node scripts/add-headers.mjs");
+    await manager.executeAutoCloseTask("Headers", "node scripts/add-headers.mjs");
 
-  await new Promise(resolve => setTimeout(resolve, 3000));
+    await new Promise(resolve => setTimeout(resolve, 3000));
 
-  // Task 2: Compatibility (Auto-Close)
-  console.log(`
+    // Task 2: Compatibility (Auto-Close)
+    console.log(`
 🔍 Phase 2: Compatibility Analysis
 "Knowledge is power, compatibility is strength" – Batman`);
 
-  await manager.executeAutoCloseTask("Compatibility", "npm run check-compatibility");
+    await manager.executeAutoCloseTask("Compatibility", "npm run check-compatibility");
 
-  await new Promise(resolve => setTimeout(resolve, 3000));
+    await new Promise(resolve => setTimeout(resolve, 3000));
 
-  // Task 3: Build (Auto-Close)
-  console.log(`
+    // Task 3: Build (Auto-Close)
+    console.log(`
 🏗️ Phase 3: Build System
 "Building the tools that protect Gotham" – Batman`);
 
-  await manager.executeAutoCloseTask("Build", "npm run build");
+    await manager.executeAutoCloseTask("Build", "npm run build");
 
-  await new Promise(resolve => setTimeout(resolve, 3000));
+    await new Promise(resolve => setTimeout(resolve, 3000));
 
-  // Task 4: Tests (Auto-Close)
-  console.log(`
+    // Task 4: Tests (Auto-Close)
+    console.log(`
 🧪 Phase 4: Testing Suite
 "Every gadget must be tested before deployment" – Batman`);
 
-  await manager.executeAutoCloseTask("Tests", "npm run test");
+    await manager.executeAutoCloseTask("Tests", "npm run test");
 
-  await new Promise(resolve => setTimeout(resolve, 3000));
+    await new Promise(resolve => setTimeout(resolve, 3000));
 
-  // Task 5: Dev Server (Persistent)
-  console.log(`
+    // Task 5: Dev Server (Persistent)
+    console.log(`
 🚀 Phase 5: Development Server
 "The Batcave is now online" – Batman`);
 
-  const starterKitPath = path.join(workspaceRoot, "projects", "R3f-StarterKit");
-  await manager.executePersistentTask("Dev-Server", "npm run dev", { cwd: starterKitPath });
+    const starterKitPath = path.join(workspaceRoot, "projects", "R3f-StarterKit");
+    await manager.executePersistentTask("Dev-Server", "npm run dev", { cwd: starterKitPath });
 
-  await new Promise(resolve => setTimeout(resolve, 2000));
+    await new Promise(resolve => setTimeout(resolve, 2000));
 
-  // Task 6: Package Monitor (Auto-Close)
-  console.log(`
+    // Task 6: Package Monitor (Auto-Close)
+    console.log(`
 📦 Phase 6: Package Monitor
 "Stay vigilant for package updates" – Batman`);
 
-  await manager.executeAutoCloseTask(
-    "Package-Monitor",
-    'npm outdated && echo "🦇 Package monitoring complete! Use npm run update for updates."'
-  );
+    await manager.executeAutoCloseTask(
+        "Package-Monitor",
+        'npm outdated && echo "🦇 Package monitoring complete! Use npm run update for updates."'
+    );
 
-  // Display final results
-  const summary = manager.getSummary();
-  const autoCloseTasks = summary.filter(r => r.type === "auto-close").length;
-  const persistentTasks = summary.filter(r => r.type === "persistent").length;
+    // Display final results
+    const summary = manager.getSummary();
+    const autoCloseTasks = summary.filter(r => r.type === "auto-close").length;
+    const persistentTasks = summary.filter(r => r.type === "persistent").length;
 
-  console.log(`
+    console.log(`
 🦇 AUTO-CLOSE BATMAN PROTOCOL COMPLETE!
 
 📊 DEPLOYMENT SUMMARY:
@@ -238,6 +238,6 @@ ${summary.map(r => `   ${r.status === "launched" ? "✅" : "❌"} ${r.task}: ${r
 
 // Run Auto-Close Batman
 runAutoCloseBatman().catch(error => {
-  console.error("🦇 Auto-Close Batman encountered an error:", error);
-  process.exit(1);
+    console.error("🦇 Auto-Close Batman encountered an error:", error);
+    process.exit(1);
 });

@@ -36,108 +36,108 @@ const batmanArt = `
 
 // Enhanced task management with terminal support
 class BatmanTaskManager {
-  constructor() {
-    this.terminals = new Map();
-    this.tasks = new Map();
-    this.workspaceRoot = workspaceRoot;
-  }
-
-  // Create a new terminal for a specific task
-  async createTaskTerminal(taskName, command, options = {}) {
-    console.log(`🦇 Opening Bat-Terminal for: ${taskName}`);
-    console.log(`🔧 Command: ${command}`);
-
-    const terminalOptions = {
-      cwd: options.cwd || this.workspaceRoot,
-      stdio: ["inherit", "pipe", "pipe"],
-      detached: true,
-      ...options,
-    };
-
-    const process = spawn("sh", ["-c", command], terminalOptions);
-
-    this.terminals.set(taskName, {
-      process,
-      command,
-      startTime: Date.now(),
-      status: "running",
-    });
-
-    // Handle process output
-    process.stdout?.on("data", data => {
-      console.log(`[${taskName}] ${data.toString()}`);
-    });
-
-    process.stderr?.on("data", data => {
-      console.log(`[${taskName}] ⚠️ ${data.toString()}`);
-    });
-
-    process.on("close", code => {
-      const terminal = this.terminals.get(taskName);
-      if (terminal) {
-        terminal.status = code === 0 ? "completed" : "failed";
-        terminal.endTime = Date.now();
-        terminal.exitCode = code;
-      }
-      console.log(`🦇 [${taskName}] Terminal closed with code: ${code}`);
-    });
-
-    return process;
-  }
-
-  // Wait for a specific task to complete
-  async waitForTask(taskName, timeout = 30000) {
-    const terminal = this.terminals.get(taskName);
-    if (!terminal) {
-      throw new Error(`Task ${taskName} not found`);
+    constructor() {
+        this.terminals = new Map();
+        this.tasks = new Map();
+        this.workspaceRoot = workspaceRoot;
     }
 
-    return new Promise((resolve, reject) => {
-      const startTime = Date.now();
+    // Create a new terminal for a specific task
+    async createTaskTerminal(taskName, command, options = {}) {
+        console.log(`🦇 Opening Bat-Terminal for: ${taskName}`);
+        console.log(`🔧 Command: ${command}`);
 
-      const checkStatus = () => {
-        const currentTerminal = this.terminals.get(taskName);
+        const terminalOptions = {
+            cwd: options.cwd || this.workspaceRoot,
+            stdio: ["inherit", "pipe", "pipe"],
+            detached: true,
+            ...options,
+        };
 
-        if (currentTerminal.status === "completed") {
-          resolve({ success: true, exitCode: currentTerminal.exitCode });
-        } else if (currentTerminal.status === "failed") {
-          resolve({ success: false, exitCode: currentTerminal.exitCode });
-        } else if (Date.now() - startTime > timeout) {
-          reject(new Error(`Task ${taskName} timed out after ${timeout}ms`));
-        } else {
-          setTimeout(checkStatus, 1000);
+        const process = spawn("sh", ["-c", command], terminalOptions);
+
+        this.terminals.set(taskName, {
+            process,
+            command,
+            startTime: Date.now(),
+            status: "running",
+        });
+
+        // Handle process output
+        process.stdout?.on("data", data => {
+            console.log(`[${taskName}] ${data.toString()}`);
+        });
+
+        process.stderr?.on("data", data => {
+            console.log(`[${taskName}] ⚠️ ${data.toString()}`);
+        });
+
+        process.on("close", code => {
+            const terminal = this.terminals.get(taskName);
+            if (terminal) {
+                terminal.status = code === 0 ? "completed" : "failed";
+                terminal.endTime = Date.now();
+                terminal.exitCode = code;
+            }
+            console.log(`🦇 [${taskName}] Terminal closed with code: ${code}`);
+        });
+
+        return process;
+    }
+
+    // Wait for a specific task to complete
+    async waitForTask(taskName, timeout = 30000) {
+        const terminal = this.terminals.get(taskName);
+        if (!terminal) {
+            throw new Error(`Task ${taskName} not found`);
         }
-      };
 
-      checkStatus();
-    });
-  }
+        return new Promise((resolve, reject) => {
+            const startTime = Date.now();
 
-  // Get status of all terminals
-  getStatus() {
-    const status = {};
-    this.terminals.forEach((terminal, taskName) => {
-      status[taskName] = {
-        status: terminal.status,
-        command: terminal.command,
-        duration: terminal.endTime ? terminal.endTime - terminal.startTime : Date.now() - terminal.startTime,
-        exitCode: terminal.exitCode,
-      };
-    });
-    return status;
-  }
+            const checkStatus = () => {
+                const currentTerminal = this.terminals.get(taskName);
 
-  // Open a VS Code terminal for a specific task
-  async openVSCodeTerminal(taskName, command, options = {}) {
-    console.log(`🦇 Opening VS Code Terminal for: ${taskName}`);
+                if (currentTerminal.status === "completed") {
+                    resolve({ success: true, exitCode: currentTerminal.exitCode });
+                } else if (currentTerminal.status === "failed") {
+                    resolve({ success: false, exitCode: currentTerminal.exitCode });
+                } else if (Date.now() - startTime > timeout) {
+                    reject(new Error(`Task ${taskName} timed out after ${timeout}ms`));
+                } else {
+                    setTimeout(checkStatus, 1000);
+                }
+            };
 
-    // Try to use VS Code's integrated terminal if available
-    const vsCodeCommand = `code --new-window --wait && echo '${command}' && ${command}`;
+            checkStatus();
+        });
+    }
 
-    try {
-      // Alternative: Use osascript on macOS to open Terminal.app with auto-close
-      if (process.platform === "darwin") {
-        const autoCloseScript = `
+    // Get status of all terminals
+    getStatus() {
+        const status = {};
+        this.terminals.forEach((terminal, taskName) => {
+            status[taskName] = {
+                status: terminal.status,
+                command: terminal.command,
+                duration: terminal.endTime ? terminal.endTime - terminal.startTime : Date.now() - terminal.startTime,
+                exitCode: terminal.exitCode,
+            };
+        });
+        return status;
+    }
+
+    // Open a VS Code terminal for a specific task
+    async openVSCodeTerminal(taskName, command, options = {}) {
+        console.log(`🦇 Opening VS Code Terminal for: ${taskName}`);
+
+        // Try to use VS Code's integrated terminal if available
+        const vsCodeCommand = `code --new-window --wait && echo '${command}' && ${command}`;
+
+        try {
+            // Alternative: Use osascript on macOS to open Terminal.app with auto-close
+            if (process.platform === "darwin") {
+                const autoCloseScript = `
           tell application "Terminal"
             activate
             set newTab to do script "cd '${options.cwd || this.workspaceRoot}' && echo '🦇 Batman Task: ${taskName}' && ${command} && echo '🦇 Task completed! Closing in 3 seconds...' && sleep 3 && exit"
@@ -145,26 +145,26 @@ class BatmanTaskManager {
           end tell
         `;
 
-        exec(`osascript -e "${autoCloseScript.replace(/"/g, '\\"')}"`);
-        console.log(`✅ Opened macOS Terminal for ${taskName} (Auto-Close Enabled)`);
-      } else {
-        // Fallback for other platforms
-        await this.createTaskTerminal(taskName, command, options);
-      }
-    } catch (error) {
-      console.log(`⚠️ Failed to open system terminal, using internal process for ${taskName}`);
-      await this.createTaskTerminal(taskName, command, options);
+                exec(`osascript -e "${autoCloseScript.replace(/"/g, '\\"')}"`);
+                console.log(`✅ Opened macOS Terminal for ${taskName} (Auto-Close Enabled)`);
+            } else {
+                // Fallback for other platforms
+                await this.createTaskTerminal(taskName, command, options);
+            }
+        } catch (error) {
+            console.log(`⚠️ Failed to open system terminal, using internal process for ${taskName}`);
+            await this.createTaskTerminal(taskName, command, options);
+        }
     }
-  }
 
-  // Open a terminal for background processes (no auto-close)
-  async openDevServerTerminal(taskName, command, options = {}) {
-    console.log(`🦇 Opening Persistent Terminal for: ${taskName}`);
+    // Open a terminal for background processes (no auto-close)
+    async openDevServerTerminal(taskName, command, options = {}) {
+        console.log(`🦇 Opening Persistent Terminal for: ${taskName}`);
 
-    try {
-      // Use osascript on macOS to open Terminal.app WITHOUT auto-close for dev server
-      if (process.platform === "darwin") {
-        const persistentScript = `
+        try {
+            // Use osascript on macOS to open Terminal.app WITHOUT auto-close for dev server
+            if (process.platform === "darwin") {
+                const persistentScript = `
           tell application "Terminal"
             activate
             set newTab to do script "cd '${options.cwd || this.workspaceRoot}' && echo '🦇 Batman Dev Server: ${taskName}' && echo '🚀 Starting development server (will remain open)...' && ${command}"
@@ -172,35 +172,35 @@ class BatmanTaskManager {
           end tell
         `;
 
-        exec(`osascript -e "${persistentScript.replace(/"/g, '\\"')}"`);
-        console.log(`✅ Opened persistent macOS Terminal for ${taskName}`);
-      } else {
-        // Fallback for other platforms
-        await this.createTaskTerminal(taskName, command, options);
-      }
-    } catch (error) {
-      console.log(`⚠️ Failed to open system terminal, using internal process for ${taskName}`);
-      await this.createTaskTerminal(taskName, command, options);
+                exec(`osascript -e "${persistentScript.replace(/"/g, '\\"')}"`);
+                console.log(`✅ Opened persistent macOS Terminal for ${taskName}`);
+            } else {
+                // Fallback for other platforms
+                await this.createTaskTerminal(taskName, command, options);
+            }
+        } catch (error) {
+            console.log(`⚠️ Failed to open system terminal, using internal process for ${taskName}`);
+            await this.createTaskTerminal(taskName, command, options);
+        }
     }
-  }
 
-  // Cleanup all terminals
-  cleanup() {
-    console.log("🦇 Batman is cleaning up the Batcave...");
-    this.terminals.forEach((terminal, taskName) => {
-      if (terminal.process && !terminal.process.killed) {
-        terminal.process.kill();
-        console.log(`🦇 Closed terminal for ${taskName}`);
-      }
-    });
-  }
+    // Cleanup all terminals
+    cleanup() {
+        console.log("🦇 Batman is cleaning up the Batcave...");
+        this.terminals.forEach((terminal, taskName) => {
+            if (terminal.process && !terminal.process.killed) {
+                terminal.process.kill();
+                console.log(`🦇 Closed terminal for ${taskName}`);
+            }
+        });
+    }
 }
 
 // Enhanced Batman Protocol with multi-terminal support
 async function runEnhancedBatmanProtocol() {
-  console.log(batmanArt);
+    console.log(batmanArt);
 
-  console.log(`
+    console.log(`
 🌃 Welcome to the Enhanced Batcave!
 
 "This enhanced Batman script opens separate terminals for each task,
@@ -212,79 +212,79 @@ Each terminal is a specialized tool in Batman's arsenal!"
 📡 Opening the Bat-Computer interfaces...
   `);
 
-  const taskManager = new BatmanTaskManager();
+    const taskManager = new BatmanTaskManager();
 
-  // Handle cleanup on exit
-  process.on("SIGINT", () => {
-    taskManager.cleanup();
-    process.exit(0);
-  });
+    // Handle cleanup on exit
+    process.on("SIGINT", () => {
+        taskManager.cleanup();
+        process.exit(0);
+    });
 
-  // Task 1: Header Management Terminal
-  console.log(`
+    // Task 1: Header Management Terminal
+    console.log(`
 📋 Phase 1: Opening Header Management Terminal
 "Every file needs the Batman seal of approval" – Batman
 ────────────────────────────────────────────────────────────`);
 
-  await taskManager.openVSCodeTerminal("Headers", 'node scripts/add-headers.mjs && echo "🦇 Header task complete!"');
+    await taskManager.openVSCodeTerminal("Headers", 'node scripts/add-headers.mjs && echo "🦇 Header task complete!"');
 
-  await new Promise(resolve => setTimeout(resolve, 2000));
+    await new Promise(resolve => setTimeout(resolve, 2000));
 
-  // Task 2: Compatibility Analysis Terminal
-  console.log(`
+    // Task 2: Compatibility Analysis Terminal
+    console.log(`
 🔍 Phase 2: Opening Compatibility Analysis Terminal
 "Knowledge is power, compatibility is strength" – Batman
 ────────────────────────────────────────────────────────────`);
 
-  await taskManager.openVSCodeTerminal("Compatibility", 'npm run check-compatibility && echo "🦇 Compatibility check complete!"');
+    await taskManager.openVSCodeTerminal("Compatibility", 'npm run check-compatibility && echo "🦇 Compatibility check complete!"');
 
-  await new Promise(resolve => setTimeout(resolve, 2000));
+    await new Promise(resolve => setTimeout(resolve, 2000));
 
-  // Task 3: Build System Terminal
-  console.log(`
+    // Task 3: Build System Terminal
+    console.log(`
 🏗️ Phase 3: Opening Build System Terminal
 "Building the tools that protect Gotham" – Batman
 ────────────────────────────────────────────────────────────`);
 
-  await taskManager.openVSCodeTerminal("Build", 'npm run build && echo "🦇 Build complete!"');
+    await taskManager.openVSCodeTerminal("Build", 'npm run build && echo "🦇 Build complete!"');
 
-  await new Promise(resolve => setTimeout(resolve, 2000));
+    await new Promise(resolve => setTimeout(resolve, 2000));
 
-  // Task 4: Testing Suite Terminal
-  console.log(`
+    // Task 4: Testing Suite Terminal
+    console.log(`
 🧪 Phase 4: Opening Testing Suite Terminal
 "Every gadget must be tested before deployment" – Batman
 ────────────────────────────────────────────────────────────`);
 
-  await taskManager.openVSCodeTerminal("Tests", 'npm run test && echo "🦇 Tests complete!"');
+    await taskManager.openVSCodeTerminal("Tests", 'npm run test && echo "🦇 Tests complete!"');
 
-  await new Promise(resolve => setTimeout(resolve, 2000));
+    await new Promise(resolve => setTimeout(resolve, 2000));
 
-  // Task 5: Development Server Terminal
-  console.log(`
+    // Task 5: Development Server Terminal
+    console.log(`
 🚀 Phase 5: Opening Development Server Terminal
 "The Batcave is now online" – Batman
 ────────────────────────────────────────────────────────────`);
 
-  const starterKitPath = path.join(workspaceRoot, "projects", "R3f-StarterKit");
-  // Don't auto-close dev server as it needs to stay running
-  await taskManager.openDevServerTerminal("Dev-Server", "npm run dev", { cwd: starterKitPath });
+    const starterKitPath = path.join(workspaceRoot, "projects", "R3f-StarterKit");
+    // Don't auto-close dev server as it needs to stay running
+    await taskManager.openDevServerTerminal("Dev-Server", "npm run dev", { cwd: starterKitPath });
 
-  await new Promise(resolve => setTimeout(resolve, 2000));
+    await new Promise(resolve => setTimeout(resolve, 2000));
 
-  // Task 6: Package Update Monitor Terminal (Optional)
-  console.log(`
+    // Task 6: Package Update Monitor Terminal (Optional)
+    console.log(`
 📦 Phase 6: Opening Package Update Monitor Terminal
 "Stay vigilant for package updates" – Batman
 ────────────────────────────────────────────────────────────`);
 
-  await taskManager.openVSCodeTerminal(
-    "Package-Monitor",
-    'npm outdated && echo "🦇 Package monitoring active. Use npm run update when needed!"'
-  );
+    await taskManager.openVSCodeTerminal(
+        "Package-Monitor",
+        'npm outdated && echo "🦇 Package monitoring active. Use npm run update when needed!"'
+    );
 
-  // Display final status
-  console.log(`
+    // Display final status
+    console.log(`
 🦇 ENHANCED BATMAN PROTOCOL DEPLOYED!
 
 📊 MULTI-TERMINAL BATCAVE STATUS:
@@ -317,34 +317,34 @@ Each terminal is a specialized tool in Batman's arsenal!"
 🦇🦇🦇 BATMAN HAS LEFT THE BUILDING... BUT THE BATCAVE LIVES ON! 🦇🦇🦇
   `);
 
-  // Keep the main script running for status monitoring
-  console.log(`
+    // Keep the main script running for status monitoring
+    console.log(`
 🦇 Batman is now monitoring all terminals...
    Press Ctrl+C to cleanup and exit Batman Enhanced.
    Individual terminals will remain open for your use.
   `);
 
-  // Monitor terminals periodically
-  const monitorInterval = setInterval(() => {
-    const status = taskManager.getStatus();
-    console.log(`🦇 [${new Date().toLocaleTimeString()}] Terminal Status Update:`);
-    Object.entries(status).forEach(([task, info]) => {
-      const icon = info.status === "completed" ? "✅" : info.status === "failed" ? "❌" : "🔄";
-      console.log(`   ${icon} ${task}: ${info.status} (${Math.round(info.duration / 1000)}s)`);
-    });
-    console.log("");
-  }, 30000); // Update every 30 seconds
+    // Monitor terminals periodically
+    const monitorInterval = setInterval(() => {
+        const status = taskManager.getStatus();
+        console.log(`🦇 [${new Date().toLocaleTimeString()}] Terminal Status Update:`);
+        Object.entries(status).forEach(([task, info]) => {
+            const icon = info.status === "completed" ? "✅" : info.status === "failed" ? "❌" : "🔄";
+            console.log(`   ${icon} ${task}: ${info.status} (${Math.round(info.duration / 1000)}s)`);
+        });
+        console.log("");
+    }, 30000); // Update every 30 seconds
 
-  // Keep process alive
-  process.on("SIGTERM", () => {
-    clearInterval(monitorInterval);
-    taskManager.cleanup();
-    process.exit(0);
-  });
+    // Keep process alive
+    process.on("SIGTERM", () => {
+        clearInterval(monitorInterval);
+        taskManager.cleanup();
+        process.exit(0);
+    });
 }
 
 // Run the Enhanced Batman Protocol
 runEnhancedBatmanProtocol().catch(error => {
-  console.error("🦇 Batman Enhanced encountered an error:", error);
-  process.exit(1);
+    console.error("🦇 Batman Enhanced encountered an error:", error);
+    process.exit(1);
 });

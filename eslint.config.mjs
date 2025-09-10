@@ -1,69 +1,208 @@
 /**
- * R3F Workspace Monorepo - Configuration
+ * R3F Workspace Monorepo - ESLint Configuration
  * File: eslint.config.mjs
- * Description: Configuration settings for eslint.config
+ * Description: Comprehensive ESLint configuration for all workspace environments
  * Author: R3F Workspace Team
- * Created: 2025-08-30
- * Last Modified: 2025-08-30
- * Version: 1.0.0
+ * Created: 2025-09-09
+ * Last Modified: 2025-09-09
+ * Version: 1.2.0
  */
 
-// See: https://eslint.org/docs/latest/use/configure/configuration-files
-
-import { fixupPluginRules } from "@eslint/compat";
-import { FlatCompat } from "@eslint/eslintrc";
 import js from "@eslint/js";
-import _import from "eslint-plugin-import";
-import jest from "eslint-plugin-jest";
-import prettier from "eslint-plugin-prettier";
 import globals from "globals";
-import path from "node:path";
-import { fileURLToPath } from "node:url";
-
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
-const compat = new FlatCompat({
-  baseDirectory: __dirname,
-  recommendedConfig: js.configs.recommended,
-  allConfig: js.configs.all,
-});
+import react from "eslint-plugin-react";
+import reactHooks from "eslint-plugin-react-hooks";
+import jsxA11y from "eslint-plugin-jsx-a11y";
 
 export default [
-  {
-    ignores: ["**/coverage", "**/dist", "**/linter", "**/node_modules", "**/*.md", "docs/.vitepress/cache/**", "docs/.vitepress/dist/**"],
-  },
-  ...compat.extends("eslint:recommended", "plugin:jest/recommended", "plugin:prettier/recommended"),
-  {
-    plugins: {
-      import: fixupPluginRules(_import),
-      jest,
-      prettier,
-    },
+  // Base JavaScript configuration
+  js.configs.recommended,
 
+  // Node.js scripts configuration
+  {
+    files: ["scripts/**/*.{js,mjs}", "*.config.{js,mjs}", "vitest.config.js"],
     languageOptions: {
+      ecmaVersion: 2022,
+      sourceType: "module",
       globals: {
         ...globals.node,
-        ...globals.browser,
-        ...globals.jest,
-        Atomics: "readonly",
-        SharedArrayBuffer: "readonly",
+        console: "readonly",
+        process: "readonly",
+        setTimeout: "readonly",
+        clearTimeout: "readonly",
+        setInterval: "readonly",
+        clearInterval: "readonly",
+        require: "readonly",
+        __dirname: "readonly",
+        __filename: "readonly",
+        Buffer: "readonly",
+        global: "readonly",
       },
-
-      ecmaVersion: 2023,
-      sourceType: "module",
     },
-
     rules: {
-      "camelcase": "off",
-      "eslint-comments/no-use": "off",
-      "eslint-comments/no-unused-disable": "off",
-      "i18n-text/no-en": "off",
-      "import/no-namespace": "off",
+      "no-unused-vars": [
+        "error",
+        {
+          varsIgnorePattern: "^_",
+          argsIgnorePattern: "^_",
+          ignoreRestSiblings: true,
+        },
+      ],
       "no-console": "off",
-      "no-shadow": "off",
-      "no-unused-vars": "off",
-      "prettier/prettier": "error",
-      "no-case-declarations": "off",
+      "no-process-exit": "off",
     },
+  },
+
+  // React/JSX configuration
+  {
+    files: ["**/*.{jsx,tsx}", "src/**/*.{js,jsx}", "projects/**/*.{js,jsx}", "apps/**/*.{js,jsx}", "packages/**/*.{js,jsx}"],
+    plugins: {
+      react,
+      "react-hooks": reactHooks,
+      "jsx-a11y": jsxA11y,
+    },
+    languageOptions: {
+      ecmaVersion: 2022,
+      sourceType: "module",
+      parserOptions: {
+        ecmaFeatures: {
+          jsx: true,
+        },
+      },
+      globals: {
+        ...globals.browser,
+        ...globals.es2022,
+        React: "readonly",
+        JSX: "readonly",
+      },
+    },
+    settings: {
+      react: {
+        version: "detect",
+      },
+    },
+    rules: {
+      ...react.configs.recommended.rules,
+      ...reactHooks.configs.recommended.rules,
+      "react/react-in-jsx-scope": "off",
+      "react/prop-types": "off",
+      "no-unused-vars": [
+        "error",
+        {
+          varsIgnorePattern: "^_",
+          argsIgnorePattern: "^_",
+          ignoreRestSiblings: true,
+        },
+      ],
+    },
+  },
+
+  // Test files configuration
+  {
+    files: ["**/*.{test,spec}.{js,jsx,ts,tsx}", "**/test/**/*.{js,jsx}", "**/tests/**/*.{js,jsx}", "src/test/**/*.js"],
+    languageOptions: {
+      ecmaVersion: 2022,
+      sourceType: "module",
+      globals: {
+        ...globals.browser,
+        ...globals.node,
+        ...globals.jest,
+        // Vitest globals
+        describe: "readonly",
+        it: "readonly",
+        test: "readonly",
+        expect: "readonly",
+        beforeAll: "readonly",
+        afterAll: "readonly",
+        beforeEach: "readonly",
+        afterEach: "readonly",
+        vi: "readonly",
+        vitest: "readonly",
+        // Browser globals for tests
+        window: "readonly",
+        document: "readonly",
+        global: "readonly",
+        performance: "readonly",
+      },
+    },
+    rules: {
+      "no-unused-vars": [
+        "error",
+        {
+          varsIgnorePattern: "^_",
+          argsIgnorePattern: "^_",
+          ignoreRestSiblings: true,
+        },
+      ],
+    },
+  },
+
+  // Browser environment files
+  {
+    files: ["src/**/*.js", "projects/**/src/**/*.js", "apps/**/src/**/*.js", "packages/**/src/**/*.js"],
+    languageOptions: {
+      ecmaVersion: 2022,
+      sourceType: "module",
+      globals: {
+        ...globals.browser,
+        ...globals.es2022,
+        performance: "readonly",
+        requestAnimationFrame: "readonly",
+        cancelAnimationFrame: "readonly",
+      },
+    },
+    rules: {
+      "no-unused-vars": [
+        "error",
+        {
+          varsIgnorePattern: "^_",
+          argsIgnorePattern: "^_",
+          ignoreRestSiblings: true,
+        },
+      ],
+    },
+  },
+
+  // Hook files (browser + React)
+  {
+    files: ["**/hooks/**/*.js", "**/ui/hooks/**/*.js"],
+    languageOptions: {
+      ecmaVersion: 2022,
+      sourceType: "module",
+      globals: {
+        ...globals.browser,
+        document: "readonly",
+        window: "readonly",
+      },
+    },
+  },
+
+  // Performance utility files
+  {
+    files: ["**/utils/performance.js", "**/performance/**/*.js"],
+    languageOptions: {
+      ecmaVersion: 2022,
+      sourceType: "module",
+      globals: {
+        ...globals.browser,
+        performance: "readonly",
+        setTimeout: "readonly",
+        clearTimeout: "readonly",
+      },
+    },
+  },
+
+  // Global ignores
+  {
+    ignores: [
+      "node_modules/**",
+      "dist/**",
+      "build/**",
+      "coverage/**",
+      ".turbo/**",
+      "**/.next/**",
+      "**/.vercel/**",
+      "**/storybook-static/**",
+    ],
   },
 ];
