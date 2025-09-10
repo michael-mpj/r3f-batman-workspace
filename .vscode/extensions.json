@@ -4,6 +4,7 @@
     "esbenp.prettier-vscode",
     "dbaeumer.vscode-eslint",
     "rvest.vs-code-prettier-eslint",
+    "sonarsource.sonarlint-vscode",
 
     // 🎯 React & JavaScript Development
     "msjsdiag.vscode-react-native",
@@ -16,8 +17,12 @@
     "orta.vscode-jest",
     "vitest.explorer",
     "wallabyjs.console-ninja",
+    "wallabyjs.wallaby-vscode",
     "ms-toolsai.jupyter",
     "ms-toolsai.jupyter-renderers",
+    "ms-toolsai.jupyter-keymap",
+    "ms-toolsai.vscode-jupyter-cell-tags",
+    "ms-toolsai.vscode-jupyter-slideshow",
 
     // 🎨 UI & Icons
     "pkief.material-icon-theme",
@@ -35,28 +40,64 @@
     "formulahendry.auto-close-tag",
     "formulahendry.auto-rename-tag",
     "editorconfig.editorconfig",
+    "codacy-app.codacy",
 
     // 🐙 Git & GitHub Integration
     "github.copilot",
     "github.copilot-chat",
     "github.vscode-pull-request-github",
     "github.vscode-github-actions",
+    "me-dutour-mathieu.vscode-github-actions",
     "donjayamanne.githistory",
+    "github.codespaces",
+    "github.github-vscode-theme",
 
     // 🎮 Three.js & Graphics Support
     "jock.svg",
     "apollographql.vscode-apollo",
     "graphql.vscode-graphql",
     "graphql.vscode-graphql-syntax",
+    "meta.relay",
 
     // 🏗️ Build & Development Tools
     "formulahendry.code-runner",
     "jasonnutter.search-node-modules",
-    "github.github-vscode-theme",
+    "ms-vscode.cmake-tools",
+    "ms-vscode.makefile-tools",
+    "redhat.vscode-yaml",
+
+    // 🗄️ Database & Data Management
+    "prisma.prisma",
+    "ms-mssql.mssql",
+    "ms-mssql.data-workspace-vscode",
+    "ms-mssql.sql-bindings-vscode",
+    "ms-mssql.sql-database-projects-vscode",
+
+    // 🐍 Python Development
+    "ms-python.python",
+    "ms-python.debugpy",
+    "ms-python.vscode-pylance",
+    "ms-python.vscode-python-envs",
+
+    // ☁️ Cloud & DevOps
+    "ms-azuretools.vscode-containers",
+    "hashicorp.terraform",
+    "george3447.docker-run",
+
+    // 🌐 Language Support
+    "golang.go",
+    "dart-code.dart-code",
+    "redhat.java",
+    "ms-vscode.powershell",
+
+    // ☁️ Azure & Migration Tools
+    "vscjava.vscode-java-upgrade",
+    "vscjava.migrate-java-to-azure",
 
     // 📊 Analytics & Monitoring
     "wakatime.vscode-wakatime",
     "visualstudioexptteam.vscodeintellicode",
-    "visualstudioexptteam.intellicode-api-usage-examples"
+    "visualstudioexptteam.intellicode-api-usage-examples",
+    "visualstudioexptteam.vscodeintellicode-completions"
   ]
 }
