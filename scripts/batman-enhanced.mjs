@@ -172,7 +172,7 @@ class BatmanTaskManager {
           end tell
         `;
 
-                exec(`osascript -e "${persistentScript.replace(/"/g, '\\"')}"`);
+                exec(`osascript -e "${persistentScript.replace(/\\/g, '\\\\').replace(/"/g, '\\"')}"`);
                 console.log(`✅ Opened persistent macOS Terminal for ${taskName}`);
             } else {
                 // Fallback for other platforms
