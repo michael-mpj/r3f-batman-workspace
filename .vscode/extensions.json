@@ -1,3 +1,62 @@
 {
-  "recommendations": ["esbenp.prettier-vscode", "dbaeumer.vscode-eslint", "msjsdiag.vscode-react-native", "orta.vscode-jest"]
+  "recommendations": [
+    // 🦇 Batman Core Development Stack
+    "esbenp.prettier-vscode",
+    "dbaeumer.vscode-eslint",
+    "rvest.vs-code-prettier-eslint",
+
+    // 🎯 React & JavaScript Development
+    "msjsdiag.vscode-react-native",
+    "rodrigovallades.es7-react-js-snippets",
+    "xabikos.javascriptsnippets",
+    "christian-kohler.npm-intellisense",
+    "christian-kohler.path-intellisense",
+
+    // 🧪 Testing & Debugging
+    "orta.vscode-jest",
+    "vitest.explorer",
+    "wallabyjs.console-ninja",
+    "ms-toolsai.jupyter",
+    "ms-toolsai.jupyter-renderers",
+
+    // 🎨 UI & Icons
+    "pkief.material-icon-theme",
+    "vscode-icons-team.vscode-icons",
+
+    // 📝 Documentation & Markdown
+    "yzhang.markdown-all-in-one",
+    "davidanson.vscode-markdownlint",
+    "bierner.markdown-preview-github-styles",
+
+    // 🔧 Code Quality & Productivity
+    "aaron-bond.better-comments",
+    "streetsidesoftware.code-spell-checker",
+    "wayou.vscode-todo-highlight",
+    "formulahendry.auto-close-tag",
+    "formulahendry.auto-rename-tag",
+    "editorconfig.editorconfig",
+
+    // 🐙 Git & GitHub Integration
+    "github.copilot",
+    "github.copilot-chat",
+    "github.vscode-pull-request-github",
+    "github.vscode-github-actions",
+    "donjayamanne.githistory",
+
+    // 🎮 Three.js & Graphics Support
+    "jock.svg",
+    "apollographql.vscode-apollo",
+    "graphql.vscode-graphql",
+    "graphql.vscode-graphql-syntax",
+
+    // 🏗️ Build & Development Tools
+    "formulahendry.code-runner",
+    "jasonnutter.search-node-modules",
+    "github.github-vscode-theme",
+
+    // 📊 Analytics & Monitoring
+    "wakatime.vscode-wakatime",
+    "visualstudioexptteam.vscodeintellicode",
+    "visualstudioexptteam.intellicode-api-usage-examples"
+  ]
 }
