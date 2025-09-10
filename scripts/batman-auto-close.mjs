@@ -94,7 +94,7 @@ class AutoCloseBatmanManager {
           end tell
         `;
 
-                exec(`osascript -e "${persistentScript.replace(/"/g, '\\"')}"`);
+                exec(`osascript -e "${persistentScript.replace(/\\/g, '\\\\').replace(/"/g, '\\"')}"`);
 
                 const duration = Date.now() - startTime;
                 this.results.push({
