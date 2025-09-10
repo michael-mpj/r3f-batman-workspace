@@ -38,8 +38,6 @@ npm run batman:auto
 npm run 🦇🦇🦇🦇
 ```
 
-**imbatman.js** - Ultimate Batman edition
-
 ```bash
 npm run batman:ultimate
 # or

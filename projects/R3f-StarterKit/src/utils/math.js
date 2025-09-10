@@ -1,116 +1,70 @@
 /**
- * R3F Workspace Monorepo - StarterKit Project
+ * R3F Workspace Monorepo - Utils Package
  * File: math.js
- * Description: math component/utility
+ * Description: Mathematical utility functions for 3D graphics and terrain generation
  * Author: R3F Workspace Team
  * Created: 2025-08-30
  * Last Modified: 2025-08-30
  * Version: 1.0.0
  */
 
-import * as THREE from 'three'
-
 /**
- * Utility functions for 3D mathematics and transformations
+ * Mathematical utility functions for 3D graphics and terrain generation
  */
 
-export const MathUtils = {
-  /**
-   * Linear interpolation between two values
-   */
-  lerp: (start, end, t) => {
-    return start * (1 - t) + end * t
-  },
+/**
+ * Linear interpolation between two values
+ */
+export const lerp = (a, b, t) => {
+    return a + (b - a) * t;
+};
 
-  /**
-   * Clamp a value between min and max
-   */
-  clamp: (value, min, max) => {
-    return Math.min(Math.max(value, min), max)
-  },
+/**
+ * Clamp a value between min and max
+ */
+export const clamp = (value, min, max) => {
+    return Math.min(Math.max(value, min), max);
+};
 
-  /**
-   * Map a value from one range to another
-   */
-  map: (value, inMin, inMax, outMin, outMax) => {
-    return ((value - inMin) * (outMax - outMin)) / (inMax - inMin) + outMin
-  },
+/**
+ * Map a value from one range to another
+ */
+export const map = (value, inMin, inMax, outMin, outMax) => {
+    return ((value - inMin) * (outMax - outMin)) / (inMax - inMin) + outMin;
+};
 
-  /**
-   * Convert degrees to radians
-   */
-  degToRad: (degrees) => {
-    return degrees * (Math.PI / 180)
-  },
+/**
+ * Generate simplex-like noise
+ */
+export const noise = (x, y, scale = 1) => {
+    const scaledX = x * scale;
+    const scaledY = y * scale;
 
-  /**
-   * Convert radians to degrees
-   */
-  radToDeg: (radians) => {
-    return radians * (180 / Math.PI)
-  },
+    return (
+        Math.sin(scaledX * 0.1) * Math.cos(scaledY * 0.1) +
+    Math.sin(scaledX * 0.05) * Math.cos(scaledY * 0.05) * 0.5 +
+    Math.sin(scaledX * 0.2) * Math.cos(scaledY * 0.2) * 0.25
+    );
+};
 
-  /**
-   * Generate random float between min and max
-   */
-  randomFloat: (min, max) => {
-    return Math.random() * (max - min) + min
-  },
+/**
+ * Smooth step function
+ */
+export const smoothstep = (edge0, edge1, x) => {
+    const t = clamp((x - edge0) / (edge1 - edge0), 0.0, 1.0);
+    return t * t * (3.0 - 2.0 * t);
+};
 
-  /**
-   * Generate random integer between min and max (inclusive)
-   */
-  randomInt: (min, max) => {
-    return Math.floor(Math.random() * (max - min + 1)) + min
-  },
-}
+/**
+ * Convert degrees to radians
+ */
+export const degToRad = degrees => {
+    return degrees * (Math.PI / 180);
+};
 
-export const VectorUtils = {
-  /**
-   * Calculate distance between two Vector3 points
-   */
-  distance: (v1, v2) => {
-    return v1.distanceTo(v2)
-  },
-
-  /**
-   * Create a random Vector3 within a range
-   */
-  randomVector3: (min, max) => {
-    return new THREE.Vector3(
-      MathUtils.randomFloat(min, max),
-      MathUtils.randomFloat(min, max),
-      MathUtils.randomFloat(min, max)
-    )
-  },
-
-  /**
-   * Normalize a vector to unit length
-   */
-  normalize: (vector) => {
-    return vector.clone().normalize()
-  },
-}
-
-export const ColorUtils = {
-  /**
-   * Convert hex color to THREE.Color
-   */
-  hexToColor: (hex) => {
-    return new THREE.Color(hex)
-  },
-
-  /**
-   * Lerp between two colors
-   */
-  lerpColors: (color1, color2, t) => {
-    return color1.clone().lerp(color2, t)
-  },
-
-  /**
-   * Generate random color
-   */
-  randomColor: () => {
-    return new THREE.Color(Math.random(), Math.random(), Math.random())
-  },
-}
+/**
+ * Convert radians to degrees
+ */
+export const radToDeg = radians => {
+    return radians * (180 / Math.PI);
+};

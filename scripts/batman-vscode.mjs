@@ -33,146 +33,146 @@ const batmanArt = `
 
 // VS Code Task Manager
 class VSCodeBatmanManager {
-  constructor() {
-    this.terminals = [];
-    this.taskStatuses = new Map();
-  }
+    constructor() {
+        this.terminals = [];
+        this.taskStatuses = new Map();
+    }
 
-  // Create VS Code terminals via tasks
-  async createVSCodeTask(taskName, command, workingDir = workspaceRoot) {
-    console.log(`🦇 Creating VS Code terminal: ${taskName}`);
-    console.log(`📁 Working directory: ${workingDir}`);
-    console.log(`⚡ Command: ${command}`);
+    // Create VS Code terminals via tasks
+    async createVSCodeTask(taskName, command, workingDir = workspaceRoot) {
+        console.log(`🦇 Creating VS Code terminal: ${taskName}`);
+        console.log(`📁 Working directory: ${workingDir}`);
+        console.log(`⚡ Command: ${command}`);
 
-    // Create task configuration for VS Code
-    const taskConfig = {
-      label: `Batman: ${taskName}`,
-      type: "shell",
-      command: command,
-      group: "build",
-      options: {
-        cwd: workingDir,
-      },
-      presentation: {
-        echo: true,
-        reveal: "always",
-        focus: false,
-        panel: "new",
-        showReuseMessage: true,
-        clear: false,
-      },
-      problemMatcher: [],
-      runOptions: {
-        instanceLimit: 1,
-      },
-    };
+        // Create task configuration for VS Code
+        const taskConfig = {
+            label: `Batman: ${taskName}`,
+            type: "shell",
+            command: command,
+            group: "build",
+            options: {
+                cwd: workingDir,
+            },
+            presentation: {
+                echo: true,
+                reveal: "always",
+                focus: false,
+                panel: "new",
+                showReuseMessage: true,
+                clear: false,
+            },
+            problemMatcher: [],
+            runOptions: {
+                instanceLimit: 1,
+            },
+        };
 
-    this.taskStatuses.set(taskName, {
-      config: taskConfig,
-      status: "created",
-      startTime: Date.now(),
-    });
+        this.taskStatuses.set(taskName, {
+            config: taskConfig,
+            status: "created",
+            startTime: Date.now(),
+        });
 
-    return taskConfig;
-  }
+        return taskConfig;
+    }
 
-  // Generate tasks.json for VS Code
-  generateTasksJson() {
-    const tasks = [];
+    // Generate tasks.json for VS Code
+    generateTasksJson() {
+        const tasks = [];
 
-    // Header Management Task
-    tasks.push({
-      label: "Batman: Headers",
-      type: "shell",
-      command: "node scripts/add-headers.mjs",
-      group: "build",
-      presentation: {
-        echo: true,
-        reveal: "always",
-        focus: false,
-        panel: "new",
-        showReuseMessage: true,
-      },
-      problemMatcher: [],
-    });
+        // Header Management Task
+        tasks.push({
+            label: "Batman: Headers",
+            type: "shell",
+            command: "node scripts/add-headers.mjs",
+            group: "build",
+            presentation: {
+                echo: true,
+                reveal: "always",
+                focus: false,
+                panel: "new",
+                showReuseMessage: true,
+            },
+            problemMatcher: [],
+        });
 
-    // Compatibility Check Task
-    tasks.push({
-      label: "Batman: Compatibility",
-      type: "shell",
-      command: "npm run check-compatibility",
-      group: "build",
-      presentation: {
-        echo: true,
-        reveal: "always",
-        focus: false,
-        panel: "new",
-        showReuseMessage: true,
-      },
-      problemMatcher: [],
-    });
+        // Compatibility Check Task
+        tasks.push({
+            label: "Batman: Compatibility",
+            type: "shell",
+            command: "npm run check-compatibility",
+            group: "build",
+            presentation: {
+                echo: true,
+                reveal: "always",
+                focus: false,
+                panel: "new",
+                showReuseMessage: true,
+            },
+            problemMatcher: [],
+        });
 
-    // Build Task
-    tasks.push({
-      label: "Batman: Build",
-      type: "shell",
-      command: "npm run build",
-      group: "build",
-      presentation: {
-        echo: true,
-        reveal: "always",
-        focus: false,
-        panel: "new",
-        showReuseMessage: true,
-      },
-      problemMatcher: [],
-    });
+        // Build Task
+        tasks.push({
+            label: "Batman: Build",
+            type: "shell",
+            command: "npm run build",
+            group: "build",
+            presentation: {
+                echo: true,
+                reveal: "always",
+                focus: false,
+                panel: "new",
+                showReuseMessage: true,
+            },
+            problemMatcher: [],
+        });
 
-    // Test Task
-    tasks.push({
-      label: "Batman: Tests",
-      type: "shell",
-      command: "npm run test",
-      group: "test",
-      presentation: {
-        echo: true,
-        reveal: "always",
-        focus: false,
-        panel: "new",
-        showReuseMessage: true,
-      },
-      problemMatcher: [],
-    });
+        // Test Task
+        tasks.push({
+            label: "Batman: Tests",
+            type: "shell",
+            command: "npm run test",
+            group: "test",
+            presentation: {
+                echo: true,
+                reveal: "always",
+                focus: false,
+                panel: "new",
+                showReuseMessage: true,
+            },
+            problemMatcher: [],
+        });
 
-    // Dev Server Task
-    tasks.push({
-      label: "Batman: Dev Server",
-      type: "shell",
-      command: "npm run dev",
-      group: "build",
-      options: {
-        cwd: "${workspaceFolder}/projects/R3f-StarterKit",
-      },
-      isBackground: true,
-      presentation: {
-        echo: true,
-        reveal: "always",
-        focus: false,
-        panel: "new",
-        showReuseMessage: true,
-      },
-      problemMatcher: [],
-    });
+        // Dev Server Task
+        tasks.push({
+            label: "Batman: Dev Server",
+            type: "shell",
+            command: "npm run dev",
+            group: "build",
+            options: {
+                cwd: "${workspaceFolder}/projects/R3f-StarterKit",
+            },
+            isBackground: true,
+            presentation: {
+                echo: true,
+                reveal: "always",
+                focus: false,
+                panel: "new",
+                showReuseMessage: true,
+            },
+            problemMatcher: [],
+        });
 
-    return {
-      version: "2.0.0",
-      tasks: tasks,
-    };
-  }
+        return {
+            version: "2.0.0",
+            tasks: tasks,
+        };
+    }
 
-  // Show Batman instructions for VS Code
-  showVSCodeInstructions() {
-    console.log(`
+    // Show Batman instructions for VS Code
+    showVSCodeInstructions() {
+        console.log(`
 🦇 VS CODE BATMAN DEPLOYMENT INSTRUCTIONS:
 
 📋 STEP 1: VS Code Command Palette
@@ -202,16 +202,16 @@ class VSCodeBatmanManager {
 
 🌃 "VS Code is my new Batcave interface!" - Batman
     `);
-  }
+    }
 }
 
 // Main VS Code Batman Function
 async function runVSCodeBatman() {
-  console.log(batmanArt);
+    console.log(batmanArt);
 
-  const manager = new VSCodeBatmanManager();
+    const manager = new VSCodeBatmanManager();
 
-  console.log(`
+    console.log(`
 🌃 Welcome to VS Code Batman!
 
 "This version is specifically designed for VS Code's integrated
@@ -222,23 +222,23 @@ for maximum developer productivity."
 📡 Generating VS Code task configurations...
   `);
 
-  // Show VS Code instructions
-  manager.showVSCodeInstructions();
+    // Show VS Code instructions
+    manager.showVSCodeInstructions();
 
-  // Generate and save tasks.json if needed
-  const tasksConfig = manager.generateTasksJson();
+    // Generate and save tasks.json if needed
+    const tasksConfig = manager.generateTasksJson();
 
-  console.log(`
+    console.log(`
 📋 VS CODE TASKS READY:
 
 ${tasksConfig.tasks
-  .map(
-    (task, index) =>
-      `   ${index + 1}. 🦇 ${task.label}
+        .map(
+            (task, index) =>
+                `   ${index + 1}. 🦇 ${task.label}
       Command: ${task.command}
       Panel: New Terminal Tab`
-  )
-  .join("\n")}
+        )
+        .join("\n")}
 
 🦇 BATMAN DEPLOYMENT COMPLETE!
 
@@ -261,6 +261,6 @@ ${tasksConfig.tasks
 
 // Run VS Code Batman
 runVSCodeBatman().catch(error => {
-  console.error("🦇 VS Code Batman encountered an error:", error);
-  process.exit(1);
+    console.error("🦇 VS Code Batman encountered an error:", error);
+    process.exit(1);
 });

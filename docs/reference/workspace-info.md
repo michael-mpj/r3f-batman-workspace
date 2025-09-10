@@ -108,7 +108,6 @@ Generated: 8/31/2025, 5:56:32 AM
 - `build-workspace.mjs`
 - `check-compatibility.mjs`
 - `cleanup-terminals.mjs`
-- `imbatman.js`
 - `pre-command.mjs`
 - `update-packages.mjs`
 - `workspace-info.mjs`

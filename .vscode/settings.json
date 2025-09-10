@@ -37,46 +37,7 @@
     }
   },
   "editor.formatOnSave": true,
-  "editor.codeActionsOnSave": {
-    "source.fixAll.eslint": "explicit"
-  },
   "files.autoSave": "afterDelay",
-  "vitest.disableWorkspaceWarning": true,
-
-  // 🦇 Batman Workspace Optimizations
-  "prettier.requireConfig": true,
-  "eslint.format.enable": true,
-  "eslint.lintTask.enable": true,
-  "javascript.suggest.autoImports": true,
-  "typescript.suggest.autoImports": true,
-
-  // 📁 File Explorer & Search
-  "files.exclude": {
-    "**/node_modules": true,
-    "**/dist": true,
-    "**/.git": true,
-    "**/.DS_Store": true,
-    "**/coverage": true
-  },
-  "search.exclude": {
-    "**/node_modules": true,
-    "**/dist": true,
-    "**/coverage": true,
-    "**/*.log": true
-  },
-
-  // 🎨 Editor Appearance
-  "workbench.iconTheme": "material-icon-theme",
-  "editor.fontLigatures": true,
-  "editor.minimap.enabled": true,
-  "editor.bracketPairColorization.enabled": true,
-  "editor.guides.bracketPairs": true,
-
-  // 🔧 Development Features
-  "emmet.includeLanguages": {
-    "javascript": "javascriptreact"
-  },
-  "todo-tree.general.tags": ["🦇", "TODO", "FIXME", "HACK", "NOTE", "BUG"],
-  "consoleNinja.featureSet": "Community",
-  "consoleNinja.logLimit": 10000
+  "DockerRun.DisableDockerrc": true,
+  "vitest.disableWorkspaceWarning": true
 }

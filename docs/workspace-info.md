@@ -1,23 +1,23 @@
 # Workspace Information Report
 
-Generated: 8/31/2025, 12:33:42 PM
+Generated: 9/9/2025, 7:23:31 AM
 
 ## Environment
 
-- **Node.js**: v22.18.0
+- **Node.js**: v22.19.0
 - **npm**: 10.9.3
-- **Platform**: darwin (x64)
-- **Working Directory**: /Users/michaeljoseph/Public/R3fWWW
+- **Platform**: linux (x64)
+- **Working Directory**: /workspaces/r3f-batman-workspace
 
 ## Workspace Overview
 
-- **Name**: R3fWWW
-- **Version**: undefined
-- **Type**: undefined
+- **Name**: @michael-mpj/r3f-batman
+- **Version**: 1.0.0
+- **Type**: module
 - **Private**: No
 - **Packages**: 3
 - **Projects**: 1
-- **Scripts**: 17
+- **Scripts**: 20
 
 ## Packages (3)
 
@@ -67,29 +67,29 @@ Generated: 8/31/2025, 12:33:42 PM
 
 ### Most Used Production Dependencies
 
-- **@react-three/drei**: Used in 2 package(s)
+- **@react-three/drei**: Used in 3 package(s)
+- **three**: Used in 3 package(s)
+- **@react-three/fiber**: Used in 2 package(s)
+- **@react-three/postprocessing**: Used in 2 package(s)
+- **leva**: Used in 2 package(s)
+- **react**: Used in 2 package(s)
+- **react-dom**: Used in 2 package(s)
 - **@r3f-workspace/utils**: Used in 2 package(s)
-- **three**: Used in 2 package(s)
-- **react**: Used in 1 package(s)
-- **react-dom**: Used in 1 package(s)
-- **@react-three/fiber**: Used in 1 package(s)
-- **@react-three/uikit**: Used in 1 package(s)
-- **@react-three/postprocessing**: Used in 1 package(s)
-- **leva**: Used in 1 package(s)
-- **r3f-perf**: Used in 1 package(s)
+- **@react-three/xr**: Used in 1 package(s)
+- **json-schema**: Used in 1 package(s)
 
 ### Most Used Development Dependencies
 
-- **vite**: Used in 4 package(s)
-- **eslint**: Used in 4 package(s)
-- **prettier**: Used in 4 package(s)
-- **@vitejs/plugin-react**: Used in 3 package(s)
-- **vitest**: Used in 3 package(s)
+- **eslint**: Used in 5 package(s)
+- **prettier**: Used in 5 package(s)
+- **vite**: Used in 5 package(s)
+- **@vitejs/plugin-react**: Used in 4 package(s)
+- **vitest**: Used in 4 package(s)
+- **@testing-library/react**: Used in 3 package(s)
 - **rimraf**: Used in 3 package(s)
-- **@testing-library/react**: Used in 2 package(s)
-- **@testing-library/jest-dom**: Used in 1 package(s)
-- **jsdom**: Used in 1 package(s)
-- **eslint-plugin-react-hooks**: Used in 1 package(s)
+- **@testing-library/jest-dom**: Used in 2 package(s)
+- **eslint-config-prettier**: Used in 2 package(s)
+- **eslint-plugin-jsx-a11y**: Used in 2 package(s)
 
 ### Peer Dependencies
 
@@ -98,9 +98,10 @@ Generated: 8/31/2025, 12:33:42 PM
 - **@react-three/fiber**: Used in 1 package(s)
 - **three**: Used in 1 package(s)
 
-## Available Scripts (17)
+## Available Scripts (20)
 
 - `add-headers.mjs`
+- `auto-merge.mjs`
 - `batman-auto-close.mjs`
 - `batman-debug.mjs`
 - `batman-enhanced.mjs`
@@ -112,8 +113,9 @@ Generated: 8/31/2025, 12:33:42 PM
 - `check-compatibility.mjs`
 - `cleanup-terminals.mjs`
 - `fix-r3f-components.mjs`
-- `imbatman.js`
 - `pre-command.mjs`
+- `security-check.mjs`
+- `setup-branch-protection.sh`
 - `update-packages.mjs`
 - `validate-package-lock.mjs`
 - `workspace-info.mjs`

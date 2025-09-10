@@ -118,16 +118,8 @@ npm run 🦇🦇🦇🦇
 4. Ensures clean environment
 5. Optimizes resource usage
 
-### Ultimate Batman (`imbatman.js`)
+## Batman Command Reference
 
-All Batman features unified in the ultimate automation experience.
-
-**Features:**
-
-- All Batman modes available
-- Ultimate automation power
-- Complete workflow coverage
-- Maximum development efficiency
 - Advanced orchestration
 
 **Usage:**
@@ -137,7 +129,15 @@ npm run batman:ultimate
 # or use emoji
 npm run 🦇🦇🦇🦇🦇
 # or the classic
-npm run imbatman
+## 🛠️ Batman Script Architecture
+
+### Core Components
+
+**Terminal Management:**
+
+- Automatic sudo process cleanup
+- Port management and cleanup
+- Environment sanitization
 ```
 
 **What it does:**
