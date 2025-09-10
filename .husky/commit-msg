@@ -1,1 +1,9 @@
+#!/usr/bin/env sh
+# 🦇 Batman Enhanced Commit Message Hook
+# Auto-formats commit messages then validates with commitlint
+
+# Format commit message with Batman formatter
+node scripts/batman-commit-auto.mjs $1
+
+# Then validate with commitlint
 npx --no -- commitlint --edit $1
