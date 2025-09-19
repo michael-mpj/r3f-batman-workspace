@@ -1,4 +1,6 @@
 name: "Workspace Actions Demo"
+permissions:
+  contents: read
 
 on:
   workflow_dispatch:
