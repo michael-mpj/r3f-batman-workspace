@@ -115,7 +115,7 @@ class CompatibilityChecker {
             });
 
             // Check if current version meets minimum requirement
-            const minVersion = nodeRequirement.replace(/[>=^~]/, "").split(".")[0];
+            const minVersion = nodeRequirement.replace(/[>=^~]/g, "").split(".")[0];
             const currentMajor = currentNodeVersion.replace("v", "").split(".")[0];
 
             if (parseInt(currentMajor) < parseInt(minVersion)) {
