@@ -14,8 +14,8 @@
     "lint:fix": "eslint src --ext js,jsx --fix"
   },
   "dependencies": {
-    "react": "^19.0.0",
-    "react-dom": "^19.0.0",
+    "react": "^19.2.0",
+    "react-dom": "^19.2.0",
     "three": "^0.180.0",
     "@react-three/fiber": "^9.3.0",
     "@react-three/drei": "^9.122.0",
