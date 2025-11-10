@@ -12,16 +12,16 @@
     "format": "prettier --write src/**/*.{js,jsx,css}"
   },
   "dependencies": {
-    "react": "^19.0.0",
-    "react-dom": "^19.0.0",
+    "react": "^19.2.0",
+    "react-dom": "^19.2.0",
     "three": "^0.180.0",
-    "@react-three/fiber": "^9.3.0",
+    "@react-three/fiber": "^9.4.0",
     "@react-three/uikit": "^0.8.21",
     "@react-three/postprocessing": "^3.0.4",
     "@react-three/drei": "^9.122.0",
     "leva": "^0.10.0",
     "r3f-perf": "^7.1.2",
-    "react-router-dom": "^7.9.1",
+    "react-router-dom": "^7.9.5",
     "@r3f-workspace/ui": "file:../../packages/ui",
     "@r3f-workspace/utils": "file:../../packages/utils",
     "@r3f-workspace/r3f-components": "file:../../packages/r3f-components"
