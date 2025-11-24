@@ -15,7 +15,7 @@ jobs:
       setup-status: ${{ steps.setup.outputs.status }}
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v5
+        uses: actions/checkout@v6
 
       - name: Cache Node modules
         uses: actions/cache@v5
@@ -36,7 +36,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v5
+        uses: actions/checkout@v6
 
       - name: Cache Node modules
         uses: actions/cache@v5
@@ -61,7 +61,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v5
+        uses: actions/checkout@v6
 
       - name: Cache Node modules
         uses: actions/cache@v5
@@ -88,7 +88,7 @@ jobs:
       build-status: ${{ steps.build.outputs.build-status }}
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v5
+        uses: actions/checkout@v6
 
       - name: Cache Node modules
         uses: actions/cache@v5
@@ -112,7 +112,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v5
+        uses: actions/checkout@v6
 
       - name: Workspace Health Check
         uses: ./.github/actions/my-action
