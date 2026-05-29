@@ -27,8 +27,7 @@ async function readFirstMeaningfulLine(filePath) {
       content
         .split(/\r?\n/)
         .map(line => line.trim())
-        .find(line => line.length > 0 && !line.startsWith("#") && !line.startsWith(">")) ||
-      ""
+        .find(line => line.length > 0 && !line.startsWith("#") && !line.startsWith(">")) || ""
     );
   } catch {
     return "";
@@ -79,9 +78,7 @@ function pickScripts(scripts = {}) {
     "check-compatibility",
   ];
 
-  return pinned
-    .filter(key => key in scripts)
-    .map(key => ({ name: key, command: scripts[key] }));
+  return pinned.filter(key => key in scripts).map(key => ({ name: key, command: scripts[key] }));
 }
 
 function pickWorkflowGroups(scripts = {}) {
@@ -112,9 +109,7 @@ function pickWorkflowGroups(scripts = {}) {
     .map(group => ({
       id: group.id,
       title: group.title,
-      items: group.keys
-        .filter(key => key in scripts)
-        .map(key => ({ name: key, command: scripts[key] })),
+      items: group.keys.filter(key => key in scripts).map(key => ({ name: key, command: scripts[key] })),
     }))
     .filter(group => group.items.length > 0);
 }
@@ -146,7 +141,7 @@ async function main() {
         "Modern React Three Fiber monorepo with Batman-powered automation.",
       license: rootPkg.license || fallback.workspace?.license || "MIT",
       packageManager: rootPkg.packageManager || fallback.workspace?.packageManager || "npm",
-      engines: Object.keys(rootPkg.engines || {}).length > 0 ? rootPkg.engines : (fallback.workspace?.engines || {}),
+      engines: Object.keys(rootPkg.engines || {}).length > 0 ? rootPkg.engines : fallback.workspace?.engines || {},
     },
     repo: {
       owner: fallback.repo?.owner || "michael-mpj",
@@ -157,12 +152,12 @@ async function main() {
         `https://github.com/michael-mpj/r3f-batman-workspace/releases/tag/v${rootPkg.version || fallback.release || "2.0.0"}`,
     },
     architecture: {
-      packages: hasDiscoveredWorkspace ? packages : (fallback.architecture?.packages || []),
-      projects: hasDiscoveredWorkspace ? projects : (fallback.architecture?.projects || []),
-      apps: hasDiscoveredWorkspace ? apps : (fallback.architecture?.apps || []),
+      packages: hasDiscoveredWorkspace ? packages : fallback.architecture?.packages || [],
+      projects: hasDiscoveredWorkspace ? projects : fallback.architecture?.projects || [],
+      apps: hasDiscoveredWorkspace ? apps : fallback.architecture?.apps || [],
     },
-    scripts: scripts.length > 0 ? scripts : (fallback.scripts || []),
-    workflowGroups: workflowGroups.length > 0 ? workflowGroups : (fallback.workflowGroups || []),
+    scripts: scripts.length > 0 ? scripts : fallback.scripts || [],
+    workflowGroups: workflowGroups.length > 0 ? workflowGroups : fallback.workflowGroups || [],
     toolSnapshot: {
       node: rootPkg.engines?.node || fallback.toolSnapshot?.node || "not specified",
       npm: rootPkg.engines?.npm || fallback.toolSnapshot?.npm || "not specified",
