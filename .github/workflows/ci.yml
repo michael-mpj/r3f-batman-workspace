@@ -15,10 +15,10 @@ jobs:
       setup-status: ${{ steps.setup.outputs.status }}
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v6
+        uses: actions/checkout@v4
 
       - name: Cache Node modules
-        uses: actions/cache@v5
+        uses: actions/cache@v4
         with:
           path: ~/.npm
           key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
@@ -29,17 +29,17 @@ jobs:
         id: setup
         uses: ./.github/actions/setup-workspace
         with:
-          node-version: "24.x"
+          node-version: '24.x'
 
   lint:
     needs: [setup]
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v6
+        uses: actions/checkout@v4
 
       - name: Cache Node modules
-        uses: actions/cache@v5
+        uses: actions/cache@v4
         with:
           path: ~/.npm
           key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
@@ -49,22 +49,22 @@ jobs:
       - name: Setup Workspace
         uses: ./.github/actions/setup-workspace
         with:
-          node-version: "24.x"
+          node-version: '24.x'
 
       - name: Lint Workspace
         uses: ./.github/actions/lint-workspace
         with:
-          format-check: "true"
+          format-check: 'true'
 
   test:
     needs: [setup]
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v6
+        uses: actions/checkout@v4
 
       - name: Cache Node modules
-        uses: actions/cache@v5
+        uses: actions/cache@v4
         with:
           path: ~/.npm
           key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
@@ -74,12 +74,12 @@ jobs:
       - name: Setup Workspace
         uses: ./.github/actions/setup-workspace
         with:
-          node-version: "24.x"
+          node-version: '24.x'
 
       - name: Test Workspace
         uses: ./.github/actions/test-workspace
         with:
-          coverage: "true"
+          coverage: 'true'
 
   build:
     needs: [setup, lint, test]
@@ -88,10 +88,10 @@ jobs:
       build-status: ${{ steps.build.outputs.build-status }}
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v6
+        uses: actions/checkout@v4
 
       - name: Cache Node modules
-        uses: actions/cache@v5
+        uses: actions/cache@v4
         with:
           path: ~/.npm
           key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
@@ -101,7 +101,7 @@ jobs:
       - name: Setup Workspace
         uses: ./.github/actions/setup-workspace
         with:
-          node-version: "24.x"
+          node-version: '24.x'
 
       - name: Build Workspace
         id: build
@@ -112,9 +112,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v6
+        uses: actions/checkout@v4
 
       - name: Workspace Health Check
         uses: ./.github/actions/my-action
         with:
-          action: "health-check"
+          action: 'health-check'

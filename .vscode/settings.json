@@ -43,6 +43,7 @@
     }
   },
   "editor.formatOnSave": true,
+  "yaml.keyOrdering": false,
   "files.autoSave": "afterDelay",
   "DockerRun.DisableDockerrc": true,
   "vitest.disableWorkspaceWarning": true,

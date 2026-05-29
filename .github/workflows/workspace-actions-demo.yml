@@ -1,23 +1,23 @@
-name: "Workspace Actions Demo"
+name: 'Workspace Actions Demo'
 
 on:
   workflow_dispatch:
     inputs:
       workspace:
-        description: "Target workspace (optional)"
+        description: 'Target workspace (optional)'
         required: false
-        default: ""
+        default: ''
       action_type:
-        description: "Type of demo to run"
+        description: 'Type of demo to run'
         required: true
-        default: "full-pipeline"
+        default: 'full-pipeline'
         type: choice
         options:
-          - "full-pipeline"
-          - "health-check"
-          - "build-only"
-          - "test-only"
-          - "lint-only"
+          - 'full-pipeline'
+          - 'health-check'
+          - 'build-only'
+          - 'test-only'
+          - 'lint-only'
 
 jobs:
   health-check:
@@ -25,18 +25,18 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v6
+        uses: actions/checkout@v4
 
       - name: Workspace Health Check
         uses: ./.github/actions/my-action
         with:
-          action: "health-check"
+          action: 'health-check'
           workspace: ${{ github.event.inputs.workspace }}
 
       - name: Workspace Info
         uses: ./.github/actions/my-action
         with:
-          action: "info"
+          action: 'info'
           workspace: ${{ github.event.inputs.workspace }}
 
   setup:
@@ -46,13 +46,13 @@ jobs:
       setup-status: ${{ steps.setup.outputs.status }}
     steps:
       - name: Checkout
-        uses: actions/checkout@v6
+        uses: actions/checkout@v4
 
       - name: Setup Workspace
         id: setup
         uses: ./.github/actions/setup-workspace
         with:
-          node-version: "24.x"
+          node-version: '24.x'
 
   lint:
     if: github.event.inputs.action_type == 'lint-only' || github.event.inputs.action_type == 'full-pipeline'
@@ -60,7 +60,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v6
+        uses: actions/checkout@v4
 
       - name: Setup Workspace
         uses: ./.github/actions/setup-workspace
@@ -69,8 +69,8 @@ jobs:
         uses: ./.github/actions/lint-workspace
         with:
           workspace: ${{ github.event.inputs.workspace }}
-          fix: "false"
-          format-check: "true"
+          fix: 'false'
+          format-check: 'true'
 
   test:
     if: github.event.inputs.action_type == 'test-only' || github.event.inputs.action_type == 'full-pipeline'
@@ -78,7 +78,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v6
+        uses: actions/checkout@v4
 
       - name: Setup Workspace
         uses: ./.github/actions/setup-workspace
@@ -87,7 +87,7 @@ jobs:
         uses: ./.github/actions/test-workspace
         with:
           workspace: ${{ github.event.inputs.workspace }}
-          coverage: "true"
+          coverage: 'true'
 
   build:
     if: github.event.inputs.action_type == 'build-only' || github.event.inputs.action_type == 'full-pipeline'
@@ -97,7 +97,7 @@ jobs:
       build-status: ${{ steps.build.outputs.build-status }}
     steps:
       - name: Checkout
-        uses: actions/checkout@v6
+        uses: actions/checkout@v4
 
       - name: Setup Workspace
         uses: ./.github/actions/setup-workspace
@@ -114,12 +114,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v6
+        uses: actions/checkout@v4
 
       - name: Workspace Summary
         uses: ./.github/actions/my-action
         with:
-          action: "info"
+          action: 'info'
           workspace: ${{ github.event.inputs.workspace }}
 
       - name: Pipeline Summary

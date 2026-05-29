@@ -7,7 +7,7 @@ on:
     branches: [main]
   schedule:
     # Run security audit every day at 2:00 AM UTC
-    - cron: "0 2 * * *"
+    - cron: '0 2 * * *'
   workflow_dispatch:
 
 jobs:
@@ -21,15 +21,15 @@ jobs:
 
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v6
+        uses: actions/checkout@v4
         with:
           fetch-depth: 0
 
       - name: Setup Node.js
-        uses: actions/setup-node@v5
+        uses: actions/setup-node@v4
         with:
-          node-version: "24.x"
-          cache: "npm"
+          node-version: '24.x'
+          cache: 'npm'
 
       - name: Install dependencies
         run: npm ci
@@ -120,7 +120,7 @@ jobs:
 
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v6
+        uses: actions/checkout@v4
 
       - name: Dependency Review
         uses: actions/dependency-review-action@v4
@@ -137,13 +137,13 @@ jobs:
 
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v6
+        uses: actions/checkout@v4
 
       - name: Setup Node.js
-        uses: actions/setup-node@v5
+        uses: actions/setup-node@v4
         with:
-          node-version: "24.x"
-          cache: "npm"
+          node-version: '24.x'
+          cache: 'npm'
 
       - name: Install dependencies
         run: npm ci

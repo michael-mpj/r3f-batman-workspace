@@ -8,54 +8,55 @@
  * Version: 1.0.0
  */
 
+// @ts-nocheck
+
 import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
-import { fileURLToPath, URL } from "node:url";
 
 // https://vitejs.dev/config/
 export default defineConfig({
-    plugins: [react()],
-    resolve: {
-        alias: {
-            "@": fileURLToPath(new URL("./src", import.meta.url)),
-            "@components": fileURLToPath(new URL("./src/components", import.meta.url)),
-            "@scenes": fileURLToPath(new URL("./src/scenes", import.meta.url)),
-            "@utils": fileURLToPath(new URL("./src/utils", import.meta.url)),
-            "@hooks": fileURLToPath(new URL("./src/hooks", import.meta.url)),
-            "@store": fileURLToPath(new URL("./src/store", import.meta.url)),
-            "@assets": fileURLToPath(new URL("./src/assets", import.meta.url)),
-            "@styles": fileURLToPath(new URL("./src/styles", import.meta.url)),
+  plugins: [react()],
+  resolve: {
+    alias: {
+      "@": "/src",
+      "@components": "/src/components",
+      "@scenes": "/src/scenes",
+      "@utils": "/src/utils",
+      "@hooks": "/src/hooks",
+      "@store": "/src/store",
+      "@assets": "/src/assets",
+      "@styles": "/src/styles",
+    },
+  },
+  server: {
+    port: 3003,
+    open: true,
+    host: true,
+  },
+  build: {
+    outDir: "dist",
+    sourcemap: true,
+    rollupOptions: {
+      output: {
+        manualChunks(id) {
+          if (id.includes("node_modules/three")) {
+            return "three";
+          }
+
+          if (id.includes("@react-three/fiber") || id.includes("@react-three/drei")) {
+            return "r3f";
+          }
+
+          if (id.includes("@react-three/postprocessing")) {
+            return "postprocessing";
+          }
+
+          return undefined;
         },
+      },
     },
-    server: {
-        port: 3003,
-        open: true,
-        host: true,
-    },
-    build: {
-        outDir: "dist",
-        sourcemap: true,
-        rollupOptions: {
-            output: {
-                manualChunks(id) {
-                    if (id.includes("node_modules/three")) {
-                        return "three";
-                    }
-
-                    if (id.includes("@react-three/fiber") || id.includes("@react-three/drei")) {
-                        return "r3f";
-                    }
-
-                    if (id.includes("@react-three/postprocessing")) {
-                        return "postprocessing";
-                    }
-
-                    return undefined;
-                },
-            },
-        },
-    },
-    optimizeDeps: {
-        include: ["react", "react-dom", "three", "@react-three/fiber", "@react-three/drei", "@react-three/postprocessing", "leva", "zustand"],
-    },
+  },
+  optimizeDeps: {
+    include: ["react", "react-dom", "three", "@react-three/fiber", "@react-three/drei", "@react-three/postprocessing", "leva", "zustand"],
+  },
 });
