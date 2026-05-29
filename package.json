@@ -1,6 +1,6 @@
 {
   "name": "@michael-mpj/r3f-batman",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "description": "R3F Batman Workspace - Advanced React Three Fiber development environment",
   "license": "MIT",
   "type": "module",
