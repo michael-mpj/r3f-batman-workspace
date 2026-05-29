@@ -1,6 +1,11 @@
 # Projects Overview
 
-This section covers the applications and demo projects in the Batman R3F Workspace.
+This section covers **starter/reference projects** in the Batman R3F Workspace.
+
+> 📌 **Convention:**
+>
+> - Use `projects/` for starter kits, sandboxes, and reference implementations.
+> - Use `apps/` for deployable user-facing applications.
 
 ## 🚀 Available Projects
 
@@ -21,6 +26,8 @@ A comprehensive demonstration application showcasing all workspace capabilities.
 ## 🛠️ Project Development
 
 ### Creating New Projects
+
+Use this flow when creating a new **starter/reference** project.
 
 1. **Create project directory:**
 
@@ -58,6 +65,8 @@ A comprehensive demonstration application showcasing all workspace capabilities.
 4. **Add to workspace:**
 
    The project will automatically be included in the workspace workspaces configuration.
+
+If the target is a deployable app, create it under `apps/` instead (see `/apps/` docs).
 
 ### Project Structure
 

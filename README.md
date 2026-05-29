@@ -69,8 +69,10 @@ npm run dev
 │   ├── ui/                        # 🎨 UI Components (Button, Panel, ControlGroup)
 │   ├── utils/                     # 🛠️  Utilities (math, geometry, performance, terrain)
 │   └── r3f-components/            # 🌟 Advanced R3F Components
-├── 🚀 projects/                   # Applications
-│   └── R3f-StarterKit/           # Complete R3F demo application
+├── 🚀 projects/                   # Starter templates, sandboxes, and reference demos
+│   └── R3f-StarterKit/           # Canonical starter/reference project
+├── 🌐 apps/                       # Deployable applications and product surfaces
+│   └── cyber-forge/              # Production-style app built on workspace packages
 ├── 🤖 scripts/                    # Batman Automation Arsenal
 │   ├── batman.mjs                # 🦇 Original Batman script
 │   ├── batman-enhanced.mjs       # 🦇🦇 Multi-terminal Batman
@@ -82,6 +84,13 @@ npm run dev
 ├── 🔧 .github/                    # GitHub Actions & Workflows
 └── ⚙️  config files               # ESLint, Prettier, Vite, etc.
 ```
+
+### Folder Convention (Recommended)
+
+- Put **new starter kits, experiments, and reference implementations** in `projects/`.
+- Put **new deployable end-user applications** in `apps/`.
+
+This keeps templates/examples separate from production-facing apps while still supporting both through workspace scripts.
 
 ---
 
