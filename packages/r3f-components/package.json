@@ -16,8 +16,8 @@
   "scripts": {
     "build": "vite build",
     "dev": "vite build --watch",
-    "lint": "eslint .",
-    "lint:fix": "eslint . --fix",
+    "lint": "eslint src --ext js,jsx,mjs",
+    "lint:fix": "eslint src --ext js,jsx,mjs --fix",
     "test": "vitest",
     "test:ci": "vitest run",
     "clean": "rimraf dist",

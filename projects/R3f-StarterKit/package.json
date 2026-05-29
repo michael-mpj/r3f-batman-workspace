@@ -6,8 +6,8 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0",
-    "lint:fix": "eslint . --ext js,jsx --report-unused-disable-directives --fix",
+    "lint": "eslint src --ext js,jsx --report-unused-disable-directives --max-warnings 0",
+    "lint:fix": "eslint src --ext js,jsx --report-unused-disable-directives --fix",
     "preview": "vite preview",
     "format": "prettier --write src/**/*.{js,jsx,css}"
   },

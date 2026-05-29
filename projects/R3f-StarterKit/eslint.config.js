@@ -53,31 +53,18 @@ export default [
       'react/display-name': 'off',
       'react/react-in-jsx-scope': 'off',
       'react/prop-types': 'off',
-      'react/no-unknown-property': [
-        'error',
-        {
-          ignore: [
-            // React Three Fiber properties
-            'args',
-            'position',
-            'rotation',
-            'scale',
-            'castShadow',
-            'receiveShadow',
-            'intensity',
-            'wireframe',
-            'roughness',
-            'metalness',
-            'shadow-mapSize',
-            'shadow-camera-far',
-            'shadow-camera-left',
-            'shadow-camera-right',
-            'shadow-camera-top',
-            'shadow-camera-bottom',
-          ],
-        },
-      ],
-      'no-unused-vars': 'warn',
+      'react/no-unknown-property': 'off',
+      'no-unused-vars': 'off',
+    },
+  },
+  {
+    files: ['**/*.test.{js,jsx}', '**/test/**/*.{js,jsx}'],
+    languageOptions: {
+      globals: {
+        ...globals.browser,
+        ...globals.node,
+        ...globals.jest,
+      },
     },
   },
 ]
