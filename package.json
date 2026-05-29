@@ -54,6 +54,7 @@
     "@react-three/xr": "^6.6.26",
     "json-schema": "^0.4.0",
     "leva": "^0.10.0",
+    "node-fetch": "^2.7.0",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "three": "^0.180.0",
