@@ -52,7 +52,7 @@ jobs:
         id: setup
         uses: ./.github/actions/setup-workspace
         with:
-          node-version: "20"
+          node-version: "24.x"
 
   lint:
     if: github.event.inputs.action_type == 'lint-only' || github.event.inputs.action_type == 'full-pipeline'

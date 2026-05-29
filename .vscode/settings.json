@@ -9,13 +9,19 @@
       "text": "Use conventional commit message format."
     }
   ],
-  "github.copilot.chat.pullRequestDescriptionGeneration.instructions": [{ "text": "Always include a list of key changes." }],
+  "github.copilot.chat.pullRequestDescriptionGeneration.instructions": [
+    {
+      "text": "Always include a list of key changes."
+    }
+  ],
   "yaml.schemas": {
     "https://www.schemastore.org/sourcehut-build-0.65.0.json": "file:///Users/michaeljoseph/Public/R3fWWW/.github/workflows/prettier.yml"
   },
   "jest.autoRun": {
     "watch": true,
-    "onStartup": ["all-tests"]
+    "onStartup": [
+      "all-tests"
+    ]
   },
   "chat.mcp.serverSampling": {
     "R3fWWW/.vscode/mcp.json: ESLint": {
@@ -39,5 +45,6 @@
   "editor.formatOnSave": true,
   "files.autoSave": "afterDelay",
   "DockerRun.DisableDockerrc": true,
-  "vitest.disableWorkspaceWarning": true
+  "vitest.disableWorkspaceWarning": true,
+  "editor.codeActions.triggerOnFocusChange": true
 }

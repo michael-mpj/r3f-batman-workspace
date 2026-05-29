@@ -41,14 +41,11 @@ export default [
     },
     settings: {
       react: {
-        version: "detect",
+        version: "19.0",
       },
     },
     rules: {
-      // Code style
-      "indent": ["error", 4],
-      "quotes": ["error", "single"],
-      "semi": ["error", "always"],
+      // Code quality
       "no-unused-vars": [
         "error",
         {
@@ -62,17 +59,14 @@ export default [
       "react/jsx-uses-react": "off",
       "react/react-in-jsx-scope": "off",
       "react/prop-types": "off",
+      "react/no-unknown-property": "off",
       "react-hooks/rules-of-hooks": "error",
       "react-hooks/exhaustive-deps": "warn",
 
-      // Best practices
+      // Best practices (non-formatting)
       "eqeqeq": ["error", "always"],
-      "curly": ["error", "all"],
       "no-var": "error",
       "prefer-const": "error",
-      "arrow-spacing": "error",
-      "object-curly-spacing": ["error", "always"],
-      "array-bracket-spacing": ["error", "never"],
     },
   },
 ];
