@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="700" viewBox="0 0 1200 700" fill="none">
+    <defs>
+        <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0%" stop-color="#0A1A36" />
+            <stop offset="100%" stop-color="#050A1A" />
+        </linearGradient>
+        <radialGradient id="glowA" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse"
+            gradientTransform="translate(240 220) rotate(35) scale(420 300)">
+            <stop stop-color="#37B3FF" stop-opacity="0.42" />
+            <stop offset="1" stop-color="#37B3FF" stop-opacity="0" />
+        </radialGradient>
+        <radialGradient id="glowB" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse"
+            gradientTransform="translate(860 120) rotate(20) scale(340 220)">
+            <stop stop-color="#8B5CF6" stop-opacity="0.28" />
+            <stop offset="1" stop-color="#8B5CF6" stop-opacity="0" />
+        </radialGradient>
+    </defs>
+
+    <rect width="1200" height="700" fill="url(#bg)" />
+    <rect x="30" y="30" width="1140" height="640" rx="28" stroke="#274577" stroke-opacity="0.45" />
+    <circle cx="230" cy="220" r="280" fill="url(#glowA)" />
+    <circle cx="860" cy="120" r="220" fill="url(#glowB)" />
+
+    <g opacity="0.35" stroke="#7AB8FF" stroke-width="1">
+        <path d="M120 530H1060" />
+        <path d="M120 560H980" />
+        <path d="M120 590H900" />
+    </g>
+</svg>

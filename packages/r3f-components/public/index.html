@@ -128,6 +128,36 @@
       padding: 1rem;
     }
 
+    .card.has-image-bg {
+      position: relative;
+      overflow: hidden;
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      isolation: isolate;
+    }
+
+    .card.has-image-bg::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+      background: linear-gradient(170deg, rgba(5, 10, 24, 0.72), rgba(5, 10, 24, 0.9));
+    }
+
+    .card.has-image-bg>* {
+      position: relative;
+      z-index: 1;
+    }
+
+    .card.projects-bg {
+      background-image: url("./images/projects-bg.svg");
+    }
+
+    .card.apps-bg {
+      background-image: url("./images/apps-bg.svg");
+    }
+
     .card h3 {
       margin: 0 0 0.35rem;
       font-size: 1rem;
@@ -193,14 +223,14 @@
             <li><code>@r3f-workspace/utils</code></li>
           </ul>
         </article>
-        <article class="card">
+        <article class="card has-image-bg projects-bg">
           <h3>🚀 projects/</h3>
           <p class="muted">Primary demos and starter experiences.</p>
           <ul id="projects-list">
             <li><code>projects/R3f-StarterKit</code></li>
           </ul>
         </article>
-        <article class="card">
+        <article class="card has-image-bg apps-bg">
           <h3>🕶️ apps/</h3>
           <p class="muted">Additional app surfaces with custom scenes and UX.</p>
           <ul id="apps-list">
