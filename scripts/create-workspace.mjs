@@ -8,7 +8,9 @@ const __dirname = path.dirname(__filename);
 const workspaceRoot = path.resolve(__dirname, "..");
 
 function printUsage() {
-    process.stdout.write(`\nUsage:\n  npm run workspace:create -- --type <app|project> --name <workspace-name> [--port <number>]\n\nExamples:\n  npm run workspace:create -- --type app --name newproject1\n  npm run workspace:create -- --type project --name physics-lab --port 3010\n\n`);
+    process.stdout.write(
+        `\nUsage:\n  npm run workspace:create -- --type <app|project> --name <workspace-name> [--port <number>]\n\nExamples:\n  npm run workspace:create -- --type app --name newproject1\n  npm run workspace:create -- --type project --name physics-lab --port 3010\n\n`
+    );
 }
 
 function parseArgs(argv) {
@@ -60,9 +62,9 @@ function buildPackageJson({ name, type }) {
                 lint: "eslint src --ext js,jsx --report-unused-disable-directives --max-warnings 0",
             },
             dependencies: {
-                react: "^19.0.0",
+                "react": "^19.0.0",
                 "react-dom": "^19.0.0",
-                three: "^0.180.0",
+                "three": "^0.180.0",
                 "@react-three/fiber": "^9.3.0",
                 "@react-three/drei": "^10.7.4",
                 "@r3f-workspace/ui": "file:../../packages/ui",
@@ -70,13 +72,13 @@ function buildPackageJson({ name, type }) {
                 "@r3f-workspace/r3f-components": "file:../../packages/r3f-components",
             },
             devDependencies: {
-                vite: "^8.0.14",
+                "vite": "^8.0.14",
                 "@vitejs/plugin-react": "^5.0.2",
-                eslint: "^10.4.0",
+                "eslint": "^10.4.0",
             },
         },
         null,
-        2,
+        2
     )}\n`;
 }
 
@@ -110,20 +112,20 @@ async function main() {
     await createIfMissing(path.join(targetDir, "package.json"), buildPackageJson({ name: args.name, type: args.type }));
     await createIfMissing(
         path.join(targetDir, "index.html"),
-        `<!doctype html>\n<html lang="en">\n  <head>\n    <meta charset="UTF-8" />\n    <meta name="viewport" content="width=device-width, initial-scale=1.0" />\n    <title>${args.name}</title>\n  </head>\n  <body>\n    <div id="root"></div>\n    <script type="module" src="/src/main.jsx"></script>\n  </body>\n</html>\n`,
+        `<!doctype html>\n<html lang="en">\n  <head>\n    <meta charset="UTF-8" />\n    <meta name="viewport" content="width=device-width, initial-scale=1.0" />\n    <title>${args.name}</title>\n  </head>\n  <body>\n    <div id="root"></div>\n    <script type="module" src="/src/main.jsx"></script>\n  </body>\n</html>\n`
     );
     await createIfMissing(path.join(targetDir, "vite.config.js"), buildViteConfig(Number.isNaN(targetPort) ? 3005 : targetPort));
     await createIfMissing(
         path.join(targetDir, "src", "main.jsx"),
-        `import React from "react";\nimport ReactDOM from "react-dom/client";\nimport App from "./App";\n\nReactDOM.createRoot(document.getElementById("root")).render(\n  <React.StrictMode>\n    <App />\n  </React.StrictMode>,\n);\n`,
+        `import React from "react";\nimport ReactDOM from "react-dom/client";\nimport App from "./App";\n\nReactDOM.createRoot(document.getElementById("root")).render(\n  <React.StrictMode>\n    <App />\n  </React.StrictMode>,\n);\n`
     );
     await createIfMissing(
         path.join(targetDir, "src", "App.jsx"),
-        `export default function App() {\n  return (\n    <main style={{ fontFamily: "Inter, system-ui", padding: "2rem" }}>\n      <h1>${args.name}</h1>\n      <p>Workspace scaffold created by r3f-batman <code>workspace:create</code>.</p>\n    </main>\n  );\n}\n`,
+        `export default function App() {\n  return (\n    <main style={{ fontFamily: "Inter, system-ui", padding: "2rem" }}>\n      <h1>${args.name}</h1>\n      <p>Workspace scaffold created by r3f-batman <code>workspace:create</code>.</p>\n    </main>\n  );\n}\n`
     );
     await createIfMissing(
         path.join(targetDir, "README.md"),
-        `# ${args.name}\n\nScaffolded as a ${args.type} workspace using \`npm run workspace:create\`.\n\n## Run\n\n\`\`\`bash\nnpm run dev --workspace=${targetRoot}/${args.name}\n\`\`\`\n`,
+        `# ${args.name}\n\nScaffolded as a ${args.type} workspace using \`npm run workspace:create\`.\n\n## Run\n\n\`\`\`bash\nnpm run dev --workspace=${targetRoot}/${args.name}\n\`\`\`\n`
     );
 
     process.stdout.write(`✅ Created ${args.type} workspace at ${targetRoot}/${args.name}\n`);
