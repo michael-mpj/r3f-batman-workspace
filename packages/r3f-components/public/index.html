@@ -116,15 +116,15 @@
   <body>
     <header>
       <div class="container">
-        <span class="badge">🦇 R3F Batman Workspace · Release <strong>v2.0.0</strong></span>
-        <h1>Modern React Three Fiber Monorepo,<br />Batman-powered automation included.</h1>
-        <p class="lead">
+        <span id="release-badge" class="badge">🦇 R3F Batman Workspace · Release <strong>v2.0.0</strong></span>
+        <h1 id="hero-title">Modern React Three Fiber Monorepo,<br />Batman-powered automation included.</h1>
+        <p id="hero-lead" class="lead">
           This workspace combines reusable R3F packages, app-level demos, Turbo-based orchestration,
           and Vercel-ready deployment flows. Built for rapid 3D iteration and clean scaling.
         </p>
         <div class="cta">
-          <a class="btn primary" href="https://github.com/michael-mpj/r3f-batman-workspace" target="_blank" rel="noreferrer">View Repository</a>
-          <a class="btn" href="https://github.com/michael-mpj/r3f-batman-workspace/releases/tag/v2.0.0" target="_blank" rel="noreferrer">Release v2.0.0</a>
+          <a id="repo-link" class="btn primary" href="https://github.com/michael-mpj/r3f-batman-workspace" target="_blank" rel="noreferrer">View Repository</a>
+          <a id="release-link" class="btn" href="https://github.com/michael-mpj/r3f-batman-workspace/releases/tag/v2.0.0" target="_blank" rel="noreferrer">Release v2.0.0</a>
         </div>
       </div>
     </header>
@@ -136,7 +136,7 @@
           <article class="card">
             <h3>📦 packages/</h3>
             <p class="muted">Shared, reusable modules for apps and future publishing.</p>
-            <ul>
+            <ul id="packages-list">
               <li><code>@r3f-workspace/r3f-components</code></li>
               <li><code>@r3f-workspace/ui</code></li>
               <li><code>@r3f-workspace/utils</code></li>
@@ -145,14 +145,14 @@
           <article class="card">
             <h3>🚀 projects/</h3>
             <p class="muted">Primary demos and starter experiences.</p>
-            <ul>
+            <ul id="projects-list">
               <li><code>projects/R3f-StarterKit</code></li>
             </ul>
           </article>
           <article class="card">
             <h3>🕶️ apps/</h3>
             <p class="muted">Additional app surfaces with custom scenes and UX.</p>
-            <ul>
+            <ul id="apps-list">
               <li><code>apps/cyber-forge</code></li>
             </ul>
           </article>
@@ -166,7 +166,7 @@
         <div class="grid cols-2">
           <article class="card">
             <h3>🏗️ Build and quality</h3>
-            <ul>
+            <ul id="workflow-list">
               <li><code>npm run build</code> (all workspaces)</li>
               <li><code>npm run lint</code> (workspace-aware)</li>
               <li><code>npm run test</code> (workspace-aware)</li>
@@ -192,15 +192,15 @@
         <div class="grid cols-3">
           <article class="card">
             <h3>Runtime</h3>
-            <p class="muted">Node <code>^24</code>, npm <code>>=10.9.3</code></p>
+            <p id="runtime-line" class="muted">Node <code>^24</code>, npm <code>>=10.9.3</code></p>
           </article>
           <article class="card">
             <h3>Tooling</h3>
-            <p class="muted">ESLint 10, Vite 8, Vitest 3, Turbo 2</p>
+            <p id="tooling-line" class="muted">ESLint 10, Vite 8, Vitest 3, Turbo 2</p>
           </article>
           <article class="card">
             <h3>Status</h3>
-            <p><span class="ok">●</span> Build pipelines validated and release tagged <code>v2.0.0</code></p>
+            <p id="status-line"><span class="ok">●</span> Build pipelines validated and release tagged <code>v2.0.0</code></p>
           </article>
         </div>
       </div>
@@ -209,8 +209,89 @@
     <footer>
       <div class="container">
         Gotham is online. 🌃<br />
-        <span class="muted">R3F Batman Workspace · MIT · Maintained by Michael Joseph</span>
+        <span id="footer-line" class="muted">R3F Batman Workspace · MIT · Maintained by Michael Joseph</span>
       </div>
     </footer>
+    <script>
+      const escapeHtml = value =>
+        String(value)
+          .replace(/&/g, "&amp;")
+          .replace(/</g, "&lt;")
+          .replace(/>/g, "&gt;")
+          .replace(/\"/g, "&quot;")
+          .replace(/'/g, "&#39;");
+
+      const setList = (id, items, mapItem) => {
+        const el = document.getElementById(id);
+        if (!el || !Array.isArray(items) || items.length === 0) return;
+        el.innerHTML = items.map(mapItem).join("");
+      };
+
+      fetch("./landing-data.json", { cache: "no-store" })
+        .then(response => (response.ok ? response.json() : null))
+        .then(data => {
+          if (!data) return;
+
+          const release = data.release || "v2.0.0";
+          const workspace = data.workspace || {};
+          const repo = data.repo || {};
+
+          document.title = `R3F Batman Workspace — v${escapeHtml(release)}`;
+
+          const badge = document.getElementById("release-badge");
+          if (badge) badge.innerHTML = `🦇 R3F Batman Workspace · Release <strong>v${escapeHtml(release)}</strong>`;
+
+          const heroLead = document.getElementById("hero-lead");
+          if (heroLead && workspace.description) heroLead.textContent = workspace.description;
+
+          const repoLink = document.getElementById("repo-link");
+          if (repoLink && repo.url) repoLink.href = repo.url;
+
+          const releaseLink = document.getElementById("release-link");
+          if (releaseLink && repo.releaseUrl) {
+            releaseLink.href = repo.releaseUrl;
+            releaseLink.textContent = `Release v${release}`;
+          }
+
+          setList("packages-list", data.architecture?.packages, item =>
+            `<li><code>${escapeHtml(item.name || item.path)}</code></li>`
+          );
+
+          setList("projects-list", data.architecture?.projects, item =>
+            `<li><code>${escapeHtml(item.path || item.name)}</code></li>`
+          );
+
+          setList("apps-list", data.architecture?.apps, item =>
+            `<li><code>${escapeHtml(item.path || item.name)}</code></li>`
+          );
+
+          setList("workflow-list", data.scripts?.slice(0, 6), item =>
+            `<li><code>npm run ${escapeHtml(item.name)}</code></li>`
+          );
+
+          const runtime = document.getElementById("runtime-line");
+          if (runtime) {
+            runtime.innerHTML = `Node <code>${escapeHtml(data.toolSnapshot?.node || "not specified")}</code>, npm <code>${escapeHtml(data.toolSnapshot?.npm || "not specified")}</code>`;
+          }
+
+          const tooling = document.getElementById("tooling-line");
+          if (tooling && Array.isArray(data.toolSnapshot?.highlights)) {
+            tooling.textContent = data.toolSnapshot.highlights.join(", ");
+          }
+
+          const status = document.getElementById("status-line");
+          if (status) {
+            status.innerHTML = `<span class="ok">●</span> Build pipelines validated and release tagged <code>v${escapeHtml(release)}</code>`;
+          }
+
+          const footer = document.getElementById("footer-line");
+          if (footer) {
+            footer.textContent = `R3F Batman Workspace · ${workspace.license || "MIT"} · Maintained by Michael Joseph`;
+          }
+        })
+        .catch(() => {
+          // Keep static fallback content if dynamic payload is unavailable.
+        });
+    </script>
   </body>
 </html>

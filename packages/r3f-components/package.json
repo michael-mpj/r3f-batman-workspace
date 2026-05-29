@@ -14,7 +14,7 @@
     "README.md"
   ],
   "scripts": {
-    "build": "vite build && cp public/index.html dist/index.html",
+    "build": "node scripts/generate-landing-data.mjs && vite build && cp public/index.html dist/index.html",
     "dev": "vite build --watch",
     "lint": "eslint src --ext js,jsx,mjs",
     "lint:fix": "eslint src --ext js,jsx,mjs --fix",
