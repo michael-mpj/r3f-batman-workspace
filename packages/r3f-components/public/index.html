@@ -1,0 +1,216 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>R3F Batman Workspace — v2.0.0</title>
+    <meta
+      name="description"
+      content="R3F Batman Workspace: a modern React Three Fiber monorepo with shared packages, Batman automation scripts, and production-ready apps."
+    />
+    <style>
+      :root {
+        --bg: #05070f;
+        --card: #0f1423;
+        --muted: #98a2b3;
+        --text: #e6eaf2;
+        --accent: #37b3ff;
+        --accent-2: #8b5cf6;
+        --ok: #22c55e;
+        --border: #1f2a44;
+      }
+      * { box-sizing: border-box; }
+      body {
+        margin: 0;
+        font-family: Inter, ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+        color: var(--text);
+        background: radial-gradient(circle at 10% -10%, #173057, var(--bg) 45%);
+        line-height: 1.5;
+      }
+      .container {
+        width: min(1120px, 92vw);
+        margin: 0 auto;
+      }
+      header {
+        padding: 4.5rem 0 2.5rem;
+      }
+      .badge {
+        display: inline-flex;
+        gap: .5rem;
+        border: 1px solid var(--border);
+        border-radius: 999px;
+        padding: .35rem .8rem;
+        color: var(--muted);
+        font-size: .85rem;
+        background: rgba(255,255,255,.02);
+      }
+      h1 {
+        font-size: clamp(2rem, 5vw, 3.6rem);
+        line-height: 1.1;
+        margin: .9rem 0 .7rem;
+        letter-spacing: -0.02em;
+      }
+      .lead {
+        color: #c5cfdd;
+        font-size: clamp(1rem, 1.7vw, 1.2rem);
+        max-width: 75ch;
+      }
+      .cta {
+        margin-top: 1.25rem;
+        display: flex;
+        gap: .8rem;
+        flex-wrap: wrap;
+      }
+      .btn {
+        border: 1px solid var(--border);
+        color: var(--text);
+        text-decoration: none;
+        background: #0d1a31;
+        padding: .65rem 1rem;
+        border-radius: .65rem;
+        font-weight: 600;
+      }
+      .btn.primary {
+        border-color: transparent;
+        background: linear-gradient(135deg, var(--accent), var(--accent-2));
+      }
+      section {
+        padding: 1.1rem 0 1.4rem;
+      }
+      .section-title {
+        font-size: 1.35rem;
+        margin-bottom: .85rem;
+      }
+      .grid {
+        display: grid;
+        gap: .9rem;
+      }
+      .grid.cols-3 { grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); }
+      .grid.cols-2 { grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); }
+      .card {
+        background: linear-gradient(180deg, rgba(255,255,255,.02), rgba(255,255,255,.01));
+        border: 1px solid var(--border);
+        border-radius: .9rem;
+        padding: 1rem;
+      }
+      .card h3 {
+        margin: 0 0 .35rem;
+        font-size: 1rem;
+      }
+      .muted { color: var(--muted); }
+      code {
+        background: #0b1326;
+        border: 1px solid var(--border);
+        border-radius: .45rem;
+        padding: .15rem .4rem;
+      }
+      ul { margin: .5rem 0 0; padding-left: 1rem; }
+      footer {
+        padding: 2rem 0 2.4rem;
+        color: var(--muted);
+        font-size: .92rem;
+      }
+      .ok { color: var(--ok); }
+    </style>
+  </head>
+  <body>
+    <header>
+      <div class="container">
+        <span class="badge">🦇 R3F Batman Workspace · Release <strong>v2.0.0</strong></span>
+        <h1>Modern React Three Fiber Monorepo,<br />Batman-powered automation included.</h1>
+        <p class="lead">
+          This workspace combines reusable R3F packages, app-level demos, Turbo-based orchestration,
+          and Vercel-ready deployment flows. Built for rapid 3D iteration and clean scaling.
+        </p>
+        <div class="cta">
+          <a class="btn primary" href="https://github.com/michael-mpj/r3f-batman-workspace" target="_blank" rel="noreferrer">View Repository</a>
+          <a class="btn" href="https://github.com/michael-mpj/r3f-batman-workspace/releases/tag/v2.0.0" target="_blank" rel="noreferrer">Release v2.0.0</a>
+        </div>
+      </div>
+    </header>
+
+    <section>
+      <div class="container">
+        <h2 class="section-title">Workspace architecture</h2>
+        <div class="grid cols-3">
+          <article class="card">
+            <h3>📦 packages/</h3>
+            <p class="muted">Shared, reusable modules for apps and future publishing.</p>
+            <ul>
+              <li><code>@r3f-workspace/r3f-components</code></li>
+              <li><code>@r3f-workspace/ui</code></li>
+              <li><code>@r3f-workspace/utils</code></li>
+            </ul>
+          </article>
+          <article class="card">
+            <h3>🚀 projects/</h3>
+            <p class="muted">Primary demos and starter experiences.</p>
+            <ul>
+              <li><code>projects/R3f-StarterKit</code></li>
+            </ul>
+          </article>
+          <article class="card">
+            <h3>🕶️ apps/</h3>
+            <p class="muted">Additional app surfaces with custom scenes and UX.</p>
+            <ul>
+              <li><code>apps/cyber-forge</code></li>
+            </ul>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="container">
+        <h2 class="section-title">Core developer workflow</h2>
+        <div class="grid cols-2">
+          <article class="card">
+            <h3>🏗️ Build and quality</h3>
+            <ul>
+              <li><code>npm run build</code> (all workspaces)</li>
+              <li><code>npm run lint</code> (workspace-aware)</li>
+              <li><code>npm run test</code> (workspace-aware)</li>
+              <li><code>npx turbo run build</code> (Turbo v2 tasks)</li>
+            </ul>
+          </article>
+          <article class="card">
+            <h3>🦇 Batman automation</h3>
+            <ul>
+              <li><code>npm run batman</code></li>
+              <li><code>npm run batman:enhanced</code></li>
+              <li><code>npm run batman:ultimate</code></li>
+              <li><code>npm run batman:vscode</code></li>
+            </ul>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="container">
+        <h2 class="section-title">Platform snapshot</h2>
+        <div class="grid cols-3">
+          <article class="card">
+            <h3>Runtime</h3>
+            <p class="muted">Node <code>^24</code>, npm <code>>=10.9.3</code></p>
+          </article>
+          <article class="card">
+            <h3>Tooling</h3>
+            <p class="muted">ESLint 10, Vite 8, Vitest 3, Turbo 2</p>
+          </article>
+          <article class="card">
+            <h3>Status</h3>
+            <p><span class="ok">●</span> Build pipelines validated and release tagged <code>v2.0.0</code></p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      <div class="container">
+        Gotham is online. 🌃<br />
+        <span class="muted">R3F Batman Workspace · MIT · Maintained by Michael Joseph</span>
+      </div>
+    </footer>
+  </body>
+</html>
