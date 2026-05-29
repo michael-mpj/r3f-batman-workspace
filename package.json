@@ -34,6 +34,7 @@
     "batman:vscode": "node scripts/batman-vscode.mjs",
     "batman:auto": "node scripts/batman-auto-close.mjs",
     "batman:ultimate": "node scripts/batman-ultimate.mjs",
+    "cleanup:deployments": "node cleanup-github-deployments.cjs && node cleanup-vercel-deployments.cjs",
     "prepare": "husky",
     "auto-merge": "node scripts/auto-merge.mjs",
     "extensions:install": "node scripts/batman-install-extensions.mjs",

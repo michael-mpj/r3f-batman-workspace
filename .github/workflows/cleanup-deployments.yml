@@ -1,0 +1,24 @@
+name: Cleanup Deployments
+
+on:
+    schedule:
+        - cron: '0 3 * * 0' # Every Sunday at 3am UTC
+    workflow_dispatch:
+
+jobs:
+    cleanup-deployments:
+        runs-on: ubuntu-latest
+        env:
+            GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+            VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
+        steps:
+            - name: Checkout repository
+              uses: actions/checkout@v4
+            - name: Set up Node.js
+              uses: actions/setup-node@v4
+              with:
+                  node-version: '24.x'
+            - name: Install dependencies
+              run: npm ci
+            - name: Run deployment cleanup scripts
+              run: npm run cleanup:deployments
