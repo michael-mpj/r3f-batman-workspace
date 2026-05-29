@@ -9,6 +9,7 @@ const __dirname = path.dirname(__filename);
 const packageRoot = path.resolve(__dirname, "..");
 const workspaceRoot = path.resolve(packageRoot, "../..");
 const outputFile = path.join(packageRoot, "public", "landing-data.json");
+const fallbackFile = path.join(packageRoot, "config", "landing-fallback.json");
 
 async function readJsonIfExists(filePath) {
   try {
@@ -84,6 +85,7 @@ function pickScripts(scripts = {}) {
 }
 
 async function main() {
+  const fallback = (await readJsonIfExists(fallbackFile)) || {};
   const rootPkg = (await readJsonIfExists(path.join(workspaceRoot, "package.json"))) || {};
 
   const [packages, projects, apps, readmeLead] = await Promise.all([
@@ -93,35 +95,40 @@ async function main() {
     readFirstMeaningfulLine(path.join(workspaceRoot, "README.md")),
   ]);
 
+  const hasDiscoveredWorkspace = packages.length > 0 || projects.length > 0 || apps.length > 0;
+
   const data = {
     generatedAt: new Date().toISOString(),
-    release: rootPkg.version || "unknown",
+    release: rootPkg.version || fallback.release || "unknown",
     workspace: {
-      name: rootPkg.name || "r3f-batman-workspace",
+      name: rootPkg.name || fallback.workspace?.name || "r3f-batman-workspace",
       description:
         rootPkg.description ||
+        fallback.workspace?.description ||
         readmeLead ||
         "Modern React Three Fiber monorepo with Batman-powered automation.",
-      license: rootPkg.license || "MIT",
-      packageManager: rootPkg.packageManager || "npm",
-      engines: rootPkg.engines || {},
+      license: rootPkg.license || fallback.workspace?.license || "MIT",
+      packageManager: rootPkg.packageManager || fallback.workspace?.packageManager || "npm",
+      engines: Object.keys(rootPkg.engines || {}).length > 0 ? rootPkg.engines : (fallback.workspace?.engines || {}),
     },
     repo: {
-      owner: "michael-mpj",
-      name: "r3f-batman-workspace",
-      url: "https://github.com/michael-mpj/r3f-batman-workspace",
-      releaseUrl: `https://github.com/michael-mpj/r3f-batman-workspace/releases/tag/v${rootPkg.version || "2.0.0"}`,
+      owner: fallback.repo?.owner || "michael-mpj",
+      name: fallback.repo?.name || "r3f-batman-workspace",
+      url: fallback.repo?.url || "https://github.com/michael-mpj/r3f-batman-workspace",
+      releaseUrl:
+        fallback.repo?.releaseUrl ||
+        `https://github.com/michael-mpj/r3f-batman-workspace/releases/tag/v${rootPkg.version || fallback.release || "2.0.0"}`,
     },
     architecture: {
-      packages,
-      projects,
-      apps,
+      packages: hasDiscoveredWorkspace ? packages : (fallback.architecture?.packages || []),
+      projects: hasDiscoveredWorkspace ? projects : (fallback.architecture?.projects || []),
+      apps: hasDiscoveredWorkspace ? apps : (fallback.architecture?.apps || []),
     },
-    scripts: pickScripts(rootPkg.scripts),
+    scripts: pickScripts(rootPkg.scripts).length > 0 ? pickScripts(rootPkg.scripts) : (fallback.scripts || []),
     toolSnapshot: {
-      node: rootPkg.engines?.node || "not specified",
-      npm: rootPkg.engines?.npm || "not specified",
-      highlights: ["ESLint 10", "Vite 8", "Vitest 3", "Turbo 2"],
+      node: rootPkg.engines?.node || fallback.toolSnapshot?.node || "not specified",
+      npm: rootPkg.engines?.npm || fallback.toolSnapshot?.npm || "not specified",
+      highlights: fallback.toolSnapshot?.highlights || ["ESLint 10", "Vite 8", "Vitest 3", "Turbo 2"],
     },
   };
 

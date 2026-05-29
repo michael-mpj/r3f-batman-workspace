@@ -1,0 +1,118 @@
+{
+  "release": "2.0.0",
+  "workspace": {
+    "name": "@michael-mpj/r3f-batman",
+    "description": "R3F Batman Workspace - Advanced React Three Fiber development environment",
+    "license": "MIT",
+    "packageManager": "npm@10.9.3",
+    "engines": {
+      "node": "^24.0.0",
+      "npm": ">=10.9.3"
+    }
+  },
+  "repo": {
+    "owner": "michael-mpj",
+    "name": "r3f-batman-workspace",
+    "url": "https://github.com/michael-mpj/r3f-batman-workspace",
+    "releaseUrl": "https://github.com/michael-mpj/r3f-batman-workspace/releases/tag/v2.0.0"
+  },
+  "architecture": {
+    "packages": [
+      {
+        "path": "packages/r3f-components",
+        "name": "@r3f-workspace/r3f-components",
+        "version": "1.0.0",
+        "description": "Advanced React Three Fiber components for 3D applications",
+        "private": false
+      },
+      {
+        "path": "packages/ui",
+        "name": "@r3f-workspace/ui",
+        "version": "1.0.0",
+        "description": "Shared UI components for R3F applications",
+        "private": false
+      },
+      {
+        "path": "packages/utils",
+        "name": "@r3f-workspace/utils",
+        "version": "1.0.0",
+        "description": "Shared utilities for R3F applications",
+        "private": false
+      }
+    ],
+    "projects": [
+      {
+        "path": "projects/R3f-StarterKit",
+        "name": "r3f-starterkit",
+        "version": "0.0.0",
+        "description": "",
+        "private": true
+      }
+    ],
+    "apps": [
+      {
+        "path": "apps/cyber-forge",
+        "name": "cyber-forge",
+        "version": "1.0.0",
+        "description": "Cyber Forge - Advanced cyberpunk development environment with cutting-edge 3D capabilities",
+        "private": true
+      }
+    ]
+  },
+  "scripts": [
+    {
+      "name": "dev",
+      "command": "npm run dev --workspace=projects/R3f-StarterKit"
+    },
+    {
+      "name": "build",
+      "command": "npm run build --workspaces --if-present"
+    },
+    {
+      "name": "test",
+      "command": "npm run test --workspaces --if-present"
+    },
+    {
+      "name": "lint",
+      "command": "npm run lint --workspaces --if-present"
+    },
+    {
+      "name": "batman",
+      "command": "node scripts/batman.mjs"
+    },
+    {
+      "name": "batman:enhanced",
+      "command": "node scripts/batman-enhanced.mjs"
+    },
+    {
+      "name": "batman:vscode",
+      "command": "node scripts/batman-vscode.mjs"
+    },
+    {
+      "name": "batman:auto",
+      "command": "node scripts/batman-auto-close.mjs"
+    },
+    {
+      "name": "batman:ultimate",
+      "command": "node scripts/batman-ultimate.mjs"
+    },
+    {
+      "name": "deploy:production",
+      "command": "node scripts/deploy-production.mjs"
+    },
+    {
+      "name": "check-compatibility",
+      "command": "node scripts/check-compatibility.mjs"
+    }
+  ],
+  "toolSnapshot": {
+    "node": "^24.0.0",
+    "npm": ">=10.9.3",
+    "highlights": [
+      "ESLint 10",
+      "Vite 8",
+      "Vitest 3",
+      "Turbo 2"
+    ]
+  }
+}
