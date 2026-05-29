@@ -34,9 +34,9 @@
     "@r3f-workspace/utils": "file:../utils"
   },
   "devDependencies": {
-    "vite": "^7.2.4",
+    "vite": "^8.0.14",
     "@vitejs/plugin-react": "^5.0.2",
-    "eslint": "^9.35.0",
+    "eslint": "^10.4.0",
     "vitest": "^3.2.4",
     "@testing-library/react": "^16.3.0",
     "rimraf": "^5.0.10",
