@@ -31,3 +31,21 @@ Both `apps/*` and `projects/*` are included in workspace scripts. Keep each work
 - `lint`
 
 This ensures root-level commands continue to work consistently.
+
+## Create Workspace Helper
+
+Use the scaffold helper to create new workspaces with consistent defaults:
+
+```bash
+# New deployable app
+npm run workspace:create -- --type app --name newproject1
+
+# New starter/reference project
+npm run workspace:create -- --type project --name newproject2
+```
+
+Optional:
+
+```bash
+npm run workspace:create -- --type app --name dashboard-app --port 3010
+```

@@ -28,6 +28,7 @@
     "lint:fix": "npm run lint:fix --workspaces --if-present",
     "format": "prettier --write .",
     "check-compatibility": "node scripts/check-compatibility.mjs",
+    "workspace:create": "node scripts/create-workspace.mjs",
     "batman": "node scripts/batman.mjs",
     "batman:enhanced": "node scripts/batman-enhanced.mjs",
     "batman:vscode": "node scripts/batman-vscode.mjs",
