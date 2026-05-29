@@ -84,6 +84,41 @@ function pickScripts(scripts = {}) {
     .map(key => ({ name: key, command: scripts[key] }));
 }
 
+function pickWorkflowGroups(scripts = {}) {
+  const groups = [
+    {
+      id: "build",
+      title: "Build",
+      keys: ["dev", "build"],
+    },
+    {
+      id: "quality",
+      title: "Quality",
+      keys: ["test", "lint", "check-compatibility"],
+    },
+    {
+      id: "batman",
+      title: "Batman",
+      keys: ["batman", "batman:enhanced", "batman:ultimate", "batman:vscode", "batman:auto"],
+    },
+    {
+      id: "deploy",
+      title: "Deploy",
+      keys: ["deploy:production", "deploy:all", "deploy:starterkit", "deploy:cyber-forge"],
+    },
+  ];
+
+  return groups
+    .map(group => ({
+      id: group.id,
+      title: group.title,
+      items: group.keys
+        .filter(key => key in scripts)
+        .map(key => ({ name: key, command: scripts[key] })),
+    }))
+    .filter(group => group.items.length > 0);
+}
+
 async function main() {
   const fallback = (await readJsonIfExists(fallbackFile)) || {};
   const rootPkg = (await readJsonIfExists(path.join(workspaceRoot, "package.json"))) || {};
@@ -96,6 +131,8 @@ async function main() {
   ]);
 
   const hasDiscoveredWorkspace = packages.length > 0 || projects.length > 0 || apps.length > 0;
+  const scripts = pickScripts(rootPkg.scripts);
+  const workflowGroups = pickWorkflowGroups(rootPkg.scripts);
 
   const data = {
     generatedAt: new Date().toISOString(),
@@ -124,7 +161,8 @@ async function main() {
       projects: hasDiscoveredWorkspace ? projects : (fallback.architecture?.projects || []),
       apps: hasDiscoveredWorkspace ? apps : (fallback.architecture?.apps || []),
     },
-    scripts: pickScripts(rootPkg.scripts).length > 0 ? pickScripts(rootPkg.scripts) : (fallback.scripts || []),
+    scripts: scripts.length > 0 ? scripts : (fallback.scripts || []),
+    workflowGroups: workflowGroups.length > 0 ? workflowGroups : (fallback.workflowGroups || []),
     toolSnapshot: {
       node: rootPkg.engines?.node || fallback.toolSnapshot?.node || "not specified",
       npm: rootPkg.engines?.npm || fallback.toolSnapshot?.npm || "not specified",

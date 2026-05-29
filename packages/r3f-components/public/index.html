@@ -87,6 +87,7 @@
       }
       .grid.cols-3 { grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); }
       .grid.cols-2 { grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); }
+      .grid.cols-4 { grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); }
       .card {
         background: linear-gradient(180deg, rgba(255,255,255,.02), rgba(255,255,255,.01));
         border: 1px solid var(--border);
@@ -163,23 +164,35 @@
     <section>
       <div class="container">
         <h2 class="section-title">Core developer workflow</h2>
-        <div class="grid cols-2">
+        <div class="grid cols-4">
           <article class="card">
-            <h3>🏗️ Build and quality</h3>
-            <ul id="workflow-list">
-              <li><code>npm run build</code> (all workspaces)</li>
-              <li><code>npm run lint</code> (workspace-aware)</li>
-              <li><code>npm run test</code> (workspace-aware)</li>
-              <li><code>npx turbo run build</code> (Turbo v2 tasks)</li>
+            <h3>🏗️ Build</h3>
+            <ul id="workflow-build-list">
+              <li><code>npm run dev</code></li>
+              <li><code>npm run build</code></li>
             </ul>
           </article>
           <article class="card">
-            <h3>🦇 Batman automation</h3>
-            <ul>
+            <h3>✅ Quality</h3>
+            <ul id="workflow-quality-list">
+              <li><code>npm run test</code></li>
+              <li><code>npm run lint</code></li>
+              <li><code>npm run check-compatibility</code></li>
+            </ul>
+          </article>
+          <article class="card">
+            <h3>🦇 Batman</h3>
+            <ul id="workflow-batman-list">
               <li><code>npm run batman</code></li>
               <li><code>npm run batman:enhanced</code></li>
               <li><code>npm run batman:ultimate</code></li>
               <li><code>npm run batman:vscode</code></li>
+            </ul>
+          </article>
+          <article class="card">
+            <h3>🚀 Deploy</h3>
+            <ul id="workflow-deploy-list">
+              <li><code>npm run deploy:production</code></li>
             </ul>
           </article>
         </div>
@@ -265,9 +278,19 @@
             `<li><code>${escapeHtml(item.path || item.name)}</code></li>`
           );
 
-          setList("workflow-list", data.scripts?.slice(0, 6), item =>
-            `<li><code>npm run ${escapeHtml(item.name)}</code></li>`
-          );
+          const workflowGroups = Array.isArray(data.workflowGroups) ? data.workflowGroups : [];
+          const groupToListId = {
+            build: "workflow-build-list",
+            quality: "workflow-quality-list",
+            batman: "workflow-batman-list",
+            deploy: "workflow-deploy-list",
+          };
+
+          workflowGroups.forEach(group => {
+            const listId = groupToListId[group.id];
+            if (!listId) return;
+            setList(listId, group.items, item => `<li><code>npm run ${escapeHtml(item.name)}</code></li>`);
+          });
 
           const runtime = document.getElementById("runtime-line");
           if (runtime) {

@@ -105,6 +105,76 @@
       "command": "node scripts/check-compatibility.mjs"
     }
   ],
+  "workflowGroups": [
+    {
+      "id": "build",
+      "title": "Build",
+      "items": [
+        {
+          "name": "dev",
+          "command": "npm run dev --workspace=projects/R3f-StarterKit"
+        },
+        {
+          "name": "build",
+          "command": "npm run build --workspaces --if-present"
+        }
+      ]
+    },
+    {
+      "id": "quality",
+      "title": "Quality",
+      "items": [
+        {
+          "name": "test",
+          "command": "npm run test --workspaces --if-present"
+        },
+        {
+          "name": "lint",
+          "command": "npm run lint --workspaces --if-present"
+        },
+        {
+          "name": "check-compatibility",
+          "command": "node scripts/check-compatibility.mjs"
+        }
+      ]
+    },
+    {
+      "id": "batman",
+      "title": "Batman",
+      "items": [
+        {
+          "name": "batman",
+          "command": "node scripts/batman.mjs"
+        },
+        {
+          "name": "batman:enhanced",
+          "command": "node scripts/batman-enhanced.mjs"
+        },
+        {
+          "name": "batman:ultimate",
+          "command": "node scripts/batman-ultimate.mjs"
+        },
+        {
+          "name": "batman:vscode",
+          "command": "node scripts/batman-vscode.mjs"
+        },
+        {
+          "name": "batman:auto",
+          "command": "node scripts/batman-auto-close.mjs"
+        }
+      ]
+    },
+    {
+      "id": "deploy",
+      "title": "Deploy",
+      "items": [
+        {
+          "name": "deploy:production",
+          "command": "node scripts/deploy-production.mjs"
+        }
+      ]
+    }
+  ],
   "toolSnapshot": {
     "node": "^24.0.0",
     "npm": ">=10.9.3",
