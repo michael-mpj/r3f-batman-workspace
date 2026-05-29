@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="700" viewBox="0 0 1200 700" fill="none">
+    <defs>
+        <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0%" stop-color="#0A1028" />
+            <stop offset="100%" stop-color="#040914" />
+        </linearGradient>
+        <radialGradient id="cyan" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse"
+            gradientTransform="translate(970 160) rotate(20) scale(360 260)">
+            <stop stop-color="#22D3EE" stop-opacity="0.35" />
+            <stop offset="1" stop-color="#22D3EE" stop-opacity="0" />
+        </radialGradient>
+        <radialGradient id="violet" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse"
+            gradientTransform="translate(280 500) rotate(-18) scale(420 260)">
+            <stop stop-color="#A855F7" stop-opacity="0.28" />
+            <stop offset="1" stop-color="#A855F7" stop-opacity="0" />
+        </radialGradient>
+    </defs>
+
+    <rect width="1200" height="700" fill="url(#bg)" />
+    <rect x="24" y="24" width="1152" height="652" rx="26" stroke="#2D3E75" stroke-opacity="0.45" />
+    <circle cx="970" cy="160" r="260" fill="url(#cyan)" />
+    <circle cx="280" cy="500" r="300" fill="url(#violet)" />
+
+    <g opacity="0.4" stroke="#5AC8FF" stroke-width="1">
+        <path d="M100 140H620" />
+        <path d="M100 170H700" />
+        <path d="M100 200H540" />
+    </g>
+</svg>
