@@ -175,6 +175,22 @@
             ]
         }
     ],
+    "featuredWorkspaces": [
+        {
+            "key": "starterkit",
+            "title": "R3f-StarterKit",
+            "type": "project",
+            "path": "projects/R3f-StarterKit",
+            "description": "Canonical starter/reference project for workspace patterns."
+        },
+        {
+            "key": "cyber-forge",
+            "title": "cyber-forge",
+            "type": "app",
+            "path": "apps/cyber-forge",
+            "description": "Deployable app surface built on shared workspace packages."
+        }
+    ],
     "toolSnapshot": {
         "node": "^24.0.0",
         "npm": ">=10.9.3",

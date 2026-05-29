@@ -114,6 +114,35 @@ function pickWorkflowGroups(scripts = {}) {
     .filter(group => group.items.length > 0);
 }
 
+function pickFeaturedWorkspaces({ projects = [], apps = [] }) {
+  const starterKit = projects.find(item => item.path === "projects/R3f-StarterKit") || projects[0];
+  const cyberForge = apps.find(item => item.path === "apps/cyber-forge") || apps[0];
+
+  const featured = [];
+
+  if (starterKit) {
+    featured.push({
+      key: "starterkit",
+      title: "R3f-StarterKit",
+      type: "project",
+      path: starterKit.path,
+      description: starterKit.description || "Canonical starter/reference project for workspace patterns.",
+    });
+  }
+
+  if (cyberForge) {
+    featured.push({
+      key: "cyber-forge",
+      title: "cyber-forge",
+      type: "app",
+      path: cyberForge.path,
+      description: cyberForge.description || "Deployable app surface built on shared workspace packages.",
+    });
+  }
+
+  return featured;
+}
+
 async function main() {
   const fallback = (await readJsonIfExists(fallbackFile)) || {};
   const rootPkg = (await readJsonIfExists(path.join(workspaceRoot, "package.json"))) || {};
@@ -128,6 +157,10 @@ async function main() {
   const hasDiscoveredWorkspace = packages.length > 0 || projects.length > 0 || apps.length > 0;
   const scripts = pickScripts(rootPkg.scripts);
   const workflowGroups = pickWorkflowGroups(rootPkg.scripts);
+  const featuredWorkspaces = pickFeaturedWorkspaces({
+    projects: hasDiscoveredWorkspace ? projects : fallback.architecture?.projects || [],
+    apps: hasDiscoveredWorkspace ? apps : fallback.architecture?.apps || [],
+  });
 
   const data = {
     generatedAt: new Date().toISOString(),
@@ -158,6 +191,7 @@ async function main() {
     },
     scripts: scripts.length > 0 ? scripts : fallback.scripts || [],
     workflowGroups: workflowGroups.length > 0 ? workflowGroups : fallback.workflowGroups || [],
+    featuredWorkspaces: featuredWorkspaces.length > 0 ? featuredWorkspaces : fallback.featuredWorkspaces || [],
     toolSnapshot: {
       node: rootPkg.engines?.node || fallback.toolSnapshot?.node || "not specified",
       npm: rootPkg.engines?.npm || fallback.toolSnapshot?.npm || "not specified",

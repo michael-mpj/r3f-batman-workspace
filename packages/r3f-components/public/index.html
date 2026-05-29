@@ -213,6 +213,24 @@
 
   <section>
     <div class="container">
+      <h2 class="section-title">Featured workspaces</h2>
+      <div class="grid cols-2" id="featured-workspaces-grid">
+        <article class="card">
+          <h3>🚀 R3f-StarterKit</h3>
+          <p class="muted">Canonical starter/reference project for workspace patterns.</p>
+          <p><code>projects/R3f-StarterKit</code></p>
+        </article>
+        <article class="card">
+          <h3>🕶️ cyber-forge</h3>
+          <p class="muted">Deployable app surface built on shared workspace packages.</p>
+          <p><code>apps/cyber-forge</code></p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="container">
       <h2 class="section-title">Core developer workflow</h2>
       <div class="grid cols-4">
         <article class="card">
@@ -317,6 +335,16 @@
         setList("projects-list", data.architecture?.projects, item => `<li><code>${escapeHtml(item.path || item.name)}</code></li>`);
 
         setList("apps-list", data.architecture?.apps, item => `<li><code>${escapeHtml(item.path || item.name)}</code></li>`);
+
+        const featuredGrid = document.getElementById("featured-workspaces-grid");
+        if (featuredGrid && Array.isArray(data.featuredWorkspaces) && data.featuredWorkspaces.length > 0) {
+          featuredGrid.innerHTML = data.featuredWorkspaces
+            .map(item => {
+              const icon = item.type === "project" ? "🚀" : "🕶️";
+              return `<article class="card"><h3>${icon} ${escapeHtml(item.title || item.path)}</h3><p class="muted">${escapeHtml(item.description || "")}</p><p><code>${escapeHtml(item.path || "")}</code></p></article>`;
+            })
+            .join("");
+        }
 
         const workflowGroups = Array.isArray(data.workflowGroups) ? data.workflowGroups : [];
         const groupToListId = {
