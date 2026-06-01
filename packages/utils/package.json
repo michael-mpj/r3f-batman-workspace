@@ -30,7 +30,7 @@
   },
   "devDependencies": {
     "vite": "^8.0.14",
-    "vitest": "^3.2.4",
+    "vitest": "^4.1.8",
     "eslint": "^10.4.0",
     "prettier": "^3.6.2",
     "rimraf": "^5.0.1"
