@@ -31,8 +31,8 @@
   "devDependencies": {
     "vite": "^8.0.14",
     "vitest": "^3.2.4",
-    "eslint": "^10.4.0",
-    "prettier": "^3.6.2",
+    "eslint": "^10.5.0",
+    "prettier": "^3.8.4",
     "rimraf": "^5.0.1"
   },
   "publishConfig": {
