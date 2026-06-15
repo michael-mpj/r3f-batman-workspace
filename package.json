@@ -56,8 +56,8 @@
     "json-schema": "^0.4.0",
     "leva": "^0.10.0",
     "node-fetch": "^2.7.0",
-    "react": "^19.0.0",
-    "react-dom": "^19.0.0",
+    "react": "^19.2.7",
+    "react-dom": "^19.2.7",
     "three": "^0.180.0",
     "tsx-to-jsx": "^0.0.4",
     "zustand": "^5.0.8"
