@@ -16,7 +16,7 @@
     "react-dom": "^19.0.0",
     "three": "^0.180.0",
     "@react-three/fiber": "^9.3.0",
-    "@react-three/uikit": "^0.8.21",
+    "@react-three/uikit": "^1.0.73",
     "@react-three/postprocessing": "^3.0.4",
     "@react-three/drei": "^9.122.0",
     "leva": "^0.10.0",
