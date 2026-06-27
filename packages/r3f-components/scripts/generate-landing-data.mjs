@@ -75,6 +75,7 @@ function pickScripts(scripts = {}) {
     "batman:auto",
     "batman:ultimate",
     "deploy:production",
+    "deploy:preview",
     "check-compatibility",
   ];
 
@@ -101,7 +102,7 @@ function pickWorkflowGroups(scripts = {}) {
     {
       id: "deploy",
       title: "Deploy",
-      keys: ["deploy:production", "deploy:all", "deploy:starterkit", "deploy:cyber-forge"],
+      keys: ["deploy:production", "deploy:preview", "deploy:starterkit:production", "deploy:cyber-forge:production"],
     },
   ];
 

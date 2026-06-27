@@ -98,7 +98,11 @@
         },
         {
             "name": "deploy:production",
-            "command": "node scripts/deploy-production.mjs"
+            "command": "npm run deploy:starterkit:production && npm run deploy:cyber-forge:production"
+        },
+        {
+            "name": "deploy:preview",
+            "command": "npm run deploy:starterkit:preview && npm run deploy:cyber-forge:preview"
         },
         {
             "name": "check-compatibility",
@@ -170,7 +174,19 @@
             "items": [
                 {
                     "name": "deploy:production",
-                    "command": "node scripts/deploy-production.mjs"
+                    "command": "npm run deploy:starterkit:production && npm run deploy:cyber-forge:production"
+                },
+                {
+                    "name": "deploy:preview",
+                    "command": "npm run deploy:starterkit:preview && npm run deploy:cyber-forge:preview"
+                },
+                {
+                    "name": "deploy:starterkit:production",
+                    "command": "cd projects/R3f-StarterKit && vercel --prod"
+                },
+                {
+                    "name": "deploy:cyber-forge:production",
+                    "command": "cd apps/cyber-forge && vercel --prod"
                 }
             ]
         }
