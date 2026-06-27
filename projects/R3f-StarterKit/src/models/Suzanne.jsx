@@ -13,7 +13,7 @@ import { useGLTF, Merged } from '@react-three/drei'
 
 const context = createContext()
 export function Instances({ children, ...props }) {
-  const { nodes } = useGLTF('/suzanne.gltf')
+  const { nodes } = useGLTF('./Suzanne.gltf')
   const instances = useMemo(
     () => ({
       Suzanne: nodes.Suzanne,
@@ -50,4 +50,4 @@ export function Model(props) {
   )
 }
 
-useGLTF.preload('/suzanne.gltf')
+useGLTF.preload('./Suzanne.gltf')
