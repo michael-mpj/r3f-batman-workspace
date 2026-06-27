@@ -1,25 +1,26 @@
 # Workspace Information Report
 
-Generated: 9/9/2025, 7:23:31 AM
+Generated: 6/27/2026, 5:09:34 AM
 
 ## Environment
 
-- **Node.js**: v22.19.0
-- **npm**: 10.9.3
-- **Platform**: linux (x64)
-- **Working Directory**: /workspaces/r3f-batman-workspace
+- **Node.js**: v24.13.1
+- **npm**: 11.8.0
+- **Platform**: darwin (x64)
+- **Working Directory**: /Users/michaeljoseph/Documents/r3f-batman-workspace
 
 ## Workspace Overview
 
 - **Name**: @michael-mpj/r3f-batman
-- **Version**: 1.0.0
+- **Version**: 2.0.0
 - **Type**: module
 - **Private**: No
 - **Packages**: 3
 - **Projects**: 1
-- **Scripts**: 20
+- **Scripts**: 26
 
 ## Packages (3)
+
 
 ### @r3f-workspace/r3f-components
 
@@ -31,6 +32,7 @@ Generated: 9/9/2025, 7:23:31 AM
 - **Dependencies**: 2
 - **Dev Dependencies**: 7
 
+
 ### @r3f-workspace/ui
 
 - **Version**: 1.0.0
@@ -40,6 +42,7 @@ Generated: 9/9/2025, 7:23:31 AM
 - **Scripts**: 7 (build, dev, test, lint, lint:fix, format, clean)
 - **Dependencies**: 0
 - **Dev Dependencies**: 9
+
 
 ### @r3f-workspace/utils
 
@@ -51,17 +54,20 @@ Generated: 9/9/2025, 7:23:31 AM
 - **Dependencies**: 1
 - **Dev Dependencies**: 5
 
+
 ## Projects (1)
+
 
 ### r3f-starterkit
 
 - **Version**: 0.0.0
 - **Type**: module
 - **Path**: projects/R3f-StarterKit
-- **Description**:
+- **Description**: 
 - **Scripts**: 6 (dev, build, lint, lint:fix, preview, format)
 - **Dependencies**: 13
 - **Dev Dependencies**: 9
+
 
 ## Dependencies Overview
 
@@ -91,6 +97,7 @@ Generated: 9/9/2025, 7:23:31 AM
 - **eslint-config-prettier**: Used in 2 package(s)
 - **eslint-plugin-jsx-a11y**: Used in 2 package(s)
 
+
 ### Peer Dependencies
 
 - **react**: Used in 2 package(s)
@@ -98,13 +105,16 @@ Generated: 9/9/2025, 7:23:31 AM
 - **@react-three/fiber**: Used in 1 package(s)
 - **three**: Used in 1 package(s)
 
-## Available Scripts (20)
+
+## Available Scripts (26)
 
 - `add-headers.mjs`
 - `auto-merge.mjs`
 - `batman-auto-close.mjs`
+- `batman-commit-auto.mjs`
 - `batman-debug.mjs`
 - `batman-enhanced.mjs`
+- `batman-install-extensions.mjs`
 - `batman-ultimate-multi.mjs`
 - `batman-ultimate.mjs`
 - `batman-vscode.mjs`
@@ -112,8 +122,13 @@ Generated: 9/9/2025, 7:23:31 AM
 - `build-workspace.mjs`
 - `check-compatibility.mjs`
 - `cleanup-terminals.mjs`
+- `create-workspace.mjs`
+- `deploy-local.mjs`
+- `deploy-production.mjs`
 - `fix-r3f-components.mjs`
 - `pre-command.mjs`
+- `production-check.mjs`
+- `production-quality-check.mjs`
 - `security-check.mjs`
 - `setup-branch-protection.sh`
 - `update-packages.mjs`
@@ -123,7 +138,6 @@ Generated: 9/9/2025, 7:23:31 AM
 ## Workspace Commands
 
 ### Development
-
 ```bash
 # Install all dependencies
 npm install
@@ -139,7 +153,6 @@ npm run test
 ```
 
 ### Package Management
-
 ```bash
 # Add dependency to workspace root
 npm install package-name
@@ -152,7 +165,6 @@ npm outdated
 ```
 
 ### Scripts
-
 ```bash
 # Check compatibility
 node scripts/check-compatibility.mjs
