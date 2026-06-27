@@ -93,7 +93,7 @@ Deploys specific workspaces to target environments.
 - name: Deploy Workspace
   uses: ./.github/actions/deploy-workspace
   with:
-    workspace: "easymap" # Required: workspace name
+    workspace: "cyber-forge" # Required: workspace name
     environment: "production" # Target environment
     deploy-url: "" # Custom deployment URL
     build-output-dir: "dist" # Build output directory
@@ -181,7 +181,7 @@ jobs:
 - name: Build Specific App
   uses: ./.github/actions/build-workspace
   with:
-    workspace: "@r3f-workspace/easymap"
+    workspace: "@r3f-workspace/cyber-forge"
 
 - name: Test UI Package
   uses: ./.github/actions/test-workspace
@@ -195,13 +195,13 @@ jobs:
 - name: Deploy to Staging
   uses: ./.github/actions/deploy-workspace
   with:
-    workspace: "easymap"
+    workspace: "cyber-forge"
     environment: "staging"
 
 - name: Deploy to Production
   uses: ./.github/actions/deploy-workspace
   with:
-    workspace: "easymap"
+    workspace: "cyber-forge"
     environment: "production"
     create-release: "true"
 ```
@@ -219,7 +219,7 @@ All actions provide structured outputs that can be used in subsequent workflow s
   if: steps.build.outputs.build-status == 'success'
   uses: ./.github/actions/deploy-workspace
   with:
-    workspace: "easymap"
+    workspace: "cyber-forge"
     skip-build: "true"
 ```
 
