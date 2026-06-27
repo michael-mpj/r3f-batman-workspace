@@ -62,7 +62,7 @@ export function CyberScene() {
         position={[0, 2, 0]}
         fontSize={0.5}
         color='#ffffff'
-        font='https://fonts.gstatic.com/s/orbitron/v22/yMJMMIlzdpvBhQQL_SC3X9yhF25-T1nyGy6BoWgz.woff2'
+        font='https://fonts.gstatic.com/s/poppins/v20/pxiEyp8kv8JHgFVrJJfecnFHGPc.woff2'
       >
         CYBER FORGE
       </Text>
