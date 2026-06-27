@@ -1,3 +1,13 @@
+/**
+ * R3F Workspace Monorepo - Build Scripts
+ * File: create-workspace.mjs
+ * Description: create-workspace component/utility
+ * Author: R3F Workspace Team
+ * Created: 2026-06-27
+ * Last Modified: 2026-06-27
+ * Version: 1.0.0
+ */
+
 import { promises as fs } from "node:fs";
 import path from "node:path";
 import process from "node:process";
