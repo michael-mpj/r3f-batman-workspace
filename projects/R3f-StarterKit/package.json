@@ -14,11 +14,11 @@
   "dependencies": {
     "react": "^19.2.7",
     "react-dom": "^19.2.7",
-    "three": "^0.180.0",
-    "@react-three/fiber": "^9.3.0",
+    "three": "^0.184.0",
+    "@react-three/fiber": "^9.6.1",
     "@react-three/uikit": "^1.0.73",
     "@react-three/postprocessing": "^3.0.4",
-    "@react-three/drei": "^9.122.0",
+    "@react-three/drei": "^10.7.7",
     "leva": "^0.10.0",
     "r3f-perf": "^7.1.2",
     "react-router-dom": "^7.18.0",
@@ -27,7 +27,7 @@
     "@r3f-workspace/r3f-components": "file:../../packages/r3f-components"
   },
   "devDependencies": {
-    "@vitejs/plugin-react": "^5.0.2",
+    "@vitejs/plugin-react": "^5.2.0",
     "eslint": "^10.5.0",
     "eslint-plugin-react-hooks": "^5.2.0",
     "eslint-plugin-react-refresh": "^0.5.2",
@@ -35,6 +35,6 @@
     "eslint-plugin-jsx-a11y": "^6.7.1",
     "eslint-config-prettier": "^10.1.8",
     "prettier": "^3.8.4",
-    "vite": "^8.0.14"
+    "vite": "^8.1.0"
   }
 }

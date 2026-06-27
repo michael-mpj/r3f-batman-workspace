@@ -1,7 +1,11 @@
 {
   "compilerOptions": {
     "target": "ES2022",
-    "lib": ["DOM", "DOM.Iterable", "ES6"],
+    "lib": [
+      "DOM",
+      "DOM.Iterable",
+      "ES6"
+    ],
     "allowJs": true,
     "skipLibCheck": true,
     "esModuleInterop": true,
@@ -19,14 +23,33 @@
     "declarationMap": true,
     "sourceMap": true,
     "outDir": "dist",
-    "rootDir": ".",
-    "baseUrl": ".",
+    "rootDir": "./",
     "paths": {
-      "@/*": ["./src/*"],
-      "@r3f-workspace/ui": ["./packages/ui/src"]
+      "@/*": [
+        "./src/*"
+      ],
+      "@r3f-workspace/ui": [
+        "./packages/ui/src"
+      ]
     }
   },
-  "include": ["src/**/*", "packages/*/src/**/*", "apps/*/src/**/*"],
-  "exclude": ["node_modules", "dist", "build", "coverage"],
-  "references": [{ "path": "./packages/ui" }, { "path": "./apps/easymap" }]
+  "include": [
+    "src/**/*",
+    "packages/*/src/**/*",
+    "apps/*/src/**/*"
+  ],
+  "exclude": [
+    "node_modules",
+    "dist",
+    "build",
+    "coverage"
+  ],
+  "references": [
+    {
+      "path": "./packages/ui"
+    },
+    {
+      "path": "./apps/easymap"
+    }
+  ]
 }

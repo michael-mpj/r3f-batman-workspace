@@ -9,10 +9,11 @@
         "rootDir": "src"
     },
     "include": [
-        "src/**/*"
+        "src/**/*",
+        "src/**/*.js",
+        "src/**/*.ts"
     ],
     "exclude": [
-        "dist",
         "node_modules"
     ]
 }
