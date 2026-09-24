@@ -1,3 +1,13 @@
+/**
+ * R3F Workspace Monorepo - Build Scripts
+ * File: generate-landing-data.mjs
+ * Description: generate-landing-data component/utility
+ * Author: R3F Workspace Team
+ * Created: 2026-06-27
+ * Last Modified: 2026-06-27
+ * Version: 1.0.0
+ */
+
 import { promises as fs } from "node:fs";
 import path from "node:path";
 import process from "node:process";
@@ -75,6 +85,7 @@ function pickScripts(scripts = {}) {
     "batman:auto",
     "batman:ultimate",
     "deploy:production",
+    "deploy:preview",
     "check-compatibility",
   ];
 
@@ -101,7 +112,7 @@ function pickWorkflowGroups(scripts = {}) {
     {
       id: "deploy",
       title: "Deploy",
-      keys: ["deploy:production", "deploy:all", "deploy:starterkit", "deploy:cyber-forge"],
+      keys: ["deploy:production", "deploy:preview", "deploy:starterkit:production", "deploy:cyber-forge:production"],
     },
   ];
 

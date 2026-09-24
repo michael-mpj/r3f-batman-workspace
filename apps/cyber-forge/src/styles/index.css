@@ -8,7 +8,7 @@
  * Version: 1.0.0
  */
 
-@import url("https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap");
 
 :root {
   --neon-cyan: #00ffff;
@@ -30,7 +30,7 @@
 html,
 body {
   height: 100%;
-  font-family: "Orbitron", monospace;
+  font-family: "Poppins", sans-serif;
   background: linear-gradient(135deg, var(--dark-bg) 0%, var(--dark-surface) 100%);
   color: var(--text-primary);
   overflow: hidden;

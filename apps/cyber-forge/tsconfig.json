@@ -11,7 +11,7 @@
     "include": [
         "src/**/*",
         "src/**/*.js",
-        "src/**/*.ts"
+        "src/**/*.jsx"
     ],
     "exclude": [
         "node_modules"
