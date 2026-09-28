@@ -10,6 +10,7 @@
 
 import { Routes, Route } from 'react-router-dom'
 import { Leva } from 'leva'
+import { Analytics } from '@vercel/analytics/react'
 import Home from '@pages/Home'
 import About from '@pages/About'
 import Terms from '@pages/Terms'
@@ -23,6 +24,7 @@ function App() {
         <Route path='/about' element={<About />} />
         <Route path='/terms' element={<Terms />} />
       </Routes>
+      <Analytics />
     </div>
   )
 }

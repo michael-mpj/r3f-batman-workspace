@@ -12,6 +12,7 @@ import { Canvas } from "@react-three/fiber";
 import { Suspense } from "react";
 import { Leva } from "leva";
 import { Environment, OrbitControls } from "@react-three/drei";
+import { Analytics } from "@vercel/analytics/react";
 import { CyberScene } from "@scenes/CyberScene";
 import { LoadingScreen } from "@components/LoadingScreen";
 
@@ -27,6 +28,7 @@ export default function App() {
         </Suspense>
       </Canvas>
       <LoadingScreen />
+      <Analytics />
     </div>
   );
 }

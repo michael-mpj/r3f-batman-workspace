@@ -54,6 +54,7 @@
     "@react-three/fiber": "^9.6.1",
     "@react-three/postprocessing": "^3.0.4",
     "@react-three/xr": "^6.6.30",
+    "@vercel/analytics": "^2.0.1",
     "json-schema": "^0.4.0",
     "leva": "^0.10.0",
     "node-fetch": "^2.7.0",
