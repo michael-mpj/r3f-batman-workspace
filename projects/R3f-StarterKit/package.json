@@ -12,28 +12,29 @@
     "format": "prettier --write src/**/*.{js,jsx,css}"
   },
   "dependencies": {
-    "react": "^19.2.7",
-    "react-dom": "^19.2.7",
-    "three": "^0.184.0",
-    "@react-three/fiber": "^9.6.1",
-    "@react-three/uikit": "^1.0.73",
-    "@react-three/postprocessing": "^3.0.4",
-    "@react-three/drei": "^10.7.7",
-    "leva": "^0.10.0",
-    "r3f-perf": "^7.1.2",
-    "react-router-dom": "^7.18.2",
+    "@r3f-workspace/r3f-components": "file:../../packages/r3f-components",
     "@r3f-workspace/ui": "file:../../packages/ui",
     "@r3f-workspace/utils": "file:../../packages/utils",
-    "@r3f-workspace/r3f-components": "file:../../packages/r3f-components"
+    "@react-three/drei": "^10.7.7",
+    "@react-three/fiber": "^9.6.1",
+    "@react-three/postprocessing": "^3.0.4",
+    "@react-three/uikit": "^1.0.73",
+    "@vercel/analytics": "^2.0.1",
+    "leva": "^0.10.0",
+    "r3f-perf": "^7.1.2",
+    "react": "^19.2.7",
+    "react-dom": "^19.2.7",
+    "react-router-dom": "^7.18.2",
+    "three": "^0.184.0"
   },
   "devDependencies": {
     "@vitejs/plugin-react": "^5.2.0",
     "eslint": "^10.5.0",
+    "eslint-config-prettier": "^10.1.8",
+    "eslint-plugin-jsx-a11y": "^6.7.1",
+    "eslint-plugin-react": "^7.37.5",
     "eslint-plugin-react-hooks": "^5.2.0",
     "eslint-plugin-react-refresh": "^0.5.2",
-    "eslint-plugin-react": "^7.37.5",
-    "eslint-plugin-jsx-a11y": "^6.7.1",
-    "eslint-config-prettier": "^10.1.8",
     "prettier": "^3.8.4",
     "vite": "^8.1.0"
   }
