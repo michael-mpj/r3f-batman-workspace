@@ -29,8 +29,8 @@
     "three": "^0.184.0"
   },
   "devDependencies": {
-    "vite": "^8.1.0",
-    "vitest": "^5.0.1",
+    "vite": "^8.3.1",
+    "vitest": "^5.0.2",
     "eslint": "^10.11.0",
     "prettier": "^3.9.9",
     "rimraf": "^6.1.3"
