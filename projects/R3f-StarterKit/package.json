@@ -19,7 +19,7 @@
     "@react-three/uikit": "^1.0.76",
     "@react-three/postprocessing": "^3.0.4",
     "@react-three/drei": "^10.7.7",
-    "leva": "^0.10.0",
+    "leva": "^0.10.1",
     "r3f-perf": "^7.1.2",
     "react-router-dom": "^7.18.2",
     "@r3f-workspace/ui": "file:../../packages/ui",
