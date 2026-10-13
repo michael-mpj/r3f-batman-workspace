@@ -13,7 +13,7 @@
   },
   "dependencies": {
     "react": "^19.3.0",
-    "react-dom": "^19.2.7",
+    "react-dom": "^19.3.0",
     "three": "^0.184.0",
     "@react-three/fiber": "^9.6.1",
     "@react-three/uikit": "^1.0.76",
