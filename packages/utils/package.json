@@ -29,7 +29,7 @@
     "three": "^0.184.0"
   },
   "devDependencies": {
-    "vite": "^8.3.4",
+    "vite": "^8.3.5",
     "vitest": "^5.0.5",
     "eslint": "^10.11.0",
     "prettier": "^3.9.9",
